@@ -1,0 +1,9 @@
+* Emacs Configuration
+** Dependencies
+   This configuration depends on auto-complete-el and the old (pre-24) color-theme package. Under Debian and like-minded GNU/Linux distributions, these are available through the ~auto-complete-el~ and ~emacs-goodies-el~ packages, respectively. Org-mode (package ~org-mode-el~) is also required. It is also recommended that the package ~emacs<major version>-el~ be installed for access to Emacs’ function definitions vis-à-vis ~describe-function~.
+** Installation
+   The simplest method of installation is simply to create soft links to ~.emacs~ and ~.emacs.d~ in the user’s home directory using ~ln -s~. Using a hard link may be more robust (e.g., in the event that the source directory is moved), but can lead to some surprising behaviour.
+** License
+   Some of the configurations herein reuse or adapt portions of the source code distributed with GNU Emacs. As such, that code is subject to the provisions of the GNU General Public License, v3 or later. For this reason, the files containing that code have been licensed according to the same terms. These configurations also include code including, but not limited to, bison-mode, dired-x, flex-mode, image-dired, multiple-cursors, org-mode, page-break-lines, and powerline. These codes are copyrighted to their respective authors; see the relevant files for licensing details.
+   These configurations may also include code adapted and unlicensed from other sources. If you feel that these configurations violate your copyright or license terms, please contact the repository maintainer at [[mailto:stuart_olsen@txstate.edu][stuart_olsen@txstate.edu]].
+

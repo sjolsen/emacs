@@ -4,6 +4,7 @@
 
 (load "basic-bindings")
 (load "c-c++-settings")
+(load "hscroll")
 (load "lisp-settings")
 (load "org-settings")
 (load "visual-settings")

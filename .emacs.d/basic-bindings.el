@@ -54,62 +54,7 @@
   (backward-kill-sexp)
   (prin1 (eval (read (current-kill 0)))
          (current-buffer)))
-
 (global-set-key (kbd "C-c e") 'eval-and-replace)
-
-;; Hscroll
-(setq hscroll-margin 1)
-
-(defun current-line-length () (interactive)
-  (save-excursion (move-end-of-line nil) (current-column)))
-
-(defmacro defmouse-scroll-function (name do-scroll)
-  `(defun ,name (event distance)
-     (let* ((mouse-position (mouse-position))
-            (scroll-window
-             (condition-case nil
-                 (window-at (cadr mouse-position) (cddr mouse-position)
-                            (car mouse-position))
-               (error nil)))
-            (old-window (selected-window)))
-       (select-window scroll-window)
-       (,do-scroll distance)
-       (select-window old-window))))
-
-(defmouse-scroll-function mouse-scroll-left scroll-left)
-(defmouse-scroll-function mouse-scroll-right scroll-right)
-
-(defadvice mouse-scroll-left (around mouse-scroll-left-margin-check activate)
-  (let* ((advance (min (ad-get-arg 1)
-                       (- (current-line-length) (current-column))))
-         (virtual-column (- (current-column) (window-hscroll))))
-    (forward-char (max (1+ (- hscroll-margin (- virtual-column advance)))
-                       0))
-    (ad-set-arg 1 advance)
-    ad-do-it))
-
-(defadvice mouse-scroll-right (around mouse-scroll-right-margin-check activate)
-  (let* ((advance (min (ad-get-arg 1)
-                       (window-hscroll)))
-         (virtual-column (- (current-column) (window-hscroll)))
-         (edge-distance (- (window-width) virtual-column)))
-    (backward-char (max (1+ (- hscroll-margin (- edge-distance advance)))
-                        0))
-    (ad-set-arg 1 advance)
-    ad-do-it))
-
-(global-set-key (kbd "<mouse-6>")        '(lambda (event) (interactive "e") (mouse-scroll-right event 1)))
-(global-set-key (kbd "<double-mouse-6>") '(lambda (event) (interactive "e") (mouse-scroll-right event 3)))
-(global-set-key (kbd "<triple-mouse-6>") '(lambda (event) (interactive "e") (mouse-scroll-right event 5)))
-(global-set-key (kbd "<mouse-7>")        '(lambda (event) (interactive "e") (mouse-scroll-left event 1)))
-(global-set-key (kbd "<double-mouse-7>") '(lambda (event) (interactive "e") (mouse-scroll-left event 3)))
-(global-set-key (kbd "<triple-mouse-7>") '(lambda (event) (interactive "e") (mouse-scroll-left event 5)))
-(global-set-key (kbd "<S-mouse-4>")        '(lambda (event) (interactive "e") (mouse-scroll-right event 1)))
-(global-set-key (kbd "S-<double-mouse-4>") '(lambda (event) (interactive "e") (mouse-scroll-right event 3)))
-(global-set-key (kbd "S-<triple-mouse-4>") '(lambda (event) (interactive "e") (mouse-scroll-right event 5)))
-(global-set-key (kbd "<S-mouse-5>")        '(lambda (event) (interactive "e") (mouse-scroll-left event 1)))
-(global-set-key (kbd "S-<double-mouse-5>") '(lambda (event) (interactive "e") (mouse-scroll-left event 3)))
-(global-set-key (kbd "S-<triple-mouse-5>") '(lambda (event) (interactive "e") (mouse-scroll-left event 5)))
 
 ;; Keyboard scrolling
 (global-set-key (kbd "<Scroll_Lock>") 'scroll-lock-mode)
