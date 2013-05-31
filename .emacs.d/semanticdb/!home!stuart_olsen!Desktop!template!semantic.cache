@@ -1,0 +1,9 @@
+;; Object template/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "template/"
+  :tables (list 
+    )
+  :file "!home!stuart_olsen!Desktop!template!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.0"
+  )

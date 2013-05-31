@@ -1,0 +1,486 @@
+;; Object ast/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "ast/"
+  :tables (list 
+   (semanticdb-table "astdef.hh"
+    :major-mode 'c++-mode
+    :tags 
+        '( ("ASTDEF_HH" variable (:constant-flag t) nil [27 36])
+            ("tokenizer.hh" include (:system-flag t) nil [38 61])
+            ("vector" include (:system-flag t) nil [63 80])
+            ("memory" include (:system-flag t) nil [81 98])
+            ("string" include (:system-flag t) nil [99 116])
+            ("AST_type" type (:type "class") nil [125 449])
+            ("AST" type
+               (:members 
+                  ( ("parent" variable
+                       (:pointer 1
+                        :type ("AST" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [467 479])
+                    ("type" variable (:type ("AST_type" type (:type "class") nil nil)) (reparse-symbol classsubparts) [481 495])
+                    ("AST" function
+                       (:prototype-flag t
+                        :constructor-flag t
+                        :type ("AST" type (:type "struct") nil nil))
+                        (reparse-symbol classsubparts) [498 505])
+                    ("contents" function
+                       (:prototype-flag t
+                        :typemodifiers ("virtual")
+                        :type ("std::vector" type
+                             (:template-specifier 
+                                ( ("std::string" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol classsubparts) [508 554]))                  
+                :type "struct")
+                nil [453 557])
+            ("AST_node" type
+               (:typedef ("std::shared_ptr" type
+                     (:template-specifier 
+                        ( ("AST" type nil nil nil))                        
+                      :type "class")
+                      nil nil)
+                :superclasses "std::shared_ptr"
+                :type "typedef")
+                nil [561 600])
+            ("std::shared_ptr" variable (:type "int") nil [643 670])
+            ("auto.astdecls.hh" include nil nil [674 701])
+            ("terminal" type
+               (:superclasses 
+                  ( ("AST" type
+                       (:protection "unspecified"
+                        :type "class")
+                        nil nil))                  
+                :members 
+                  ( ("token_ref" variable
+                       (:constant-flag t
+                        :type ("token" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [731 754])
+                    ("terminal" function
+                       (:prototype-flag t
+                        :constructor-flag t
+                        :arguments 
+                          ( ("t" variable
+                               (:reference 1
+                                :constant-flag t
+                                :type ("token" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [767 782]))                          
+                        :type ("terminal" type (:type "struct") nil nil))
+                        (reparse-symbol classsubparts) [757 783])
+                    ("override" variable (:type "int") (reparse-symbol classsubparts) [831 840]))                  
+                :type "struct")
+                nil [705 843])
+            ("lines" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("node" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("AST_node" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [879 900]))                  
+                :type ("std::vector" type
+                     (:template-specifier 
+                        ( ("std::string" type nil nil nil))                        
+                      :type "class")
+                      nil nil))
+                nil [846 901])
+            ("to_string" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("tree" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("AST_node" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [925 946])
+                    ("line_prefix" variable (:type ("std::string" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [970 994]))                  
+                :type ("std::string" type (:type "class") nil nil))
+                nil [902 995])
+            ("to_string" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("type" variable (:type ("AST_type" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [1019 1033]))                  
+                :type ("std::string" type (:type "class") nil nil))
+                nil [996 1034]))          
+    :file "astdef.hh"
+    :pointmax 975
+    :fsize 1044
+    :lastmodtime '(20783 64887)
+    :unmatched-syntax 'nil
+    :lexical-table 
+        '(("ASTDEF_HH")
+          )
+
+    )
+   (semanticdb-table "ast_predicates.hh"
+    :major-mode 'c++-mode
+    :tags 
+        '( ("AST_PREDICATES_HH" variable (:constant-flag t) nil [35 52])
+            ("ast/astdef.hh" include (:system-flag t) nil [54 78])
+            ("tokenizer.hh" include (:system-flag t) nil [79 102])
+            ("program_p" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("tokens" variable
+                       (:reference 1
+                        :constant-flag t
+                        :type ("std::vector" type
+                             (:template-specifier 
+                                ( ("token" type nil nil nil))                                
+                              :type "class")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [125 159]))                  
+                :type ("program" type (:type "class") nil nil))
+                nil [106 160])
+            ("declList_p" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("tokens" variable
+                       (:reference 1
+                        :type ("token_range" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [202 222]))                  
+                :type ("Node" type
+                     (:template-specifier 
+                        ( ("declList" type nil nil nil))                        
+                      :type "class")
+                      nil nil))
+                nil [162 223])
+            ("decl_p" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("tokens" variable
+                       (:reference 1
+                        :type ("token_range" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [264 284]))                  
+                :type ("Node" type
+                     (:template-specifier 
+                        ( ("decl" type nil nil nil))                        
+                      :type "class")
+                      nil nil))
+                nil [224 285])
+            ("varDecl_p" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("tokens" variable
+                       (:reference 1
+                        :type ("token_range" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [326 346]))                  
+                :type ("Node" type
+                     (:template-specifier 
+                        ( ("varDecl" type nil nil nil))                        
+                      :type "class")
+                      nil nil))
+                nil [286 347])
+            ("typeSpecifier_p" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("tokens" variable
+                       (:reference 1
+                        :type ("token_range" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [388 408]))                  
+                :type ("Node" type
+                     (:template-specifier 
+                        ( ("typeSpecifier" type nil nil nil))                        
+                      :type "class")
+                      nil nil))
+                nil [348 409])
+            ("funDecl_p" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("tokens" variable
+                       (:reference 1
+                        :type ("token_range" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [450 470]))                  
+                :type ("Node" type
+                     (:template-specifier 
+                        ( ("funDecl" type nil nil nil))                        
+                      :type "class")
+                      nil nil))
+                nil [410 471])
+            ("formalDeclList_p" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("tokens" variable
+                       (:reference 1
+                        :type ("token_range" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [512 532]))                  
+                :type ("Node" type
+                     (:template-specifier 
+                        ( ("formalDeclList" type nil nil nil))                        
+                      :type "class")
+                      nil nil))
+                nil [472 533])
+            ("formalDecl_p" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("tokens" variable
+                       (:reference 1
+                        :type ("token_range" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [574 594]))                  
+                :type ("Node" type
+                     (:template-specifier 
+                        ( ("formalDecl" type nil nil nil))                        
+                      :type "class")
+                      nil nil))
+                nil [534 595])
+            ("funBody_p" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("tokens" variable
+                       (:reference 1
+                        :type ("token_range" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [636 656]))                  
+                :type ("Node" type
+                     (:template-specifier 
+                        ( ("funBody" type nil nil nil))                        
+                      :type "class")
+                      nil nil))
+                nil [596 657])
+            ("localDeclList_p" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("tokens" variable
+                       (:reference 1
+                        :type ("token_range" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [698 718]))                  
+                :type ("Node" type
+                     (:template-specifier 
+                        ( ("localDeclList" type nil nil nil))                        
+                      :type "class")
+                      nil nil))
+                nil [658 719])
+            ("statementList_p" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("tokens" variable
+                       (:reference 1
+                        :type ("token_range" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [760 780]))                  
+                :type ("Node" type
+                     (:template-specifier 
+                        ( ("statementList" type nil nil nil))                        
+                      :type "class")
+                      nil nil))
+                nil [720 781])
+            ("statement_p" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("tokens" variable
+                       (:reference 1
+                        :type ("token_range" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [822 842]))                  
+                :type ("Node" type
+                     (:template-specifier 
+                        ( ("statement" type nil nil nil))                        
+                      :type "class")
+                      nil nil))
+                nil [782 843])
+            ("compoundStmt_p" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("tokens" variable
+                       (:reference 1
+                        :type ("token_range" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [884 904]))                  
+                :type ("Node" type
+                     (:template-specifier 
+                        ( ("compoundStmt" type nil nil nil))                        
+                      :type "class")
+                      nil nil))
+                nil [844 905])
+            ("assignStmt_p" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("tokens" variable
+                       (:reference 1
+                        :type ("token_range" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [946 966]))                  
+                :type ("Node" type
+                     (:template-specifier 
+                        ( ("assignStmt" type nil nil nil))                        
+                      :type "class")
+                      nil nil))
+                nil [906 967])
+            ("condStmt_p" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("tokens" variable
+                       (:reference 1
+                        :type ("token_range" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [1008 1028]))                  
+                :type ("Node" type
+                     (:template-specifier 
+                        ( ("condStmt" type nil nil nil))                        
+                      :type "class")
+                      nil nil))
+                nil [968 1029])
+            ("loopStmt_p" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("tokens" variable
+                       (:reference 1
+                        :type ("token_range" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [1070 1090]))                  
+                :type ("Node" type
+                     (:template-specifier 
+                        ( ("loopStmt" type nil nil nil))                        
+                      :type "class")
+                      nil nil))
+                nil [1030 1091])
+            ("returnStmt_p" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("tokens" variable
+                       (:reference 1
+                        :type ("token_range" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [1132 1152]))                  
+                :type ("Node" type
+                     (:template-specifier 
+                        ( ("returnStmt" type nil nil nil))                        
+                      :type "class")
+                      nil nil))
+                nil [1092 1153])
+            ("var_p" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("tokens" variable
+                       (:reference 1
+                        :type ("token_range" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [1194 1214]))                  
+                :type ("Node" type
+                     (:template-specifier 
+                        ( ("var" type nil nil nil))                        
+                      :type "class")
+                      nil nil))
+                nil [1154 1215])
+            ("expression_p" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("tokens" variable
+                       (:reference 1
+                        :type ("token_range" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [1256 1276]))                  
+                :type ("Node" type
+                     (:template-specifier 
+                        ( ("expression" type nil nil nil))                        
+                      :type "class")
+                      nil nil))
+                nil [1216 1277])
+            ("relop_p" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("tokens" variable
+                       (:reference 1
+                        :type ("token_range" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [1318 1338]))                  
+                :type ("Node" type
+                     (:template-specifier 
+                        ( ("relop" type nil nil nil))                        
+                      :type "class")
+                      nil nil))
+                nil [1278 1339])
+            ("addExpr_p" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("tokens" variable
+                       (:reference 1
+                        :type ("token_range" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [1380 1400]))                  
+                :type ("Node" type
+                     (:template-specifier 
+                        ( ("addExpr" type nil nil nil))                        
+                      :type "class")
+                      nil nil))
+                nil [1340 1401])
+            ("addop_p" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("tokens" variable
+                       (:reference 1
+                        :type ("token_range" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [1442 1462]))                  
+                :type ("Node" type
+                     (:template-specifier 
+                        ( ("addop" type nil nil nil))                        
+                      :type "class")
+                      nil nil))
+                nil [1402 1463])
+            ("term_p" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("tokens" variable
+                       (:reference 1
+                        :type ("token_range" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [1504 1524]))                  
+                :type ("Node" type
+                     (:template-specifier 
+                        ( ("term" type nil nil nil))                        
+                      :type "class")
+                      nil nil))
+                nil [1464 1525])
+            ("mulop_p" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("tokens" variable
+                       (:reference 1
+                        :type ("token_range" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [1566 1586]))                  
+                :type ("Node" type
+                     (:template-specifier 
+                        ( ("mulop" type nil nil nil))                        
+                      :type "class")
+                      nil nil))
+                nil [1526 1587])
+            ("factor_p" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("tokens" variable
+                       (:reference 1
+                        :type ("token_range" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [1628 1648]))                  
+                :type ("Node" type
+                     (:template-specifier 
+                        ( ("factor" type nil nil nil))                        
+                      :type "class")
+                      nil nil))
+                nil [1588 1649])
+            ("funcCallExpr_p" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("tokens" variable
+                       (:reference 1
+                        :type ("token_range" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [1690 1710]))                  
+                :type ("Node" type
+                     (:template-specifier 
+                        ( ("funcCallExpr" type nil nil nil))                        
+                      :type "class")
+                      nil nil))
+                nil [1650 1711])
+            ("argList_p" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("tokens" variable
+                       (:reference 1
+                        :type ("token_range" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [1752 1772]))                  
+                :type ("Node" type
+                     (:template-specifier 
+                        ( ("argList" type nil nil nil))                        
+                      :type "class")
+                      nil nil))
+                nil [1712 1773]))          
+    :file "ast_predicates.hh"
+    :pointmax 2070
+    :fsize 1783
+    :lastmodtime '(20783 64915)
+    :unmatched-syntax 'nil
+    :lexical-table 
+        '(("AST_PREDICATES_HH")
+          )
+
+    )
+   )
+  :file "!home!stuart_olsen!compiler!include!ast!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.0"
+  )
