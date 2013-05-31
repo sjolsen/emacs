@@ -16,6 +16,7 @@
         end-of-visual-line
         eval-and-replace
         forward-sexp
+        indent-for-tab-command
         kill-region
         kmacro-end-macro
         org-beginning-of-line

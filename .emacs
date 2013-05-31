@@ -24,11 +24,11 @@
 (add-hook 'auto-complete-mode-hook
           (lambda ()
             (define-key ac-completing-map (kbd "RET") nil)
-            (define-key ac-completing-map (kbd "<C-return>") 'ac-complete)))
-(add-hook 'auto-complete-mode-hook (lambda () (local-set-key (kbd "C-n") 'next-line)))
-(add-hook 'auto-complete-mode-hook (lambda () (local-set-key (kbd "<down>") 'next-line)))
-(add-hook 'auto-complete-mode-hook (lambda () (local-set-key (kbd "C-p") 'previous-line)))
-(add-hook 'auto-complete-mode-hook (lambda () (local-set-key (kbd "<up>") 'previous-line)))
+            (define-key ac-completing-map (kbd "<C-return>") 'ac-complete)
+            (define-key ac-completing-map (kbd "C-n") nil)
+            (define-key ac-completing-map (kbd "<down>") nil)
+            (define-key ac-completing-map (kbd "C-p") nil)
+            (define-key ac-completing-map (kbd "<up>") nil)))
 
 ;; dired-x
 (add-hook 'dired-load-hook
