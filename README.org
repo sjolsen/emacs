@@ -1,6 +1,6 @@
 * Emacs Configuration
 ** Dependencies
-   This configuration depends on auto-complete-el and the old (pre-24) color-theme package. Under Debian and like-minded GNU/Linux distributions, these are available through the ~auto-complete-el~ and ~emacs-goodies-el~ packages, respectively. Org-mode (package ~org-mode-el~) is also required. It is also recommended that the package ~emacs<major version>-el~ be installed for access to Emacs’ function definitions vis-à-vis ~describe-function~.
+   This configuration depends on auto-complete-el and the old (pre-24) color-theme package. Under Debian and like-minded GNU/Linux distributions, these are available through the ~auto-complete-el~ and ~emacs-goodies-el~ packages, respectively. Org-mode (package ~org-mode~) is also required. It is also recommended that the package ~emacs<major version>-el~ be installed for access to Emacs’ function definitions vis-à-vis ~describe-function~.
 ** Installation
    The simplest method of installation is simply to create soft links to ~.emacs~ and ~.emacs.d~ in the user’s home directory using ~ln -s~. Using a hard link may be more robust (e.g., in the event that the source directory is moved), but can lead to some surprising behaviour and may not be possible under some system configurations. For additional information, see ~info coreutils ln~.
 ** License
