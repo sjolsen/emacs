@@ -21,6 +21,10 @@
 (add-to-list 'ac-dictionary-directories "~/.emacs.d//ac-dict")
 (ac-config-default)
 (setq ac-ignore-case nil)
+(add-hook 'auto-complete-mode-hook
+          (lambda ()
+            (define-key ac-completing-map (kbd "RET") nil)
+            (define-key ac-completing-map (kbd "<C-return>") 'ac-complete)))
 (add-hook 'auto-complete-mode-hook (lambda () (local-set-key (kbd "C-n") 'next-line)))
 (add-hook 'auto-complete-mode-hook (lambda () (local-set-key (kbd "<down>") 'next-line)))
 (add-hook 'auto-complete-mode-hook (lambda () (local-set-key (kbd "C-p") 'previous-line)))
