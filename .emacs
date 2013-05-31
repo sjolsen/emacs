@@ -50,6 +50,11 @@
 (require 'page-break-lines)
 (global-page-break-lines-mode 1)
 
+;; Undo Tree
+(add-to-list 'load-path "~/.emacs.d/undo-tree")
+(require 'undo-tree)
+(global-undo-tree-mode)
+
 ;; Flex and Bison
 ;; (load "flex-mode")
 ;; (load "bison-mode")
