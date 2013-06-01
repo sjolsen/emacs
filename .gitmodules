@@ -1,0 +1,6 @@
+[submodule ".emacs.d/multiple-cursors"]
+	path = .emacs.d/multiple-cursors
+	url = git://github.com/emacsmirror/multiple-cursors.git
+[submodule ".emacs.d/undo-tree"]
+	path = .emacs.d/undo-tree
+	url = http://www.dr-qubit.org/git/undo-tree.git
