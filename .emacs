@@ -13,7 +13,7 @@
     (load-file "~/Documents/configs/rcirc-settings.el"))
 
 ;; Multiple cursors
-(add-to-list 'load-path "~/.emacs.d/multiple-cursors")
+(add-to-list 'load-path "~/.emacs.d/multiple-cursors.el")
 (require 'multiple-cursors)
 
 ;; auto-complete
