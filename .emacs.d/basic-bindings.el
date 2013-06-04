@@ -1,5 +1,11 @@
 ;;; Basic keyboard and mouse bindings
 
+;; Tab-completion in eval-expression
+(add-hook 'minibuffer-setup-hook
+          (lambda ()
+            (if (eq this-command 'eval-expression)
+                (local-set-key (kbd "TAB") 'lisp-complete-symbol))))
+
 ;; Page break navigation
 (global-set-key (kbd "<C-M-prior>") 'backward-page)
 (global-set-key (kbd "<C-M-next>") 'forward-page)
