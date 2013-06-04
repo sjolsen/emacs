@@ -54,6 +54,11 @@
 (add-to-list 'load-path "~/.emacs.d/undo-tree")
 (require 'undo-tree)
 (global-undo-tree-mode)
+(define-key undo-tree-map (kbd "C-?") nil)
+(define-key undo-tree-map (kbd "C-Z") 'undo-tree-redo)
+
+;; Minimap
+(require 'minimap)
 
 ;; Flex and Bison
 ;; (load "flex-mode")
@@ -73,6 +78,7 @@
  '(inhibit-startup-screen t)
  '(mouse-wheel-scroll-amount (quote (1 ((control)))))
  '(page-break-lines-char 45)
+ '(page-break-lines-modes (quote (emacs-lisp-mode lisp-mode scheme-mode compilation-mode outline-mode help-mode c-mode c++-mode)))
  '(tool-bar-mode nil)
  '(truncate-lines t))
 (put 'upcase-region 'disabled nil)
