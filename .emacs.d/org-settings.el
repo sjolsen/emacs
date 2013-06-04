@@ -6,9 +6,12 @@
 ;; Set emacs to open links in `firefox`
 (setq browse-url-browser-function 'browse-url-firefox)
 
-;; More convenient insertion of '*' in org-mode
 (add-hook 'org-mode-hook
-          (lambda () (local-set-key (kbd "C-;") (kbd "*"))))
+          (lambda ()
+            ;; More convenient insertion of '*' in org-mode
+            (local-set-key (kbd "C-;") (kbd "*"))
+            ;; M-h
+            (local-set-key (kbd "M-h") 'backward-kill-word)))
 
 ;; Visual-line mode in org-mode
 (add-hook 'org-mode-hook 'visual-line-mode)

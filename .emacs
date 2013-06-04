@@ -78,7 +78,7 @@
  '(inhibit-startup-screen t)
  '(mouse-wheel-scroll-amount (quote (1 ((control)))))
  '(page-break-lines-char 45)
- '(page-break-lines-modes (quote (emacs-lisp-mode lisp-mode scheme-mode compilation-mode outline-mode help-mode c-mode c++-mode)))
+ '(page-break-lines-modes (quote (emacs-lisp-mode lisp-mode scheme-mode compilation-mode outline-mode help-mode c-mode c++-mode text-mode)))
  '(tool-bar-mode nil)
  '(truncate-lines t))
 (put 'upcase-region 'disabled nil)
