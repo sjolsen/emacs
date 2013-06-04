@@ -18,7 +18,8 @@
 ;; Auto-indent in HTML
 (add-hook 'html-mode-hook
           (lambda ()
-            (local-set-key (kbd "<return>") 'newline-and-indent)))
+            (local-set-key (kbd "<return>") 'newline-and-indent)
+            (flyspell-mode 0)))
 
 ;; Undo
 (global-set-key (kbd "C-z") 'undo)
