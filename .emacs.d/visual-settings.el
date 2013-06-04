@@ -1,5 +1,11 @@
 ;;; Customize display settings
 
+;; Color theme
+(require 'color-theme)
+(setq color-theme-is-global t)
+(color-theme-initialize)
+(color-theme-charcoal-black)
+
 ;; Graphical-only settings
 (defun do-graphics-settings (&optional frame)
   (interactive)
@@ -38,12 +44,6 @@
   (ensure-ansi-term))
 (defadvice server-create-tty-frame (after server-tty-frame-customization activate)
   (ensure-ansi-term))
-
-;; Color theme
-(require 'color-theme)
-(setq color-theme-is-global t)
-(color-theme-initialize)
-(color-theme-charcoal-black)
 
 ;; Enable UTF-8 encoding
 (set-language-environment "UTF-8")

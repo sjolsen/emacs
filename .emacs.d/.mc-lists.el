@@ -35,4 +35,5 @@
         list-buffers
         mouse-drag-vertical-line
         org-export
+        repeat
         ))

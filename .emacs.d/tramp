@@ -467,4 +467,5 @@
   ("perl-cwd-realpath" t)
   ("perl" "\\perl")
   ("inline-compress" "gzip")
-  ("inline-decompress" "gzip -d")))
+  ("inline-decompress" "gzip -d")
+  ("uid-integer" 8951)))

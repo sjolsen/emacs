@@ -54,7 +54,7 @@
 (require 'undo-tree)
 (global-undo-tree-mode)
 (define-key undo-tree-map (kbd "C-?") nil)
-(define-key undo-tree-map (kbd "C-Z") 'undo-tree-redo)
+(define-key undo-tree-map (kbd "C-S-z") 'undo-tree-redo)
 
 ;; Minimap
 (require 'minimap)
