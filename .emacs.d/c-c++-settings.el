@@ -22,6 +22,9 @@
             (add-hook mode-hook 'subword-mode))
           mode-hooks))
 
+;; No namespace indentation
+(add-to-list 'c++-mode-hook (lambda () (c-set-offset 'innamespace 0)))
+
 ;; Associate CUDA source
 (add-to-list 'auto-mode-alist
              '("\\.cu" . c++-mode))
