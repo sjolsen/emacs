@@ -59,6 +59,10 @@
 ;; Minimap
 (require 'minimap)
 
+;; Flymake
+(require 'flymake-settings)
+(flymake-settings)
+
 ;; Flex and Bison
 ;; (load "flex-mode")
 ;; (load "bison-mode")
