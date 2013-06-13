@@ -124,9 +124,10 @@ Use CREATE-TEMP-F for creating temp copy."
   `(flymake-settings))
 
 (loop for (keybind function) in
-      `((,(kbd "C-c n")   flymake-goto-next-error-disp)
-        (,(kbd "C-c p")   flymake-goto-prev-error-disp)
-        (,(kbd "C-c RET") flymake-display-current-warning/error)) do
+      `((,(kbd "C-c n")        flymake-goto-next-error-disp)
+        (,(kbd "C-c p")        flymake-goto-prev-error-disp)
+        (,(kbd "C-c RET")      flymake-display-current-warning/error)
+        (,(kbd "<C-return>")   flymake-display-err-menu-for-current-line)) do
         (define-key flymake-mode-map
           keybind function))
 

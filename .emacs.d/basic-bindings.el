@@ -1,5 +1,11 @@
 ;;; Basic keyboard and mouse bindings
 
+;; Mouse history in Info-mode
+(add-hook 'Info-mode-hook
+          (lambda ()
+            (local-set-key (kbd "<mouse-8>") 'Info-history-back)
+            (local-set-key (kbd "<mouse-9>") 'Info-history-forward)))
+
 ;; Tab-completion in eval-expression
 (add-hook 'minibuffer-setup-hook
           (lambda ()
