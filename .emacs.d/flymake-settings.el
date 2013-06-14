@@ -27,8 +27,6 @@
 
 (defun flymake-settings ()
   "Settings for `flymake'."
-  (setq flymake-gui-warnings-enabled nil)
-
   (defvar flymake-makefile-filenames '("Makefile" "makefile" "GNUmakefile") "File names for make.")
 
   (defun flymake-get-make-gcc-cmdline (source base-dir)
@@ -122,6 +120,41 @@ Use CREATE-TEMP-F for creating temp copy."
 
 (eval-after-load "flymake"
   `(flymake-settings))
+
+;; Fix warning matching for newer versions of GCC
+(defvar flymake-warning-regexp "\\(^\\|[0-9]+: \\)[wW]arning"
+  "Regexp against which compiler output is checked to differentiate between warnings and errors")
+
+(defun flymake-parse-line (line)
+  "Parse LINE to see if it is an error or warning.
+Return its components if so, nil otherwise."
+  (let ((raw-file-name nil)
+	(line-no 0)
+	(err-type "e")
+	(err-text nil)
+	(patterns flymake-err-line-patterns)
+	(matched nil))
+    (while (and patterns (not matched))
+      (when (string-match (car (car patterns)) line)
+	(let* ((file-idx (nth 1 (car patterns)))
+	       (line-idx (nth 2 (car patterns))))
+
+	  (setq raw-file-name (if file-idx (match-string file-idx line) nil))
+	  (setq line-no       (if line-idx (string-to-number (match-string line-idx line)) 0))
+	  (setq err-text      (if (> (length (car patterns)) 4)
+				  (match-string (nth 4 (car patterns)) line)
+				(flymake-patch-err-text (substring line (match-end 0)))))
+	  (or err-text (setq err-text "<no error text>"))
+	  (if (and err-text (string-match flymake-warning-regexp err-text))
+	      (setq err-type "w")
+	    )
+	  (flymake-log 3 "parse line: file-idx=%s line-idx=%s file=%s line=%s text=%s" file-idx line-idx
+		       raw-file-name line-no err-text)
+	  (setq matched t)))
+      (setq patterns (cdr patterns)))
+    (if matched
+	(flymake-ler-make-ler raw-file-name line-no err-type err-text)
+      ())))
 
 (loop for (keybind function) in
       `((,(kbd "C-c n")        flymake-goto-next-error-disp)
