@@ -44,7 +44,9 @@
                       "check-syntax"))
         (let ((gcc-args (list "-o"
                               "/dev/null"
-                              "-fsyntax-only"
+                              ;"-fsyntax-only" ; Doesn’t work correctly with warn_unused_result
+                              "-O0"
+                              "-S"
                               "-Wall"
                               "-Wextra"
                               "-pedantic"
@@ -116,10 +118,7 @@ Use CREATE-TEMP-F for creating temp copy."
      '(memq major-mode dev-modes)))
 
   (eval-after-load "emaci"
-    `(flymake-settings-4-emaci)))
-
-(eval-after-load "flymake"
-  `(flymake-settings))
+    `(flymake-settings-4-emaci))
 
 ;; Fix warning matching for newer versions of GCC
 (defvar flymake-warning-regexp "\\(^\\|[0-9]+: \\)[wW]arning"
@@ -154,7 +153,10 @@ Return its components if so, nil otherwise."
       (setq patterns (cdr patterns)))
     (if matched
 	(flymake-ler-make-ler raw-file-name line-no err-type err-text)
-      ())))
+      ()))))
+
+(eval-after-load "flymake"
+  `(flymake-settings))
 
 (loop for (keybind function) in
       `((,(kbd "C-c n")        flymake-goto-next-error-disp)
