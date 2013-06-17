@@ -1,5 +1,9 @@
 ;;; Basic keyboard and mouse bindings
 
+;; Enable recursive minibuffer
+(setq enable-recursive-minibuffers t)
+(minibuffer-depth-indicate-mode)
+
 ;; Right margin
 (defun get-right-margin ()
   (- (window-width (selected-window)) 1))

@@ -99,5 +99,5 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  '(flymake-errline ((((class color) (background dark)) (:underline "red"))))
- '(flymake-warnline ((((class color) (background dark)) (:underline "blue"))))
+ '(flymake-warnline ((t (:underline "blue"))))
  '(variable-pitch ((t (:family "Droid Serif")))))
