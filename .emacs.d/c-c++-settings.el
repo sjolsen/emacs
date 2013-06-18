@@ -28,7 +28,11 @@
                                                 'c-context-line-break)))
 
             ;; Subword-mode
-            (add-hook mode-hook 'subword-mode))
+            (add-hook mode-hook 'subword-mode)
+
+            ;; Semantic completion
+            (semantic-mode t)
+            (push 'ac-source-semantic ac-sources))
           mode-hooks))
 
 ;; No namespace indentation

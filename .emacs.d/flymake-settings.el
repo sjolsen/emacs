@@ -50,6 +50,8 @@
                               "-Wall"
                               "-Wextra"
                               "-pedantic"
+                              "-x"
+                              "c++"
                               source)))
           (if (or (string= (file-name-extension source) "c")
                   (string= (file-name-extension source) "h"))

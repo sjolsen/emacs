@@ -1,6 +1,18 @@
 (add-to-list 'load-path "~/.emacs.d/")
 
-
+;; auto-complete
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d//ac-dict")
+(ac-config-default)
+(setq ac-ignore-case nil)
+(add-hook 'auto-complete-mode-hook
+          (lambda ()
+            (define-key ac-completing-map (kbd "RET") nil)
+            (define-key ac-completing-map (kbd "<C-return>") 'ac-complete)
+            (define-key ac-completing-map (kbd "C-n") nil)
+            (define-key ac-completing-map (kbd "<down>") nil)
+            (define-key ac-completing-map (kbd "C-p") nil)
+            (define-key ac-completing-map (kbd "<up>") nil)))
 
 (load "basic-bindings")
 (load "c-c++-settings")
@@ -15,20 +27,6 @@
 ;; Multiple cursors
 (add-to-list 'load-path "~/.emacs.d/multiple-cursors")
 (require 'multiple-cursors)
-
-;; auto-complete
-(require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d//ac-dict")
-(ac-config-default)
-(setq ac-ignore-case nil)
-(add-hook 'auto-complete-mode-hook
-          (lambda ()
-            (define-key ac-completing-map (kbd "RET") nil)
-            (define-key ac-completing-map (kbd "<C-return>") 'ac-complete)
-            (define-key ac-completing-map (kbd "C-n") nil)
-            (define-key ac-completing-map (kbd "<down>") nil)
-            (define-key ac-completing-map (kbd "C-p") nil)
-            (define-key ac-completing-map (kbd "<up>") nil)))
 
 ;; dired-x
 (add-hook 'dired-load-hook
