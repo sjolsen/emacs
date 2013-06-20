@@ -50,13 +50,11 @@
                               "-Wall"
                               "-Wextra"
                               "-pedantic"
-                              "-x"
-                              "c++"
-                              source)))
+                              "-x")))
           (if (or (string= (file-name-extension source) "c")
                   (string= (file-name-extension source) "h"))
-              (list "gcc" (cons "-std=c99" gcc-args))
-            (list "g++" (cons "-std=c++11" gcc-args)))))))
+              (list "gcc" (append gcc-args `("c" ,source "-std=c99")))
+            (list "g++" (append gcc-args `("c++" ,source "-std=c++11"))))))))
 
   (defun flymake-simple-make-gcc-init-impl (create-temp-f use-relative-base-dir use-relative-source build-file-name get-cmdline-f)
     "Create syntax check command line for a directly checked source file.
@@ -79,13 +77,13 @@ Use CREATE-TEMP-F for creating temp copy."
     (flymake-simple-make-gcc-init-impl 'flymake-create-temp-inplace t t "Makefile" 'flymake-get-make-gcc-cmdline))
 
   (setq flymake-allowed-file-name-masks
-        '(("\\.\\(?:c\\(?:pp\\|xx\\|\\+\\+\\|c\\)?\\|CC\\|hh\\)\\'" flymake-simple-make-gcc-init)
+        '(("\\.\\(?:c\\(?:pp\\|xx\\|\\+\\+\\|c\\)?\\|CC\\|hh?\\)\\'" flymake-simple-make-gcc-init)
           ;("\\.xml\\'" flymake-xml-init)
           ;("\\.html?\\'" flymake-xml-init)
           ;("\\.cs\\'" flymake-simple-make-init)
           ;("\\.p[ml]\\'" flymake-perl-init)
           ;("\\.php[345]?\\'" flymake-php-init)
-          ("\\.h\\'" flymake-master-make-header-init flymake-master-cleanup)
+          ;("\\.h\\'" flymake-master-make-header-init flymake-master-cleanup)
           ;("\\.java\\'" flymake-simple-make-java-init flymake-simple-java-cleanup)
           ;("[0-9]+\\.tex\\'" flymake-master-tex-init flymake-master-cleanup)
           ;("\\.tex\\'" flymake-simple-tex-init)

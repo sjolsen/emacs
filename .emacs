@@ -16,6 +16,7 @@
 
 (load "basic-bindings")
 (load "c-c++-settings")
+;(load "dired-settings")
 (load "hscroll")
 (load "lisp-settings")
 (load "org-settings")

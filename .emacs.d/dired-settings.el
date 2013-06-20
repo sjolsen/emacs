@@ -1,0 +1,1 @@
+(define-key dired-mode-map [mouse-2] 'dired-find-file)
