@@ -54,7 +54,7 @@
           (if (or (string= (file-name-extension source) "c")
                   (string= (file-name-extension source) "h"))
               (list "gcc" (append gcc-args `("c" ,source "-std=c99")))
-            (list "g++" (append gcc-args `("c++" ,source "-std=c++11"))))))))
+            (list "g++" (append gcc-args `("c++" ,source "-std=c++0x"))))))))
 
   (defun flymake-simple-make-gcc-init-impl (create-temp-f use-relative-base-dir use-relative-source build-file-name get-cmdline-f)
     "Create syntax check command line for a directly checked source file.
