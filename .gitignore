@@ -2,3 +2,4 @@
 ac-comphist.dat
 .emacs.d/semanticdb/*
 .emacs.d/image-dired/*
+.emacs.d/tramp
