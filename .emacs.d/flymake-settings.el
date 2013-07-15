@@ -163,7 +163,8 @@ Return its components if so, nil otherwise."
       `((,(kbd "C-c n")        flymake-goto-next-error-disp)
         (,(kbd "C-c p")        flymake-goto-prev-error-disp)
         (,(kbd "C-c RET")      flymake-display-current-warning/error)
-        (,(kbd "<C-return>")   flymake-display-err-menu-for-current-line)) do
+        (,(kbd "<C-return>")   flymake-display-err-menu-for-current-line)
+        (,(kbd "<f5>")         flymake-start-syntax-check)) do
         (define-key flymake-mode-map
           keybind function))
 
