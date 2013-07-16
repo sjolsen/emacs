@@ -68,6 +68,10 @@
 ;; (add-to-list 'auto-mode-alist '("\\.y$" . bison-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.l$" . flex-mode))
 
+;; Makefile association
+(add-to-list 'auto-mode-alist
+             '("[Mm]akefile.*" . makefile-mode))
+
 
 
 (custom-set-variables
