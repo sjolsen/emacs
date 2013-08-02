@@ -40,6 +40,8 @@
                       "-C"
                       base-dir
                       (concat "CHK_SOURCES=" source)
+                      (concat "CFLAGS='-I" base-dir "'")
+                      (concat "CXXFLAGS='-I" base-dir "'")
                       "SYNTAX_CHECK_MODE=1"
                       "check-syntax"))
         (let ((gcc-args (list "-o"
@@ -50,6 +52,8 @@
                               "-Wall"
                               "-Wextra"
                               "-pedantic"
+                              "-I"
+                              base-dir
                               "-x")))
           (if (or (string= (file-name-extension source) "c")
                   (string= (file-name-extension source) "h"))
@@ -155,6 +159,20 @@ Return its components if so, nil otherwise."
     (if matched
 	(flymake-ler-make-ler raw-file-name line-no err-type err-text)
       ()))))
+
+;; Use /tmp
+(defun flymake-create-temp-inplace (file-name prefix)
+  (unless (stringp file-name)
+    (error "Invalid file-name"))
+  (or prefix
+      (setq prefix "flymake"))
+  (let* ((temp-name   (concat "/tmp/"
+                              (file-name-sans-extension file-name)
+			      "_" prefix
+			      (and (file-name-extension file-name)
+				   (concat "." (file-name-extension file-name))))))
+    (flymake-log 3 "create-temp-inplace: file=%s temp=%s" file-name temp-name)
+    temp-name))
 
 (eval-after-load "flymake"
   `(flymake-settings))
