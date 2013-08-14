@@ -60,47 +60,17 @@
 (smart-tabs-advice c-indent-line c-basic-offset)
 (smart-tabs-advice c-indent-region c-basic-offset)
 
-;; ;; Fix backslash mangling when indenting
-;; (defadvice c-indent-line (around indent-backslash-fix activate)
-;;   (let* ((line-retrieval-function
-;;           (lambda ()
-;;             (save-excursion
-;;               (let ((bol (progn (beginning-of-line) (point)))
-;;                     (eol (progn (end-of-line) (point))))
-;;                 (buffer-substring bol eol)))))
-;;          (initial-line (funcall line-retrieval-function)))
-;;     ad-do-it
-;;     (save-excursion
-;;       (end-of-line)
-;;       (when (equal (char-before) ?\\)
-;;         (c-backslash-region
-;;          (save-excursion
-;;            (beginning-of-line)
-;;            (point))
-;;          (point)
-;;          nil)))
-;;     (if (equal (funcall line-retrieval-function) initial-line)
-;;         (set-buffer-modified-p nil))))
-
-;; (defadvice c-indent-region (around indent-backslash-fix activate)
-;;   (save-excursion
-;;     (goto-char (ad-get-arg 0))
-;;       (while (<= (point) (ad-get-arg 1))
-;;         (c-indent-line)
-;;         (forward-line))))
-
-;; (defun regexp-subregions (expr start end)
-;;   (save-excursion
-;;     (goto-char start)
-;;     (save-match-data
-;;       (loop while (re-search-forward expr end t) collect
-;;             (list (match-beginning 0)
-;;                   (match-end 0))))))
-
-;; ;; Replace tabs with spaces before aligned backslashes
-;; (defadvice c-backslash-region (around backslash-untabify activate)
-;;   (let ((bor (save-excursion (goto-char (ad-get-arg 0)) (beginning-of-line) (point)))
-;;         (eor (save-excursion (goto-char (ad-get-arg 1)) (end-of-line) (point))))
-;;     ad-do-it
-;;     (mapcar (lambda (region) (apply 'untabify region))
-;;             (regexp-subregions "[ \t]*\\\\$" bor eor))))
+;; Replace tabs with spaces before aligned backslashes
+(defun untabify-backslashes (start end)
+  (interactive "r")
+  (let ((tab-regexp "[ \t]*\\\\$"))
+    (save-excursion
+      (goto-char start)
+      (save-match-data
+        (loop while (re-search-forward tab-regexp end t) do
+              (let* ((current-match-start (match-beginning 0))
+                     (current-match-end   (match-end 0))
+                     (original-size       (- current-match-end current-match-start)))
+                (untabify current-match-start current-match-end)
+                (let ((current-size (- (point) current-match-start)))
+                  (setq end (+ end (- current-size original-size))))))))))
