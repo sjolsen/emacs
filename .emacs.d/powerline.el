@@ -472,9 +472,10 @@ install the memoized function over the original function."
   (interactive)
   (save-match-data
     (let ((cwd default-directory))
-      (string-match (concat "^" (user-home-directory))
-                    cwd)
-      (replace-match "~/" t nil cwd))))
+      (if (string-match (concat "^" (user-home-directory))
+                        cwd)
+          (replace-match "~/" t nil cwd)
+        cwd))))
 
 (defpowerline pwd (pwd-less-home))
 
