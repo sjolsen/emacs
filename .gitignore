@@ -5,3 +5,4 @@ ac-comphist.dat
 .emacs.d/image-dired/*
 .emacs.d/tramp
 .emacs.d/session*
+.emacs.d/auto-save-list/*
