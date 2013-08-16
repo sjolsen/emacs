@@ -462,6 +462,22 @@ install the memoized function over the original function."
                                           (setq pmin (point-min)))
                                         (percent-xpm pmax pmin we ws 15 color1 color2))))
 
+
+;; Custom
+
+(defun user-home-directory ()
+  (expand-file-name "~/"))
+
+(defun pwd-less-home ()
+  (interactive)
+  (save-match-data
+    (let ((cwd default-directory))
+      (string-match (concat "^" (user-home-directory))
+                    cwd)
+      (replace-match "~/" t nil cwd))))
+
+(defpowerline pwd (pwd-less-home))
+
 (setq-default mode-line-format
               (list "%e"
                     '(:eval (concat
@@ -471,6 +487,8 @@ install the memoized function over the original function."
                              (powerline-minor-modes    'left        powerline-color1  )
                              (powerline-narrow         'left        powerline-color1  powerline-color2  )
                              (powerline-vc             'center                        powerline-color2  )
+                             (powerline-make-text      " "                            powerline-color2  )
+                             (powerline-pwd            'center                        powerline-color2  )
                              (powerline-make-fill                                     powerline-color2  )
                              (powerline-row            'right       powerline-color1  powerline-color2  )
                              (powerline-make-text      ":"          powerline-color1  )

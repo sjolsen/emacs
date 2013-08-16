@@ -1,5 +1,9 @@
 ;;; Basic keyboard and mouse bindings
 
+;; Global forward and back
+(global-set-key (kbd "<mouse-8>") 'previous-buffer)
+(global-set-key (kbd "<mouse-9>") 'next-buffer)
+
 ;; Enable recursive minibuffer
 (setq enable-recursive-minibuffers t)
 (minibuffer-depth-indicate-mode)

@@ -7,6 +7,14 @@
 (setq term-default-bg-color (frame-parameter nil 'background-color))
 (setq term-default-fg-color (frame-parameter nil 'foreground-color))
 
+;; Flymake colors
+(if (null (window-system (selected-frame)))
+    (custom-set-faces
+     '(flymake-errline
+       ((t (:background "red"))))
+     '(flymake-warnline
+       ((t (:background "blue"))))))
+
 (if (string< emacs-version "24.3.1")
     (setq ansi-term-color-vector
           [nil term-default-bg-color
