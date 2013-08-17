@@ -82,5 +82,20 @@
     (switch-to-buffer "*ansi-term*")
     (set-process-query-on-exit-flag (get-process "*ansi-term*") nil)))
 
+;; Removing the annoying banner from the CS server's login
+(defvar ssh-banner
+  (regexp-quote "
+[1;34m-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+[0m
+For information on your Linux account, visit:
+[1;32mhttp://cs.txstate.edu/labs/LinuxAccounts.php[0m
+[1;34m-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+[0m
+
+"))
+
+(defadvice term-emulate-terminal (before banner-remover first (proc str) activate)
+  (setq str (replace-regexp-in-string ssh-banner "" str)))
+
+
+
 (ensure-ansi-term)
 (global-set-key (kbd "ESC C-t") 'ensure-ansi-term)

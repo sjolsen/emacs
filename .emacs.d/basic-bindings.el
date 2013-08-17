@@ -1,5 +1,8 @@
 ;;; Basic keyboard and mouse bindings
 
+;; Associate .bashrc files
+(add-to-list 'auto-mode-alist '("\\.bash[^.]+\\'" . sh-mode))
+
 ;; Global forward and back
 (global-set-key (kbd "<mouse-8>") 'previous-buffer)
 (global-set-key (kbd "<mouse-9>") 'next-buffer)
