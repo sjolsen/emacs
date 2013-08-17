@@ -82,18 +82,25 @@
     (switch-to-buffer "*ansi-term*")
     (set-process-query-on-exit-flag (get-process "*ansi-term*") nil)))
 
-;; Removing the annoying banner from the CS server's login
-(defvar ssh-banner
-  (regexp-quote "
-[1;34m-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+[0m
-For information on your Linux account, visit:
-[1;32mhttp://cs.txstate.edu/labs/LinuxAccounts.php[0m
-[1;34m-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+[0m
+;; Use  and  for output suppression
+(setq ansi-term-suppress-output nil)
+(make-local-variable 'ansi-term-suppress-output)
+(defun ansi-term-suppression (str)
+  (unless (string= str "")
+    (save-match-data
+      (let ((ctrl-char-index (string-match "[]" str)))
+        (if (null ctrl-char-index)
+            (if ansi-term-suppress-output "" str)
+          (let ((output ""))
+            (unless ansi-term-suppress-output
+              (setq output (substring str 0 ctrl-char-index)))
+            (if (char-equal (aref str ctrl-char-index) ?)
+                (setq ansi-term-suppress-output t)
+              (setq ansi-term-suppress-output nil))
+            (concat output (ansi-term-suppression (substring str (1+ ctrl-char-index))))))))))
 
-"))
-
-(defadvice term-emulate-terminal (before banner-remover first (proc str) activate)
-  (setq str (replace-regexp-in-string ssh-banner "" str)))
+(defadvice term-emulate-terminal (before enact-suppression (proc str) activate)
+  (setq str (ansi-term-suppression str)))
 
 
 

@@ -6,3 +6,4 @@ ac-comphist.dat
 .emacs.d/tramp
 .emacs.d/session*
 .emacs.d/auto-save-list/*
+.emacs.d/eshell/*
