@@ -1,5 +1,23 @@
 ;;; Basic keyboard and mouse bindings
 
+;; Symbol replace
+(defun replace-symbol (old-symbol new-symbol &optional start end)
+  (interactive
+   (let ((common
+	  (query-replace-read-args
+	   (concat "Replace"
+		   (if current-prefix-arg " word" "")
+		   " symbol"
+		   (if (and transient-mark-mode mark-active) " in region" ""))
+	   t)))
+     (list (nth 0 common) (nth 1 common)
+	   (if (and transient-mark-mode mark-active)
+	       (region-beginning))
+	   (if (and transient-mark-mode mark-active)
+	       (region-end)))))
+  (replace-regexp (concat "\\_<" old-symbol "\\_>")
+                  new-symbol nil start end))
+
 ;; Associate .bashrc files
 (add-to-list 'auto-mode-alist '("\\.bash[^.]+\\'" . sh-mode))
 
