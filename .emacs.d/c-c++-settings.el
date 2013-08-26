@@ -40,9 +40,13 @@
 ;; No namespace indentation
 (add-to-list 'c++-mode-hook (lambda () (c-set-offset 'innamespace 0)))
 
+;; Associate MIC source
+(add-to-list 'auto-mode-alist
+             '("\\.mic\\(c\\|h\\)" . c++-mode))
+
 ;; Associate CUDA source
 (add-to-list 'auto-mode-alist
-             '("\\.cu" . c++-mode))
+             '("\\.cu\\(hh\\)?" . c++-mode))
 
 ;; Associate .thh and .tcc file
 (add-to-list 'auto-mode-alist
