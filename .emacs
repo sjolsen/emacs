@@ -63,6 +63,10 @@
 (require 'flymake-settings)
 (flymake-settings)
 
+;; Magit
+(require 'magit)
+(global-set-key (kbd "C-x g") 'magit-status)
+
 ;; Flex and Bison
 ;; (load "flex-mode")
 ;; (load "bison-mode")
