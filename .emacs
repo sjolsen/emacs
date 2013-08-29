@@ -76,9 +76,6 @@
 (add-to-list 'auto-mode-alist
              '("[Mm]akefile.*" . makefile-mode))
 
-;; Server
-(server-start)
-
 
 
 (custom-set-variables

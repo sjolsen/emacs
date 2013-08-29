@@ -1,5 +1,13 @@
 ;;; Basic keyboard and mouse bindings
 
+;; Super-kill
+(global-set-key (kbd "C-x C-c")
+  (lambda (ARG)
+    (interactive "P")
+    (if ARG
+        (save-buffers-kill-emacs)
+      (save-buffers-kill-terminal))))
+
 ;; Symbol replace
 (defun replace-symbol (old-symbol new-symbol &optional start end)
   (interactive
