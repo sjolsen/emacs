@@ -83,6 +83,8 @@
   (local-set-key (kbd "ESC C-t") 'ensure-ansi-term)
   (local-set-key (kbd "M-x") 'execute-extended-command)
   (local-set-key (kbd "M-:") 'eval-expression)
+  ; <backtab>
+  (local-set-key (kbd "<backtab>") (lambda () (interactive) (term-send-raw-string "[Z")))
   (local-set-key (kbd "C-c C-q") (lambda () (interactive) (setq ansi-term-suppress-output nil)))
   ; Copy/Paste
   (local-set-key (kbd "C-S-c") 'kill-ring-save)

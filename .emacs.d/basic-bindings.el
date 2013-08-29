@@ -27,7 +27,7 @@
                   new-symbol nil start end))
 
 ;; Associate .bashrc files
-(add-to-list 'auto-mode-alist '("\\.\\(ba\\|z\\)sh[^.]+\\'" . sh-mode))
+(add-to-list 'auto-mode-alist '("\\.\\(ba\\|z\\)sh[^.]*\\'" . sh-mode))
 
 ;; Global forward and back
 (global-set-key (kbd "<mouse-8>") 'previous-buffer)
