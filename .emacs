@@ -16,7 +16,8 @@
 
 (load "basic-bindings")
 (load "c-c++-settings")
-(load "elpa-settings")
+(unless (string< emacs-version "24")
+  (load "elpa-settings"))
 (load "dired-settings")
 (load "hscroll")
 (load "lisp-settings")
