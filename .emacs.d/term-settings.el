@@ -84,6 +84,16 @@
   (local-set-key (kbd "M-x") 'execute-extended-command)
   (local-set-key (kbd "M-:") 'eval-expression)
   (local-set-key (kbd "C-c C-q") (lambda () (interactive) (setq ansi-term-suppress-output nil)))
+  ; Copy/Paste
+  (local-set-key (kbd "C-S-c") 'kill-ring-save)
+  (local-set-key (kbd "C-S-v") 'term-paste)
+  ; Quoted insert
+;  (local-set-key (kbd "C-u") 'universal-argument)
+  (local-set-key (kbd "C-q")
+    (lambda (ARG)
+      (interactive "p")
+      (term-send-raw-string
+       (make-string ARG (read-quoted-char)))))
 ;  (local-set-key (kbd "C-x C-c") 'save-buffers-kill-terminal)
 ;  (local-set-key (kbd "C-c C-c") 'term-send-raw)
   (local-set-key (kbd "C-[ C-[") '(lambda () (interactive) (term-send-raw-string "\e[2~"))))
@@ -99,7 +109,7 @@
   (interactive)
   (if (get-process "*ansi-term*")
       (switch-to-buffer "*ansi-term*")
-    (ansi-term "/bin/bash")
+    (ansi-term (getenv "SHELL"))
     (switch-to-buffer "*ansi-term*")
     (set-process-query-on-exit-flag (get-process "*ansi-term*") nil)))
 

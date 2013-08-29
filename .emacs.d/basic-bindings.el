@@ -1,5 +1,13 @@
 ;;; Basic keyboard and mouse bindings
 
+;; Super-kill
+(global-set-key (kbd "C-x C-c")
+  (lambda (ARG)
+    (interactive "P")
+    (if ARG
+        (save-buffers-kill-emacs)
+      (save-buffers-kill-terminal))))
+
 ;; Symbol replace
 (defun replace-symbol (old-symbol new-symbol &optional start end)
   (interactive
@@ -19,7 +27,7 @@
                   new-symbol nil start end))
 
 ;; Associate .bashrc files
-(add-to-list 'auto-mode-alist '("\\.bash[^.]+\\'" . sh-mode))
+(add-to-list 'auto-mode-alist '("\\.\\(ba\\|z\\)sh[^.]+\\'" . sh-mode))
 
 ;; Global forward and back
 (global-set-key (kbd "<mouse-8>") 'previous-buffer)
@@ -110,6 +118,7 @@
 (global-set-key (kbd "<Scroll_Lock>") 'scroll-lock-mode)
 
 ;; Bind hungry-delete globally
+(require 'cc-mode)
 (global-set-key (kbd "C-c C-d") 'c-hungry-delete-forward)
 
 ;; Add goto

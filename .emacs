@@ -77,9 +77,6 @@
 (add-to-list 'auto-mode-alist
              '("[Mm]akefile.*" . makefile-mode))
 
-;; Server
-(server-start)
-
 
 
 (custom-set-variables
@@ -112,6 +109,7 @@
  ;; If there is more than one, they won't work right.
  '(flymake-errline ((((class color) (background dark)) (:underline "red"))))
  '(flymake-warnline ((t (:underline "blue"))))
+ '(header-line ((t (:foreground "grey90" :box nil))))
  '(term-color-black ((t (:background "Grey15" :foreground "Grey15"))))
  '(term-color-blue ((t (:background "#438CCA" :foreground "#438CCA"))))
  '(term-color-cyan ((t (:background "#00FFFF" :foreground "#00FFFF"))))
