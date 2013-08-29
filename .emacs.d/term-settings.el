@@ -88,7 +88,7 @@
   (local-set-key (kbd "C-S-c") 'kill-ring-save)
   (local-set-key (kbd "C-S-v") 'term-paste)
   ; Quoted insert
-  (local-set-key (kbd "C-u") 'universal-argument)
+;  (local-set-key (kbd "C-u") 'universal-argument)
   (local-set-key (kbd "C-q")
     (lambda (ARG)
       (interactive "p")
