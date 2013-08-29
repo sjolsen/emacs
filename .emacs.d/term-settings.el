@@ -109,7 +109,7 @@
   (interactive)
   (if (get-process "*ansi-term*")
       (switch-to-buffer "*ansi-term*")
-    (ansi-term "/bin/bash")
+    (ansi-term (getenv "SHELL"))
     (switch-to-buffer "*ansi-term*")
     (set-process-query-on-exit-flag (get-process "*ansi-term*") nil)))
 
