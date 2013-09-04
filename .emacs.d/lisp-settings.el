@@ -3,8 +3,8 @@
 ;; Slime autodoc for Lisp mode
 (add-hook 'lisp-mode-hook
           '(lambda ()
-             (local-set-key "\t" '(lambda () (interactive)
-                                    (slime-indent-and-complete-symbol)))
+             ;; (local-set-key "\t" '(lambda () (interactive)
+             ;;                        (slime-indent-and-complete-symbol)))
              (local-set-key (kbd "C-m") '(lambda () (interactive)
                                            (newline-and-indent)))))
 
