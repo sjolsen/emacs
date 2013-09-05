@@ -15,6 +15,7 @@
      '(flymake-warnline
        ((t (:background "blue"))))))
 
+;; TODO: fix colors for emacs -nw
 (if (string< emacs-version "24.3.1")
     (setq ansi-term-color-vector
           [nil term-default-bg-color
