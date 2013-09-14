@@ -31,6 +31,9 @@
             (if (boundp 'subword-mode)
                 (add-hook mode-hook 'subword-mode))
 
+            ;; List navigation
+            (add-hook mode-hook 'navigate-parens-mode)
+
             ;; Semantic completion
 	    (unless (string< emacs-version "24")
 	      (semantic-mode t)

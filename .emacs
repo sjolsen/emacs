@@ -21,6 +21,7 @@
 (load "dired-settings")
 (load "hscroll")
 (load "lisp-settings")
+(load "navigate-parens-mode")
 (load "org-settings")
 (load "visual-settings")
 (load "term-settings")

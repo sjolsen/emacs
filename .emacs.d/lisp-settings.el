@@ -1,24 +1,26 @@
-;;; Basic SLIME/Elisp settings
+;;; Basic (e)lisp settings
 
-;; Slime autodoc for Lisp mode
-(add-hook 'lisp-mode-hook
-          '(lambda ()
-             ;; (local-set-key "\t" '(lambda () (interactive)
-             ;;                        (slime-indent-and-complete-symbol)))
-             (local-set-key (kbd "C-m") '(lambda () (interactive)
-                                           (newline-and-indent)))))
+(let ((mode-hooks '(lisp-mode-hook
+		    lisp-interaction-mode
+		    emacs-lisp-mode-hook)))
+  (mapcar (lambda (mode-hook)
+            ;; Indent on newline
+	    (add-hook mode-hook
+		      (lambda ()
+			(local-set-key (kbd "C-m") 'newline-and-indent)))
 
-;; No tabs in (e)lisp
-(add-hook 'emacs-lisp-mode-hook
-          (lambda ()
-            (setq indent-tabs-mode nil)))
-(add-hook 'lisp-mode-hook
-          (lambda ()
-            (setq indent-tabs-mode nil)))
+	    ;; Navigate parens
+	    (add-hook mode-hook 'navigate-parens-mode)
 
-;; Add sexp closing to slime/lisp
+            ;; No tabs
+	    (add-hook mode-hook
+		      (lambda ()
+			(setq indent-tabs-mode nil))))
+          mode-hooks))
+
+;; Add sexp closing to slime
 (add-hook 'slime-repl-mode-hook
-          '(lambda () (local-set-key (kbd "C-c C-q") 'slime-close-all-parens-in-sexp)))
+          (lambda () (local-set-key (kbd "C-c C-q") 'slime-close-all-parens-in-sexp)))
 
 ;; Add all .emacs* files
 (add-to-list 'auto-mode-alist '("\\.emacs" . emacs-lisp-mode))
