@@ -22,6 +22,18 @@
    (down-list arg)
    (up-list arg)))
 
+(defun backward-or-up-list (&optional arg)
+  (interactive "^p")
+  (try-series
+   (backward-list arg)
+   (backward-up-list arg)))
+
+(defun forward-or-up-list (&optional arg)
+  (interactive "^p")
+  (try-series
+   (forward-list arg)
+   (up-list arg)))
+
 (define-minor-mode navigate-parens-mode
   "Used to navigate parenthesis pairs"
 
@@ -30,7 +42,7 @@
   ;; Display in mode line
   t
   ;; Keymap
-  `((,(kbd "C-M-b") . backward-list)
-    (,(kbd "C-M-f") . forward-list)
+  `((,(kbd "C-M-b") . backward-or-up-list)
+    (,(kbd "C-M-f") . forward-or-up-list)
     (,(kbd "C-M-n") . next-list)
     (,(kbd "C-M-p") . previous-list)))
