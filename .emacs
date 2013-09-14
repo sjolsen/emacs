@@ -28,6 +28,9 @@
 (if (file-exists-p "~/Documents/configs/rcirc-settings.el")
     (load-file "~/Documents/configs/rcirc-settings.el"))
 
+;; Show parens
+(show-paren-mode)
+
 ;; Multiple cursors
 (add-to-list 'load-path "~/.emacs.d/multiple-cursors")
 (require 'multiple-cursors)
