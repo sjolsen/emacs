@@ -40,6 +40,15 @@
 	      (push 'ac-source-semantic ac-sources)))
           mode-hooks))
 
+;; Automatic parens
+(electric-pair-mode 1)
+(defun insert-angle-brackets (&optional arg)
+  (interactive "P")
+  (insert-pair arg ?< ?>))
+(add-hook 'c++-mode-hook
+          (lambda ()
+            (local-set-key (kbd "C-,") 'insert-angle-brackets)))
+
 ;; No namespace indentation
 (add-to-list 'c++-mode-hook (lambda () (c-set-offset 'innamespace 0)))
 
