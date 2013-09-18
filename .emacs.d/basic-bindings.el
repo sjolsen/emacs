@@ -42,6 +42,7 @@
   (- (window-width (selected-window)) 1))
 
 ;; Fill column
+(setq-default fill-column 80)
 ;; (add-hook 'window-configuration-change-hook
 ;;           (lambda () (setq fill-column (get-right-margin))))
 

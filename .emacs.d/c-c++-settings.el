@@ -4,7 +4,6 @@
 (c-set-offset 'cpp-define-intro 0 nil)
 
 ;; Fill column
-(setq fill-column 80)
 (setq c-backslash-column 80)
 ;; (make-local-variable 'c-backslash-max-column)
 ;; (add-hook 'window-configuration-change-hook
