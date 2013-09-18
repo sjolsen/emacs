@@ -1,6 +1,10 @@
 (add-to-list 'load-path "~/.emacs.d/")
 
 ;; auto-complete
+(add-to-list 'load-path "~/.emacs.d/auto-complete")
+(add-to-list 'load-path "~/.emacs.d/auto-complete/lib/ert")
+(add-to-list 'load-path "~/.emacs.d/auto-complete/lib/fuzzy")
+(add-to-list 'load-path "~/.emacs.d/auto-complete/lib/popup")
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d//ac-dict")
 (ac-config-default)
@@ -89,6 +93,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
+ '(fci-rule-character-color nil)
+ '(fci-rule-color "dim gray")
  '(font-use-system-font t)
  '(global-page-break-lines-mode t)
  '(inhibit-startup-screen t)

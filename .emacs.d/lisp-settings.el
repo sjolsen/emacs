@@ -4,6 +4,11 @@
 		    lisp-interaction-mode
 		    emacs-lisp-mode-hook)))
   (mapcar (lambda (mode-hook)
+            ;; Comment-region
+            (add-hook mode-hook
+                      (lambda ()
+                        (local-set-key (kbd "C-c C-c") 'comment-region)))
+
             ;; Indent on newline
 	    (add-hook mode-hook
 		      (lambda ()

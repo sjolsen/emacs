@@ -11,27 +11,38 @@
   (interactive)
   (if (null frame)
       (setq frame (selected-frame)))
-  (unless (null (window-system frame))
+  (if (null (window-system frame))
       (progn
-        ;; Window size
-        (set-frame-size frame 120 50)
+        ;; Flymake colors
+        (custom-set-faces
+         '(flymake-errline
+           ((t (:background "red"))))
+         '(flymake-warnline
+           ((t (:background "blue")))))
 
-        ;; Make emacs semitransparent
-        (set-frame-parameter frame 'alpha '(95 95))
+        ;; Xterm mouse
+        (xterm-mouse-mode))
 
-        ;; Disable the toolbar
-        (tool-bar-mode 0)
+    (progn
+      ;; Window size
+      (set-frame-size frame 120 50)
 
-        ;; Powerline settings
-        (load-file "~/.emacs.d/powerline.el")
-        (set-face-attribute 'mode-line nil
-                            :background "sky blue")
-        (set-face-attribute 'mode-line-inactive nil
-                            :background "dark gray"
-                            :foreground "black")
+      ;; Make emacs semitransparent
+      (set-frame-parameter frame 'alpha '(95 95))
 
-        ;; Enable X clipboard support
-        (setq x-select-enable-clipboard t))))
+      ;; Disable the toolbar
+      (tool-bar-mode 0)
+
+      ;; Powerline settings
+      (load-file "~/.emacs.d/powerline.el")
+      (set-face-attribute 'mode-line nil
+                          :background "sky blue")
+      (set-face-attribute 'mode-line-inactive nil
+                          :background "dark gray"
+                          :foreground "black")
+
+      ;; Enable X clipboard support
+      (setq x-select-enable-clipboard t))))
 
 (do-graphics-settings)
 (add-hook 'server-visit-hook 'do-graphics-settings)

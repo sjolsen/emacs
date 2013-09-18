@@ -4,10 +4,11 @@
 (c-set-offset 'cpp-define-intro 0 nil)
 
 ;; Fill column
+(setq fill-column 80)
 (setq c-backslash-column 80)
-(make-local-variable 'c-backslash-max-column)
-(add-hook 'window-configuration-change-hook
-          (lambda () (setq c-backslash-max-column (get-right-margin))))
+;; (make-local-variable 'c-backslash-max-column)
+;; (add-hook 'window-configuration-change-hook
+;;           (lambda () (setq c-backslash-max-column (get-right-margin))))
 
 (let ((mode-hooks '(c-mode-hook c++-mode-hook)))
   (mapcar (lambda (mode-hook)
@@ -34,6 +35,9 @@
             ;; List navigation
             (add-hook mode-hook 'navigate-parens-mode)
 
+            ;; Fill column indicator
+            (add-hook mode-hook 'fci-mode)
+
             ;; Semantic completion
 	    (unless (string< emacs-version "24")
 	      (semantic-mode t)
@@ -41,13 +45,13 @@
           mode-hooks))
 
 ;; Automatic parens
-(electric-pair-mode 1)
-(defun insert-angle-brackets (&optional arg)
-  (interactive "P")
-  (insert-pair arg ?< ?>))
-(add-hook 'c++-mode-hook
-          (lambda ()
-            (local-set-key (kbd "C-,") 'insert-angle-brackets)))
+;; (electric-pair-mode 1)
+;; (defun insert-angle-brackets (&optional arg)
+;;   (interactive "P")
+;;   (insert-pair arg ?< ?>))
+;; (add-hook 'c++-mode-hook
+;;           (lambda ()
+;;             (local-set-key (kbd "C-,") 'insert-angle-brackets)))
 
 ;; No namespace indentation
 (add-to-list 'c++-mode-hook (lambda () (c-set-offset 'innamespace 0)))
