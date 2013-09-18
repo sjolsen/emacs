@@ -42,8 +42,8 @@
   (- (window-width (selected-window)) 1))
 
 ;; Fill column
-(add-hook 'window-configuration-change-hook
-          (lambda () (setq fill-column (get-right-margin))))
+;; (add-hook 'window-configuration-change-hook
+;;           (lambda () (setq fill-column (get-right-margin))))
 
 ;; Mouse history in Info-mode
 (add-hook 'Info-mode-hook
