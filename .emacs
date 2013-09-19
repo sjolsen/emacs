@@ -70,8 +70,8 @@
 (require 'minimap)
 
 ;; Flymake
-(require 'flymake-settings)
-(flymake-settings)
+;(require 'flymake-settings)
+;(flymake-settings)
 
 ;; Magit
 (global-set-key (kbd "C-x g") 'magit-status)
