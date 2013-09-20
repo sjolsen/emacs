@@ -221,6 +221,7 @@ Use CREATE-TEMP-F for creating temp copy."
     flymake-keybind-mode-map))
 
 (define-minor-mode flymake-keybind-mode
+  "Adds keybindings to flymake mode"
   nil
   nil
   flymake-keybind-mode-map
