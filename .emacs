@@ -109,6 +109,8 @@
  '(column-number-mode t)
  '(fci-rule-character-color nil)
  '(fci-rule-color "dim gray")
+ '(flymake-fringe-indicator-position nil)
+ '(flymake-gui-warnings-enabled nil)
  '(font-use-system-font t)
  '(global-page-break-lines-mode t)
  '(global-semantic-idle-scheduler-mode nil)
@@ -131,8 +133,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(flymake-errline ((((type tty)) (:background "red")) (default (:underline (:color "red2" :style wave)))))
- '(flymake-warnline ((((type tty)) (:background "blue")) (default (:underline (:color "medium blue" :style wave)))))
+ '(flymake-errline ((((type x)) (:underline "red2")) (((type tty)) (:background "red"))))
+ '(flymake-warnline ((((type x)) (:underline "medium blue")) (((type tty)) (:background "blue"))))
  '(header-line ((t (:foreground "grey90" :box nil))))
  '(term-color-black ((t (:background "Grey15" :foreground "Grey15"))))
  '(term-color-blue ((t (:background "#438CCA" :foreground "#438CCA"))))

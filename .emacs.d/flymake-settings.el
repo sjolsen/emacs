@@ -52,6 +52,10 @@
 (defvar flymake-default-makefile "~/emacs/.emacs.d/flymake-default-makefile")
 (defvar flymake-default-temp-dir temporary-file-directory)
 
+(defvar flymake-default-cc-flags
+  "-Wall -Wextra"
+  "Flags common to all C-family languages")
+
 (defvar default-c-compiler
   (if (executable-find "clang")
       "clang"
@@ -112,7 +116,7 @@ directory in which the original file resides."
                   "-f" makefile
                   (concat "CHK_SOURCES=" source)
                   (concat program-specifier "=" program-name)
-                  (concat flags-specifier "=-I " base-dir " " flags)
+                  (concat flags-specifier "=-I " base-dir " " flags " " flymake-default-cc-flags)
                   "check-syntax"))))
 
   (defun flymake-simple-make-cc-init-impl (create-temp-f use-relative-base-dir use-relative-source build-file-name get-cmdline-f)
