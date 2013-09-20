@@ -1,0 +1,12 @@
+.PHONY: check-syntax
+check-syntax:
+	case ${CHK_SOURCES} in \
+		*.c | *.h ) \
+			${CC} ${CFLAGS} ${CHK_SOURCES} -fsyntax-only;; \
+		*.cc | *.hh ) \
+			${CXX} ${CXXFLAGS} ${CHK_SOURCES} -fsyntax-only;; \
+		*.cu | *.cuhh ) \
+			${NVCXX} ${NVCXXFLAGS} ${CHK_SOURCES} -fsyntax-only;; \
+		*.micc | *.mich ) \
+			${MICXX} ${MICXXFLAGS} -x c++ ${CHK_SOURCES} -fsyntax-only;; \
+	esac

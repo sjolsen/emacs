@@ -13,14 +13,6 @@
       (setq frame (selected-frame)))
   (if (null (window-system frame))
       (progn
-        ;; Flymake colors
-        (custom-set-faces
-         '(flymake-errline
-           ((t (:background "red"))))
-         '(flymake-warnline
-           ((t (:background "blue")))))
-
-        ;; Xterm mouse
         (xterm-mouse-mode))
 
     (progn

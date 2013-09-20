@@ -19,6 +19,8 @@
             (define-key ac-completing-map (kbd "<up>") nil)))
 (add-to-list 'load-path "~/.emacs.d/auto-complete-clang")
 (require 'auto-complete-clang)
+(add-to-list 'load-path "~/.emacs.d/auto-complete-etags")
+(require 'auto-complete-etags)
 
 (load "basic-bindings")
 (load "c-c++-settings")
@@ -34,6 +36,10 @@
 (load "term-settings")
 (if (file-exists-p "~/Documents/configs/rcirc-settings.el")
     (load-file "~/Documents/configs/rcirc-settings.el"))
+
+;; Yasnippet
+(add-to-list 'load-path "~/.emacs.d/yasnippet")
+(require 'yasnippet)
 
 ;; Show parens
 (show-paren-mode)
@@ -72,8 +78,8 @@
 (require 'minimap)
 
 ;; Flymake
-;(require 'flymake-settings)
-;(flymake-settings)
+(require 'flymake-settings)
+(flymake-settings)
 
 ;; Magit
 (global-set-key (kbd "C-x g") 'magit-status)
@@ -95,18 +101,25 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ac-clang-flags (quote ("-std=c++11")))
  '(column-number-mode t)
  '(fci-rule-character-color nil)
  '(fci-rule-color "dim gray")
  '(font-use-system-font t)
  '(global-page-break-lines-mode t)
+ '(global-semantic-idle-scheduler-mode nil)
+ '(global-semanticdb-minor-mode nil)
  '(inhibit-startup-screen t)
  '(mouse-wheel-scroll-amount (quote (1 ((control)))))
  '(page-break-lines-char 45)
  '(page-break-lines-modes (quote (emacs-lisp-mode lisp-mode scheme-mode compilation-mode outline-mode help-mode c-mode c++-mode text-mode)))
+ '(semantic-mode t)
+ '(semantic-stickyfunc-indent-string "")
+ '(show-paren-mode t)
  '(tool-bar-mode nil)
  '(tramp-default-proxies-alist (quote (("kmic.*" "\\`root\\'" "/ssh:stuart@%h:") ("\\`dakara" "\\`root\\'" "/ssh:sjo@%h:"))))
- '(truncate-lines t))
+ '(truncate-lines t)
+ '(yas-global-mode nil nil (yasnippet)))
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 ;; (custom-set-faces
@@ -120,8 +133,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(flymake-errline ((((class color) (background dark)) (:underline "red"))))
- '(flymake-warnline ((t (:underline "blue"))))
+ '(flymake-errline ((((type tty)) (:background "red")) (default (:underline (:color "red2" :style wave)))))
+ '(flymake-warnline ((((type tty)) (:background "blue")) (default (:underline (:color "medium blue" :style wave)))))
  '(header-line ((t (:foreground "grey90" :box nil))))
  '(term-color-black ((t (:background "Grey15" :foreground "Grey15"))))
  '(term-color-blue ((t (:background "#438CCA" :foreground "#438CCA"))))

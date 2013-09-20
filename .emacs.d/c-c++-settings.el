@@ -31,15 +31,14 @@
             (if (boundp 'subword-mode)
                 (add-hook mode-hook 'subword-mode))
 
-	    ;; Clang auto-completion
-	    (if (executable-find "clang")
-		(setq ac-sources '(ac-source-clang)))
+            ;; Yasnippet
+            (add-hook mode-hook 'yas-minor-mode)
 
             ;; List navigation
             (add-hook mode-hook 'navigate-parens-mode)
 
             ;; Fill column indicator
-            (add-hook mode-hook 'fci-mode)
+            ;(add-hook mode-hook 'fci-mode)
 
             ;; Semantic completion
 	    (unless (string< emacs-version "24")
