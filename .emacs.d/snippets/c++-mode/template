@@ -1,0 +1,5 @@
+# name: template <typename ...>
+# key: template
+# --
+template <$1>
+$0

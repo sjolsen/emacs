@@ -31,6 +31,13 @@
             (if (boundp 'subword-mode)
                 (add-hook mode-hook 'subword-mode))
 
+            ;; Auto-complete
+            (add-hook mode-hook
+                      (lambda ()
+                        (setq ac-sources (append '(ac-source-gtags) ac-sources))
+                        (if (executable-find "clang")
+                            (setq ac-sources (append '(ac-source-clang) ac-sources)))))
+
             ;; Yasnippet
             (add-hook mode-hook 'yas-minor-mode)
 

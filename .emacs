@@ -21,6 +21,9 @@
 (require 'auto-complete-clang)
 (add-to-list 'load-path "~/.emacs.d/auto-complete-etags")
 (require 'auto-complete-etags)
+(setq-default ac-sources '(ac-source-filename))
+
+
 
 (load "basic-bindings")
 (load "c-c++-settings")
