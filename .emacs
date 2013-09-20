@@ -17,6 +17,8 @@
             (define-key ac-completing-map (kbd "<down>") nil)
             (define-key ac-completing-map (kbd "C-p") nil)
             (define-key ac-completing-map (kbd "<up>") nil)))
+(add-to-list 'load-path "~/.emacs.d/auto-complete-clang")
+(require 'auto-complete-clang)
 
 (load "basic-bindings")
 (load "c-c++-settings")

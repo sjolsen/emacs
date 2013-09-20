@@ -31,6 +31,10 @@
             (if (boundp 'subword-mode)
                 (add-hook mode-hook 'subword-mode))
 
+	    ;; Clang auto-completion
+	    (if (executable-find "clang")
+		(setq ac-sources '(ac-source-clang)))
+
             ;; List navigation
             (add-hook mode-hook 'navigate-parens-mode)
 
