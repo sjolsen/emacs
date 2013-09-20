@@ -32,7 +32,7 @@
                                                 'c-context-line-break)))
 
             ;; Subword-mode
-            (if (boundp 'subword-mode)
+            (if (fboundp 'subword-mode)
                 (add-hook mode-hook 'subword-mode))
 
             ;; Auto-complete
