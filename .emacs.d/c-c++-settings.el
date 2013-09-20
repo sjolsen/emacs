@@ -108,7 +108,7 @@
                 (let ((current-size (- (point) current-match-start)))
                   (setq end (+ end (- current-size original-size))))))))))
 
-Improved font-locking for C++11
+;; Improved font-locking for C++11
 (add-hook
  'c++-mode-hook
  '(lambda()
