@@ -1,6 +1,11 @@
 (add-to-list 'load-path "~/.emacs.d/")
 
 ;; auto-complete
+(add-to-list 'load-path "~/.emacs.d/auto-complete")
+(add-to-list 'load-path "~/.emacs.d/auto-complete/lib/ert")
+(add-to-list 'load-path "~/.emacs.d/auto-complete/lib/fuzzy")
+(add-to-list 'load-path "~/.emacs.d/auto-complete/lib/popup")
+(setq-default ac-sources '(ac-source-filename))
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d//ac-dict")
 (ac-config-default)
@@ -13,6 +18,12 @@
             (define-key ac-completing-map (kbd "<down>") nil)
             (define-key ac-completing-map (kbd "C-p") nil)
             (define-key ac-completing-map (kbd "<up>") nil)))
+(add-to-list 'load-path "~/.emacs.d/auto-complete-clang")
+(require 'auto-complete-clang)
+(add-to-list 'load-path "~/.emacs.d/auto-complete-etags")
+(require 'auto-complete-etags)
+
+
 
 (load "basic-bindings")
 (load "c-c++-settings")
@@ -21,11 +32,21 @@
 (load "dired-settings")
 (load "hscroll")
 (load "lisp-settings")
+(load "magit-settings")
+(load "navigate-parens-mode")
 (load "org-settings")
 (load "visual-settings")
 (load "term-settings")
 (if (file-exists-p "~/Documents/configs/rcirc-settings.el")
     (load-file "~/Documents/configs/rcirc-settings.el"))
+
+;; Yasnippet
+(add-to-list 'load-path "~/.emacs.d/yasnippet")
+(require 'yasnippet)
+(yas/reload-all)
+
+;; Show parens
+(show-paren-mode)
 
 ;; Multiple cursors
 (add-to-list 'load-path "~/.emacs.d/multiple-cursors")
@@ -84,31 +105,36 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ac-clang-flags (quote ("-std=c++11")))
  '(column-number-mode t)
+ '(fci-rule-character-color nil)
+ '(fci-rule-color "dim gray")
+ '(flymake-fringe-indicator-position nil)
+ '(flymake-gui-warnings-enabled nil)
  '(font-use-system-font t)
  '(global-page-break-lines-mode t)
+ '(global-semantic-idle-scheduler-mode nil)
+ '(global-semanticdb-minor-mode nil)
  '(inhibit-startup-screen t)
  '(mouse-wheel-scroll-amount (quote (1 ((control)))))
  '(page-break-lines-char 45)
  '(page-break-lines-modes (quote (emacs-lisp-mode lisp-mode scheme-mode compilation-mode outline-mode help-mode c-mode c++-mode text-mode)))
+ '(semantic-mode t)
+ '(semantic-stickyfunc-indent-string "")
+ '(show-paren-mode t)
  '(tool-bar-mode nil)
  '(tramp-default-proxies-alist (quote (("kmic.*" "\\`root\\'" "/ssh:stuart@%h:") ("\\`dakara" "\\`root\\'" "/ssh:sjo@%h:"))))
- '(truncate-lines t))
+ '(truncate-lines t)
+ '(yas-global-mode nil nil (yasnippet)))
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
-;; (custom-set-faces
-;;  ;; custom-set-faces was added by Custom.
-;;  ;; If you edit it by hand, you could mess it up, so be careful.
-;;  ;; Your init file should contain only one such instance.
-;;  ;; If there is more than one, they won't work right.
-;;  '(default ((t (:inherit nil :stipple nil :background "Grey15" :foreground "Grey" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "Inconsolata")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(flymake-errline ((((class color) (background dark)) (:underline "red"))))
- '(flymake-warnline ((t (:underline "blue"))))
+ '(flymake-errline ((((type x)) (:underline "red2")) (((type tty)) (:background "red"))))
+ '(flymake-warnline ((((type x)) (:underline "medium blue")) (((type tty)) (:background "blue"))))
  '(header-line ((t (:foreground "grey90" :box nil))))
  '(term-color-black ((t (:background "Grey15" :foreground "Grey15"))))
  '(term-color-blue ((t (:background "#438CCA" :foreground "#438CCA"))))

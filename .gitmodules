@@ -8,3 +8,15 @@
 	path = .emacs.d/smarttabs
 	url = git://github.com/jcsalomon/smarttabs.git
 
+[submodule ".emacs.d/auto-complete"]
+	path = .emacs.d/auto-complete
+	url = https://github.com/auto-complete/auto-complete.git
+[submodule ".emacs.d/auto-complete-clang"]
+	path = .emacs.d/auto-complete-clang
+	url = https://github.com/brianjcj/auto-complete-clang.git
+[submodule ".emacs.d/yasnippet"]
+	path = .emacs.d/yasnippet
+	url = https://github.com/capitaomorte/yasnippet
+[submodule ".emacs.d/auto-complete-etags"]
+	path = .emacs.d/auto-complete-etags
+	url = https://github.com/whitypig/auto-complete-etags.git

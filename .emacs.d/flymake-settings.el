@@ -19,55 +19,114 @@
 ;; write  to  the Free  Software  Foundation,  Inc., 51  Franklin
 ;; Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-(defvar flymake-mode-map (make-sparse-keymap))
+
+
+(require 'flymake)
 
 (autoload 'flymake-find-file-hook "flymake" "" t)
-
 (add-hook 'find-file-hook 'flymake-find-file-hook)
+
+(defun parent-directory (directory)
+  (unless (string= "/" directory)
+    (file-name-directory (directory-file-name directory))))
+
+(defvar flymake-makefile-filenames '("Makefile" "makefile" "GNUmakefile") "File names for make.")
+
+(defun syntax-checkable-p (makefile)
+  (zerop (call-process "make" nil nil nil "-s" "-n" "check-syntax" "-f" makefile)))
+
+;; Search recursively upward for a makefile
+(defun find-makefile (base-dir)
+  (if base-dir
+      (let ((found-makefile nil))
+        (dolist (makefile flymake-makefile-filenames)
+          (let ((makefile-fullname (concat base-dir "/" makefile)))
+            (if (and (file-readable-p makefile-fullname)
+                     (syntax-checkable-p makefile-fullname))
+                (setq found-makefile makefile-fullname))))
+        (or found-makefile
+            (find-makefile (parent-directory base-dir))))))
+
+
+
+(defvar flymake-default-makefile "~/emacs/.emacs.d/flymake-default-makefile")
+(defvar flymake-default-temp-dir temporary-file-directory)
+
+(defvar flymake-default-cc-flags
+  "-Wall -Wextra"
+  "Flags common to all C-family languages")
+
+(defvar default-c-compiler
+  (if (executable-find "clang")
+      "clang"
+    "cc"))
+
+(defvar default-c++-compiler
+  (cond
+   ((executable-find "clang++")
+    "clang++")
+   ((executable-find "g++-4.8")
+    "g++-4.8")
+   (t
+    "c++")))
+
+(defvar default-c++11-flag
+  (cond
+   ((or (executable-find "clang++")
+        (executable-find "g++-4.8"))
+    "-std=c++11")
+   (t
+    "-std=c++0x")))
+
+
+(defun flymake-create-temp-in-temp-dir (file-name prefix)
+  (unless (stringp file-name)
+    (error "Invalid file-name"))
+  (or prefix
+      (setq prefix "flymake"))
+  (let* ((ext (file-name-extension file-name))
+	 (temp-name (file-truename
+		     (concat flymake-default-temp-dir "/"
+                             (file-name-sans-extension file-name)
+			     "_" prefix
+			     (and ext (concat "." ext))))))
+    (flymake-log 3 "create-temp-in-temp-dir: file=%s temp=%s" file-name temp-name)
+    temp-name))
 
 (defun flymake-settings ()
   "Settings for `flymake'."
-  (defvar flymake-makefile-filenames '("Makefile" "makefile" "GNUmakefile") "File names for make.")
 
-  (defun flymake-get-make-gcc-cmdline (source base-dir)
-    (let (found)
-      (dolist (makefile flymake-makefile-filenames)
-        (if (file-readable-p (concat base-dir "/" makefile))
-            (setq found t)))
-      (if found
-          (list "make"
-                (list "-s"
-                      "-C"
-                      base-dir
-                      (concat "CHK_SOURCES=" source)
-                      (concat "CFLAGS='-I" base-dir "'")
-                      (concat "CXXFLAGS='-I" base-dir "'")
-                      "SYNTAX_CHECK_MODE=1"
-                      "check-syntax"))
-        (let ((gcc-args (list "-o"
-                              "/dev/null"
-                              ;"-fsyntax-only" ; Doesn’t work correctly with warn_unused_result
-                              "-O0"
-                              "-S"
-                              "-Wall"
-                              "-Wextra"
-                              "-pedantic"
-                              "-I"
-                              base-dir
-                              "-x")))
-          (if (or (string= (file-name-extension source) "c")
-                  (string= (file-name-extension source) "h"))
-              (list "gcc" (append gcc-args `("c" ,source "-std=c99")))
-            (list "g++" (append gcc-args `("c++" ,source "-std=c++0x"))))))))
+  (defun flymake-get-make-cc-cmdline (program-name
+                                      program-specifier
+                                      flags
+                                      flags-specifier
+                                      source base-dir)
+    "Computes the command to be used to perform the syntax check. PROGRAM_NAME
+specifies the program to be used (e.g., \"gcc\"). PROGRAM-SPECIFIER is the name
+the makefile uses to perform the syntax check (e.g., \"CC\"). FLAGS-SPECIFIER is
+the variable the makefile uses to pass arguments to the program (such as
+\"CFLAGS\"), SOURCE is the source file to be parsed, and BASE-DIR is the
+directory in which the original file resides."
+    (let ((makefile (find-makefile base-dir)))
+      (unless makefile
+        (setq makefile (expand-file-name flymake-default-makefile)))
+      (list "make"
+            (list "-s"
+                  "-C" base-dir
+                  "-f" makefile
+                  (concat "CHK_SOURCES=" source)
+                  (concat program-specifier "=" program-name)
+                  (concat flags-specifier "=-I " base-dir " " flags " " flymake-default-cc-flags)
+                  "check-syntax"))))
 
-  (defun flymake-simple-make-gcc-init-impl (create-temp-f use-relative-base-dir use-relative-source build-file-name get-cmdline-f)
+  (defun flymake-simple-make-cc-init-impl (create-temp-f use-relative-base-dir use-relative-source build-file-name get-cmdline-f)
     "Create syntax check command line for a directly checked source file.
 Use CREATE-TEMP-F for creating temp copy."
     (let* ((args nil)
            (source-file-name buffer-file-name)
            (buildfile-dir (file-name-directory source-file-name)))
       (if buildfile-dir
-          (let* ((temp-source-file-name  (flymake-init-create-temp-buffer-copy create-temp-f)))
+          (let* ((temp-source-file-name (flymake-init-create-temp-buffer-copy create-temp-f)))
             (setq args
                   (flymake-get-syntax-check-program-args
                    temp-source-file-name
@@ -77,21 +136,39 @@ Use CREATE-TEMP-F for creating temp copy."
                    get-cmdline-f))))
       args))
 
-  (defun flymake-simple-make-gcc-init ()
-    (flymake-simple-make-gcc-init-impl 'flymake-create-temp-inplace t t "Makefile" 'flymake-get-make-gcc-cmdline))
+  (defun flymake-make-c-cmdline (source base-dir)
+    (flymake-get-make-cc-cmdline default-c-compiler "CC" "-std=c99" "CFLAGS" source base-dir))
+  (defun flymake-make-c++-cmdline (source base-dir)
+    (flymake-get-make-cc-cmdline default-c++-compiler "CXX" default-c++11-flag "CXXFLAGS" source base-dir))
+  (defun flymake-make-cuda-cmdline (source base-dir)
+    (flymake-get-make-cc-cmdline "nvcc" "NVCXX" "" "NVCXXFLAGS" source base-dir))
+  (defun flymake-make-mic-cmdline (source base-dir)
+    (flymake-get-make-cc-cmdline "icpc" "MICXX" "-std=c++11" "MICXXFLAGS" source base-dir))
+
+  (defun flymake-simple-make-c-init ()
+    (flymake-simple-make-cc-init-impl 'flymake-create-temp-in-temp-dir t t "Makefile" 'flymake-make-c-cmdline))
+  (defun flymake-simple-make-c++-init ()
+    (flymake-simple-make-cc-init-impl 'flymake-create-temp-in-temp-dir t t "Makefile" 'flymake-make-c++-cmdline))
+  (defun flymake-simple-make-cuda-init ()
+    (flymake-simple-make-cc-init-impl 'flymake-create-temp-in-temp-dir t t "Makefile" 'flymake-make-cuda-cmdline))
+  (defun flymake-simple-make-mic-init ()
+    (flymake-simple-make-cc-init-impl 'flymake-create-temp-in-temp-dir t t "Makefile" 'flymake-make-mic-cmdline))
 
   (setq flymake-allowed-file-name-masks
-        '(("\\.\\(?:c\\(?:pp\\|xx\\|\\+\\+\\|c\\)?\\|CC\\|hh?\\)\\'" flymake-simple-make-gcc-init)
-          ;("\\.xml\\'" flymake-xml-init)
-          ;("\\.html?\\'" flymake-xml-init)
-          ;("\\.cs\\'" flymake-simple-make-init)
-          ;("\\.p[ml]\\'" flymake-perl-init)
-          ;("\\.php[345]?\\'" flymake-php-init)
-          ;("\\.h\\'" flymake-master-make-header-init flymake-master-cleanup)
-          ;("\\.java\\'" flymake-simple-make-java-init flymake-simple-java-cleanup)
-          ;("[0-9]+\\.tex\\'" flymake-master-tex-init flymake-master-cleanup)
-          ;("\\.tex\\'" flymake-simple-tex-init)
-          ;("\\.idl\\'" flymake-simple-make-init)
+        '(("\\.[ch]\\'" flymake-simple-make-c-init)
+          ("\\.\\(cc\\|hh\\)\\'" flymake-simple-make-c++-init)
+          ("\\.cu\\(hh\\)?\\'" flymake-simple-make-cuda-init)
+          ("\\.mic[ch]\\'" flymake-simple-make-mic-init)
+                                        ;("\\.xml\\'" flymake-xml-init)
+                                        ;("\\.html?\\'" flymake-xml-init)
+                                        ;("\\.cs\\'" flymake-simple-make-init)
+                                        ;("\\.p[ml]\\'" flymake-perl-init)
+                                        ;("\\.php[345]?\\'" flymake-php-init)
+                                        ;("\\.h\\'" flymake-master-make-header-init flymake-master-cleanup)
+                                        ;("\\.java\\'" flymake-simple-make-java-init flymake-simple-java-cleanup)
+                                        ;("[0-9]+\\.tex\\'" flymake-master-tex-init flymake-master-cleanup)
+                                        ;("\\.tex\\'" flymake-simple-tex-init)
+                                        ;("\\.idl\\'" flymake-simple-make-init)
           ))
 
   (defun flymake-display-current-warning/error ()
@@ -125,65 +202,37 @@ Use CREATE-TEMP-F for creating temp copy."
   (eval-after-load "emaci"
     `(flymake-settings-4-emaci))
 
-;; Fix warning matching for newer versions of GCC
-(defvar flymake-warning-regexp "\\(^\\|[0-9]+: \\)[wW]arning"
-  "Regexp against which compiler output is checked to differentiate between warnings and errors")
+  ;; Fix warning matching for newer versions of GCC
+  (setq flymake-warning-re "\\(^\\|[0-9]+: \\)[wW]arning")
 
-(defun flymake-parse-line (line)
-  "Parse LINE to see if it is an error or warning.
-Return its components if so, nil otherwise."
-  (let ((raw-file-name nil)
-	(line-no 0)
-	(err-type "e")
-	(err-text nil)
-	(patterns flymake-err-line-patterns)
-	(matched nil))
-    (while (and patterns (not matched))
-      (when (string-match (car (car patterns)) line)
-	(let* ((file-idx (nth 1 (car patterns)))
-	       (line-idx (nth 2 (car patterns))))
+  ;; Unfortunately, since flymake parses one line at a time, we cannot pull
+  ;; in any useful information from the header
+  ;(add-to-list 'flymake-err-line-patterns '("In file included from \\(.+\\):\\([0-9]\\)+:\\(.\\|
+;\\)+?:\\(.+error.+\\)" 1 2 nil 4))
+  (add-to-list 'flymake-err-line-patterns '("In file included from \\(.+\\):\\([0-9]\\)+:" 1 2 nil 0))
 
-	  (setq raw-file-name (if file-idx (match-string file-idx line) nil))
-	  (setq line-no       (if line-idx (string-to-number (match-string line-idx line)) 0))
-	  (setq err-text      (if (> (length (car patterns)) 4)
-				  (match-string (nth 4 (car patterns)) line)
-				(flymake-patch-err-text (substring line (match-end 0)))))
-	  (or err-text (setq err-text "<no error text>"))
-	  (if (and err-text (string-match flymake-warning-regexp err-text))
-	      (setq err-type "w")
-	    )
-	  (flymake-log 3 "parse line: file-idx=%s line-idx=%s file=%s line=%s text=%s" file-idx line-idx
-		       raw-file-name line-no err-text)
-	  (setq matched t)))
-      (setq patterns (cdr patterns)))
-    (if matched
-	(flymake-ler-make-ler raw-file-name line-no err-type err-text)
-      ()))))
+  ) ; end flymake-settings
 
-;; Use /tmp
-(defun flymake-create-temp-inplace (file-name prefix)
-  (unless (stringp file-name)
-    (error "Invalid file-name"))
-  (or prefix
-      (setq prefix "flymake"))
-  (let* ((temp-name   (concat "/tmp/"
-                              (file-name-sans-extension file-name)
-			      "_" prefix
-			      (and (file-name-extension file-name)
-				   (concat "." (file-name-extension file-name))))))
-    (flymake-log 3 "create-temp-inplace: file=%s temp=%s" file-name temp-name)
-    temp-name))
+(defvar flymake-keybind-mode-map
+  (let ((flymake-keybind-mode-map (make-sparse-keymap)))
+    (loop for (keybind function) in
+          `((,(kbd "C-c n")        flymake-goto-next-error-disp)
+            (,(kbd "C-c p")        flymake-goto-prev-error-disp)
+            (,(kbd "C-c RET")      flymake-display-current-warning/error)
+            (,(kbd "<C-return>")   flymake-display-err-menu-for-current-line)
+            (,(kbd "<f5>")         flymake-start-syntax-check)) do
+            (define-key flymake-keybind-mode-map keybind function))
+    flymake-keybind-mode-map))
 
-(eval-after-load "flymake"
-  `(flymake-settings))
+(define-minor-mode flymake-keybind-mode
+  "Adds keybindings to flymake mode"
+  nil
+  nil
+  flymake-keybind-mode-map
+  :group flymake
+  :global nil)
 
-(loop for (keybind function) in
-      `((,(kbd "C-c n")        flymake-goto-next-error-disp)
-        (,(kbd "C-c p")        flymake-goto-prev-error-disp)
-        (,(kbd "C-c RET")      flymake-display-current-warning/error)
-        (,(kbd "<C-return>")   flymake-display-err-menu-for-current-line)
-        (,(kbd "<f5>")         flymake-start-syntax-check)) do
-        (define-key flymake-mode-map
-          keybind function))
+(defadvice flymake-mode (after do-flymake-keybinds activate)
+  (flymake-keybind-mode flymake-is-running))
 
 (provide 'flymake-settings)
