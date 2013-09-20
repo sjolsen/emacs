@@ -1,3 +1,11 @@
+ifeq ($(CC),clang)
+override CFLAGS += -fno-color-diagnostics
+endif
+
+ifeq ($(CXX),clang)
+override CXXFLAGS += -fno-color-diagnostics
+endif
+
 .PHONY: check-syntax
 check-syntax:
 	case ${CHK_SOURCES} in \

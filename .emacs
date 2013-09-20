@@ -5,6 +5,7 @@
 (add-to-list 'load-path "~/.emacs.d/auto-complete/lib/ert")
 (add-to-list 'load-path "~/.emacs.d/auto-complete/lib/fuzzy")
 (add-to-list 'load-path "~/.emacs.d/auto-complete/lib/popup")
+(setq-default ac-sources '(ac-source-filename))
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d//ac-dict")
 (ac-config-default)
@@ -21,7 +22,6 @@
 (require 'auto-complete-clang)
 (add-to-list 'load-path "~/.emacs.d/auto-complete-etags")
 (require 'auto-complete-etags)
-(setq-default ac-sources '(ac-source-filename))
 
 
 
@@ -43,6 +43,7 @@
 ;; Yasnippet
 (add-to-list 'load-path "~/.emacs.d/yasnippet")
 (require 'yasnippet)
+(yas/reload-all)
 
 ;; Show parens
 (show-paren-mode)
@@ -125,12 +126,6 @@
  '(yas-global-mode nil nil (yasnippet)))
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
-;; (custom-set-faces
-;;  ;; custom-set-faces was added by Custom.
-;;  ;; If you edit it by hand, you could mess it up, so be careful.
-;;  ;; Your init file should contain only one such instance.
-;;  ;; If there is more than one, they won't work right.
-;;  '(default ((t (:inherit nil :stipple nil :background "Grey15" :foreground "Grey" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "Inconsolata")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
