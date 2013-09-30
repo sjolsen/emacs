@@ -26,6 +26,7 @@
         org-mark-element
         org-self-insert-command
         wdired-finish-edit
+        yas-expand
         ))
 
 (setq mc/cmds-to-run-once

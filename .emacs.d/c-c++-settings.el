@@ -8,7 +8,8 @@
 (c-set-offset 'cpp-define-intro 0 nil)
 
 ;; Fill column
-(setq c-backslash-column 80)
+(setq-default c-backslash-column 80)
+(setq-default c-backslash-max-column 80)
 ;; (make-local-variable 'c-backslash-max-column)
 ;; (add-hook 'window-configuration-change-hook
 ;;           (lambda () (setq c-backslash-max-column (get-right-margin))))
@@ -43,7 +44,7 @@
                             (setq ac-sources (append '(ac-source-clang) ac-sources)))))
 
             ;; Yasnippet
-            (add-hook mode-hook 'yas-minor-mode)
+            ;(add-hook mode-hook 'yas-minor-mode)
 
             ;; List navigation
             (add-hook mode-hook 'navigate-parens-mode)

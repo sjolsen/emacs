@@ -50,7 +50,7 @@
 
 
 (defvar flymake-default-makefile "~/emacs/.emacs.d/flymake-default-makefile")
-(defvar flymake-default-temp-dir temporary-file-directory)
+(defvar flymake-default-temp-dir (expand-file-name temporary-file-directory))
 
 (defvar flymake-default-cc-flags
   "-Wall -Wextra"
@@ -107,6 +107,8 @@ the makefile uses to perform the syntax check (e.g., \"CC\"). FLAGS-SPECIFIER is
 the variable the makefile uses to pass arguments to the program (such as
 \"CFLAGS\"), SOURCE is the source file to be parsed, and BASE-DIR is the
 directory in which the original file resides."
+    (setq base-dir (substring base-dir 1)) ; For whatever reason, flymake is prepending base-dir
+    ; with an extraneous '../'. Popping the first character turns it into './' and fixes it.
     (let ((makefile (find-makefile base-dir)))
       (unless makefile
         (setq makefile (expand-file-name flymake-default-makefile)))

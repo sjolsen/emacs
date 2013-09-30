@@ -22,6 +22,8 @@
 (require 'auto-complete-clang)
 (add-to-list 'load-path "~/.emacs.d/auto-complete-etags")
 (require 'auto-complete-etags)
+(define-key ac-completing-map [return] nil)
+(define-key ac-completing-map "\r" nil)
 
 
 
@@ -41,9 +43,9 @@
     (load-file "~/Documents/configs/rcirc-settings.el"))
 
 ;; Yasnippet
-(add-to-list 'load-path "~/.emacs.d/yasnippet")
-(require 'yasnippet)
-(yas/reload-all)
+;(add-to-list 'load-path "~/.emacs.d/yasnippet")
+;(require 'yasnippet)
+;(yas/reload-all)
 
 ;; Show parens
 (show-paren-mode)
@@ -106,6 +108,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ac-clang-flags (quote ("-std=c++11")))
+ '(ac-delay 0.5)
  '(column-number-mode t)
  '(fci-rule-character-color nil)
  '(fci-rule-color "dim gray")
@@ -124,8 +127,7 @@
  '(show-paren-mode t)
  '(tool-bar-mode nil)
  '(tramp-default-proxies-alist (quote (("kmic.*" "\\`root\\'" "/ssh:stuart@%h:") ("\\`dakara" "\\`root\\'" "/ssh:sjo@%h:"))))
- '(truncate-lines t)
- '(yas-global-mode nil nil (yasnippet)))
+ '(truncate-lines t))
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 (custom-set-faces
