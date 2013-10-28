@@ -40,7 +40,6 @@
  ;; If there is more than one, they won't work right.
  '(flymake-errline ((((type x)) (:underline "red2")) (((type tty)) (:background "red"))))
  '(flymake-warnline ((((type x)) (:underline "medium blue")) (((type tty)) (:background "blue"))))
- '(menu ((t (:background "grey" :foreground "black"))))
  '(term-color-black ((t (:background "Grey15" :foreground "Grey15"))))
  '(term-color-blue ((t (:background "#438CCA" :foreground "#438CCA"))))
  '(term-color-cyan ((t (:background "#00FFFF" :foreground "#00FFFF"))))
