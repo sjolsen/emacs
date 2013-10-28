@@ -1,3 +1,8 @@
+CC=cc
+CXX=c++
+NVCXX=nvcc
+MICXX=icpc
+
 ifeq ($(CC),clang)
 override CFLAGS += -fno-color-diagnostics
 endif
@@ -11,7 +16,7 @@ check-syntax:
 	case ${CHK_SOURCES} in \
 		*.c | *.h ) \
 			${CC} ${CFLAGS} ${CHK_SOURCES} -fsyntax-only;; \
-		*.cc | *.hh ) \
+		*.cc | *.hh | *.tcc | *.thh ) \
 			${CXX} ${CXXFLAGS} ${CHK_SOURCES} -fsyntax-only;; \
 		*.cu | *.cuhh ) \
 			${NVCXX} ${NVCXXFLAGS} ${CHK_SOURCES} -fsyntax-only;; \
