@@ -6,7 +6,7 @@
  '(ac-clang-flags (quote ("-std=c++11")))
  '(ac-delay 0.5)
  '(column-number-mode t)
- '(custom-file "~/emacs/.emacs.d/custom-settings.el")
+ '(custom-file "~/.emacs.d/custom-settings.el")
  '(fci-rule-character-color nil)
  '(fci-rule-color "dim gray")
  '(flymake-fringe-indicator-position nil)
@@ -38,9 +38,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :background "Grey15" :foreground "Grey" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 108 :width normal :foundry "xos4" :family "terminus"))))
  '(flymake-errline ((((type x)) (:underline "red2")) (((type tty)) (:background "red"))))
  '(flymake-warnline ((((type x)) (:underline "medium blue")) (((type tty)) (:background "blue"))))
  '(header-line ((t (:foreground "grey90" :box nil))))
+ '(menu ((t (:background "grey" :foreground "black"))))
  '(term-color-black ((t (:background "Grey15" :foreground "Grey15"))))
  '(term-color-blue ((t (:background "#438CCA" :foreground "#438CCA"))))
  '(term-color-cyan ((t (:background "#00FFFF" :foreground "#00FFFF"))))

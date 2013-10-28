@@ -99,3 +99,6 @@
 ;; Makefile association
 (add-to-list 'auto-mode-alist
              '("[Mm]akefile.*" . makefile-mode))
+
+;; Customizations
+(load-file "~/.emacs.d/custom-settings.el")
