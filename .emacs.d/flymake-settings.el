@@ -59,7 +59,7 @@
 (defvar default-c-compiler
   (if (executable-find "clang")
       "clang"
-    "cc"))
+    "c99"))
 
 (defvar default-c++-compiler
   (cond
@@ -163,7 +163,7 @@ Use CREATE-TEMP-F for creating temp copy."
 
   (setq flymake-allowed-file-name-masks
         '(("\\.[ch]\\'" flymake-simple-make-c-init)
-          ("\\.\\(cc\\|hh\\)\\'" flymake-simple-make-c++-init)
+          ("\\.t?\\(cc\\|hh\\)\\'" flymake-simple-make-c++-init)
           ("\\.cu\\(hh\\)?\\'" flymake-simple-make-cuda-init)
           ("\\.mic[ch]\\'" flymake-simple-make-mic-init)
                                         ;("\\.xml\\'" flymake-xml-init)

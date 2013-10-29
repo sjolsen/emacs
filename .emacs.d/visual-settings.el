@@ -66,3 +66,9 @@
 (global-set-key [C-M-right] 'windmove-right)
 (global-set-key [C-M-up] 'windmove-up)
 (global-set-key [C-M-down] 'windmove-down)
+
+;; kmic default font
+(when (string= system-name "kmic.cs.txstate.edu")
+  (face-spec-set 'default '((t (:inherit nil :stipple nil :background "Grey15" :foreground "Grey" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 108 :width normal :foundry "xos4" :family "terminus"))))
+  (face-spec-set 'menu '((t (:background "grey" :foreground "black"))))
+  (face-spec-set 'header-line '((t (:foreground "grey90" :box nil)))))
