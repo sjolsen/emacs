@@ -1,5 +1,11 @@
 ;;; Basic keyboard and mouse bindings
 
+;; Elements in nXML
+(add-hook 'nxml-mode-hook (lambda ()
+  (local-set-key (kbd "C-M-a") #'nxml-backward-element)
+  (local-set-key (kbd "C-M-e") #'nxml-forward-element)
+  (local-set-key (kbd "C-c C-c") #'comment-region)))
+
 ;; Super-kill
 (global-set-key (kbd "C-x C-c")
   (lambda (ARG)

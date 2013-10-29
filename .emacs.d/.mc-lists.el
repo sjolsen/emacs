@@ -13,6 +13,7 @@
         c-electric-star
         c-hungry-delete-forward
         c-indent-line-or-region
+        dabbrev-expand
         end-of-visual-line
         eval-and-replace
         forward-sexp

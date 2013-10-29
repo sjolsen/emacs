@@ -72,8 +72,9 @@
 
 (defvar default-c++11-flag
   (cond
-   ((or (executable-find "clang++")
-        (executable-find "g++-4.8"))
+   ((executable-find "clang++")
+    "-std=c++1y")
+   ((executable-find "g++-4.8")
     "-std=c++11")
    (t
     "-std=c++0x")))
@@ -118,7 +119,11 @@ directory in which the original file resides."
                   "-f" makefile
                   (concat "CHK_SOURCES=" source)
                   (concat program-specifier "=" program-name)
-                  (concat flags-specifier "=-I " base-dir " " flags " " flymake-default-cc-flags)
+                  (concat flags-specifier "="
+                          (getenv flags-specifier) " "
+                          "-I " base-dir " "
+                          flags " "
+                          flymake-default-cc-flags)
                   "check-syntax"))))
 
   (defun flymake-simple-make-cc-init-impl (create-temp-f use-relative-base-dir use-relative-source build-file-name get-cmdline-f)
@@ -205,7 +210,7 @@ Use CREATE-TEMP-F for creating temp copy."
     `(flymake-settings-4-emaci))
 
   ;; Fix warning matching for newer versions of GCC
-  (setq flymake-warning-re "\\(^\\|[0-9]+: \\)[wW]arning")
+  (setq flymake-warning-re "\\(^\\|[0-9]+: \\)[wW]arning\\|note:")
 
   ;; Unfortunately, since flymake parses one line at a time, we cannot pull
   ;; in any useful information from the header
