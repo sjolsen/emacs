@@ -3,9 +3,10 @@
           'goto-address-mode)
 
 ;; Default terminal colors
-;(setq term-default-fg-color "#FFFFFF")
-(setq term-default-bg-color (frame-parameter nil 'background-color))
-(setq term-default-fg-color (frame-parameter nil 'foreground-color))
+(setq term-default-bg-color nil)
+(setq term-default-fg-color nil)
+;; (setq term-default-bg-color (frame-parameter nil 'background-color))
+;; (setq term-default-fg-color (frame-parameter nil 'foreground-color))
 
 ;; TODO: fix colors for emacs -nw
 (if (string< emacs-version "24.3.1")
@@ -18,14 +19,15 @@
                "#F06EA9"
                "#00FFFF"
                term-default-fg-color]) ; gnome-terminal colors
-  (custom-set-faces `(term-color-black   ((t (:background ,term-default-bg-color :foreground ,term-default-bg-color))))
-                    '(term-color-red     ((t (:background "#F7977A"              :foreground "#F7977A"))))
-                    '(term-color-green   ((t (:background "#3BB878"              :foreground "#3BB878"))))
-                    '(term-color-yellow  ((t (:background "#FFF79A"              :foreground "#FFF79A"))))
-                    '(term-color-blue    ((t (:background "#438CCA"              :foreground "#438CCA"))))
-                    '(term-color-magenta ((t (:background "#F06EA9"              :foreground "#F06EA9"))))
-                    '(term-color-cyan    ((t (:background "#00FFFF"              :foreground "#00FFFF"))))
-                    `(term-color-white   ((t (:background ,term-default-fg-color :foreground ,term-default-fg-color))))))
+  ;; (custom-set-faces `(term-color-black   ((t (:background ,term-default-bg-color :foreground ,term-default-bg-color))))
+  ;;                   '(term-color-red     ((t (:background "#F7977A"              :foreground "#F7977A"))))
+  ;;                   '(term-color-green   ((t (:background "#3BB878"              :foreground "#3BB878"))))
+  ;;                   '(term-color-yellow  ((t (:background "#FFF79A"              :foreground "#FFF79A"))))
+  ;;                   '(term-color-blue    ((t (:background "#438CCA"              :foreground "#438CCA"))))
+  ;;                   '(term-color-magenta ((t (:background "#F06EA9"              :foreground "#F06EA9"))))
+  ;;                   '(term-color-cyan    ((t (:background "#00FFFF"              :foreground "#00FFFF"))))
+  ;;                   `(term-color-white   ((t (:background ,term-default-fg-color :foreground ,term-default-fg-color))))))
+  )
 ;; (setq ansi-term-color-vector
 ;;       [nil "grey15"
 ;;            "burlywood1"

@@ -39,6 +39,7 @@
 (load "org-settings")
 (load "visual-settings")
 (load "term-settings")
+(load "shell-settings")
 (if (file-exists-p "~/Documents/configs/rcirc-settings.el")
     (load-file "~/Documents/configs/rcirc-settings.el"))
 

@@ -126,10 +126,10 @@
            ;; PREPROCESSOR_CONSTANT, PREPROCESSORCONSTANT
            ;("\\<[A-Z]*_[A-Z_]+\\>" . font-lock-constant-face)
            ;("\\<[A-Z]\\{3,\\}\\>"  . font-lock-constant-face)
-           ;; hexadecimal numbers
-           ("\\<0[xX][0-9A-Fa-f]+\\>" . font-lock-constant-face)
+           ;; hexadecimal/binary literals
+           ("\\<0[xXbB][0-9A-Fa-f]+\\>" . font-lock-constant-face)
            ;; integer/float/scientific numbers
-           ("\\<[\\-+]*[0-9]*\\.?[0-9]+\\([ulUL]+\\|[eE][\\-+]?[0-9]+\\)?\\>" . font-lock-constant-face)
+           ("\\<[\\-+]*[0-9]*\\.?[0-9]+\\([ulUL]+\\|[eE][\\-+]?[0-9]+\\)?\\w*\\>" . font-lock-constant-face)
            ;; c++11 string literals
            ;;       L"wide string"
            ;;       L"wide string with UNICODE codepoint: \u2018"
