@@ -27,6 +27,7 @@
  '(smtpmail-smtp-service 465)
  '(smtpmail-smtp-user "stuart@sj-olsen.com")
  '(smtpmail-stream-type (quote ssl))
+ '(term-scroll-snap-to-bottom nil)
  '(tool-bar-mode nil)
  '(tramp-default-host "localhost")
  '(tramp-default-proxies-alist (quote (("kmic.*" "\\`root\\'" "/ssh:stuart@%h:") ("\\`dakara" "\\`root\\'" "/ssh:sjo@%h:"))))
