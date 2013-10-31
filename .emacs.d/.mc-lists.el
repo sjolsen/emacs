@@ -3,6 +3,7 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        backward-or-up-list
         backward-sexp
         beginning-of-visual-line
         c-electric-colon
@@ -16,6 +17,7 @@
         dabbrev-expand
         end-of-visual-line
         eval-and-replace
+        forward-or-up-list
         forward-sexp
         indent-for-tab-command
         kill-region

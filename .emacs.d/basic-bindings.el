@@ -1,10 +1,22 @@
 ;;; Basic keyboard and mouse bindings
 
+(require 'define-keys)
+
+;; Logical lines in visual-line-mode
+(define-keys visual-line-mode
+  ("C-M-a" . #'beginning-of-line)
+  ("C-M-e" . #'end-of-line))
+
 ;; Elements in nXML
-(add-hook 'nxml-mode-hook (lambda ()
-  (local-set-key (kbd "C-M-a") #'nxml-backward-element)
-  (local-set-key (kbd "C-M-e") #'nxml-forward-element)
-  (local-set-key (kbd "C-c C-c") #'comment-region)))
+(define-keys nxml-mode
+  ("C-M-a"   . #'nxml-backward-element)
+  ("C-M-e"   . #'nxml-forward-element)
+  ("M-h"     . #'backward-kill-word)
+  ("C-c C-c" . #'comment-region))
+
+;; Auto-indent in HTML
+(define-keys html-mode
+  ("<return>" . #'newline-and-indent))
 
 ;; Super-kill
 (global-set-key (kbd "C-x C-c")
@@ -49,14 +61,11 @@
 
 ;; Fill column
 (setq-default fill-column 80)
-;; (add-hook 'window-configuration-change-hook
-;;           (lambda () (setq fill-column (get-right-margin))))
 
 ;; Mouse history in Info-mode
-(add-hook 'Info-mode-hook
-          (lambda ()
-            (local-set-key (kbd "<mouse-8>") 'Info-history-back)
-            (local-set-key (kbd "<mouse-9>") 'Info-history-forward)))
+(define-keys Info-mode-map 'Info-mode
+  ("<mouse-8>" #'Info-history-back)
+  ("<mouse-9>" #'Info-history-forward))
 
 ;; Tab-completion in eval-expression
 (add-hook 'minibuffer-setup-hook
@@ -67,17 +76,6 @@
 ;; Page break navigation
 (global-set-key (kbd "<C-M-prior>") 'backward-page)
 (global-set-key (kbd "<C-M-next>") 'forward-page)
-
-;; M-h in nxml-mode
-(add-hook 'nxml-mode-hook
-          (lambda ()
-            (local-set-key (kbd "M-h") 'backward-kill-word)))
-
-;; Auto-indent in HTML
-(add-hook 'html-mode-hook
-          (lambda ()
-            (local-set-key (kbd "<return>") 'newline-and-indent)
-            (flyspell-mode 0)))
 
 ;; Undo
 (global-set-key (kbd "C-z") 'undo)
