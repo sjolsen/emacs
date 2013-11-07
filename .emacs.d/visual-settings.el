@@ -1,5 +1,8 @@
 ;;; Customize display settings
 
+;; Enriched text
+(add-hook 'enriched-mode-hook #'variable-pitch-mode)
+
 ;; Color theme
 (require 'color-theme)
 (setq color-theme-is-global t)

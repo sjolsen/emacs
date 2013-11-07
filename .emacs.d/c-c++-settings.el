@@ -55,7 +55,10 @@
             ;; Semantic completion
 	    (unless (string< emacs-version "24")
 	      (semantic-mode t)
-	      (push 'ac-source-semantic ac-sources)))
+	      (push 'ac-source-semantic ac-sources))
+
+            ;; Code folding
+            (add-hook mode-hook #'hs-minor-mode))
           mode-hooks))
 
 ;; Automatic parens

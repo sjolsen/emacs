@@ -18,6 +18,11 @@
 (define-keys html-mode
   ("<return>" . #'newline-and-indent))
 
+;; Code folding
+(define-keys hs-minor-mode
+  ("<C-tab>"   . #'hs-toggle-hiding)
+  ("<C-M-tab>" . #'hs-hide-level))
+
 ;; Super-kill
 (global-set-key (kbd "C-x C-c")
   (lambda (ARG)
