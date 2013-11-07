@@ -1,5 +1,9 @@
 ;;; Basic keyboard and mouse bindings
 
+(defalias 'λ 'lambda)
+(font-lock-add-keywords 'emacs-lisp-mode
+                        '(("λ" . font-lock-keyword-face)))
+
 (require 'define-keys)
 
 ;; Logical lines in visual-line-mode
@@ -25,7 +29,7 @@
 
 ;; Super-kill
 (global-set-key (kbd "C-x C-c")
-  (lambda (ARG)
+  (λ (ARG)
     (interactive "P")
     (if ARG
         (save-buffers-kill-emacs)
@@ -74,7 +78,7 @@
 
 ;; Tab-completion in eval-expression
 (add-hook 'minibuffer-setup-hook
-          (lambda ()
+          (λ ()
             (if (eq this-command 'eval-expression)
                 (local-set-key (kbd "TAB") 'lisp-complete-symbol))))
 
@@ -108,7 +112,7 @@
     (kill-buffer-and-window)))
 
 (global-set-key (kbd "C-x 4 1")
-                (lambda () (interactive)
+                (λ () (interactive)
                   (kill-other-buffer-and-window 1)))
 
 
