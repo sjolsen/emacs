@@ -1266,12 +1266,15 @@ comment at the start of cc-engine.el for more info."
 	      ;; looking for more : and ?.
 	      (setq c-maybe-labelp nil
 		    skip-chars (substring c-stmt-delim-chars 0 -2)))
-	     ;; At a CPP construct?
-	     ((and c-opt-cpp-symbol (looking-at c-opt-cpp-symbol)
-		   (save-excursion
-		     (forward-line 0)
-		     (looking-at c-opt-cpp-prefix)))
-	      (c-end-of-macro))
+	     ;; At a CPP construct or a "#" or "##" operator?
+	     ((and c-opt-cpp-symbol (looking-at c-opt-cpp-symbol))
+	      (if (save-excursion
+		    (skip-chars-backward " \t")
+		    (and (bolp)
+			 (or (bobp)
+			     (not (eq (char-before (1- (point))) ?\\)))))
+		  (c-end-of-macro)
+		(skip-chars-forward c-opt-cpp-symbol)))
 	     ((memq (char-after) non-skip-list)
 	      (throw 'done (point)))))
 	  ;; In trailing space after an as yet undetected virtual semicolon?
@@ -4755,6 +4758,11 @@ comment at the start of cc-engine.el for more info."
   ;; inside `c-find-decl-spots'.  The point is left at `cfd-match-pos'
   ;; if there is a match, otherwise at `cfd-limit'.
   ;;
+  ;; The macro moves point forward to the next putative start of a declaration
+  ;; or cfd-limit.  This decl start is the next token after a "declaration
+  ;; prefix".  The declaration prefix is the earlier of `cfd-prop-match' and
+  ;; `cfd-re-match'.  `cfd-match-pos' is set to the decl prefix.
+  ;; 
   ;; This macro might do hidden buffer changes.
 
   '(progn
@@ -4776,34 +4784,47 @@ comment at the start of cc-engine.el for more info."
        (if (> cfd-re-match-end (point))
 	   (goto-char cfd-re-match-end))
 
-       (while (if (setq cfd-re-match-end
-			(re-search-forward c-decl-prefix-or-start-re
-					   cfd-limit 'move))
+       ;; Each time round, the next `while' moves forward over a pseudo match
+       ;; of `c-decl-prefix-or-start-re' which is either inside a literal, or
+       ;; is a ":" not preceded by "public", etc..  `cfd-re-match' and
+       ;; `cfd-re-match-end' get set.
+       (while
+	   (progn
+	     (setq cfd-re-match-end (re-search-forward c-decl-prefix-or-start-re
+						       cfd-limit 'move))
+	     (cond
+	      ((null cfd-re-match-end)
+	       ;; No match.  Finish up and exit the loop.
+	       (setq cfd-re-match cfd-limit)
+	       nil)
+	      ((c-got-face-at
+		(if (setq cfd-re-match (match-end 1))
+		    ;; Matched the end of a token preceding a decl spot.
+		    (progn
+		      (goto-char cfd-re-match)
+		      (1- cfd-re-match))
+		  ;; Matched a token that start a decl spot.
+		  (goto-char (match-beginning 0))
+		  (point))
+		c-literal-faces)
+	       ;; Pseudo match inside a comment or string literal.  Skip out
+	       ;; of comments and string literals.
+	       (while (progn
+			(goto-char (c-next-single-property-change
+				    (point) 'face nil cfd-limit))
+			(and (< (point) cfd-limit)
+			     (c-got-face-at (point) c-literal-faces))))
+	       t)		      ; Continue the loop over pseudo matches.
+	      ((and (match-string 1)
+		    (string= (match-string 1) ":")
+		    (save-excursion
+		      (or (/= (c-backward-token-2 2) 0) ; no search limit.  :-(
+			  (not (looking-at c-decl-start-colon-kwd-re)))))
+	       ;; Found a ":" which isn't part of "public:", etc.
+	       t)
+	      (t nil)))) ;; Found a real match.  Exit the pseudo-match loop.
 
-		  ;; Match.  Check if it's inside a comment or string literal.
-		  (c-got-face-at
-		   (if (setq cfd-re-match (match-end 1))
-		       ;; Matched the end of a token preceding a decl spot.
-		       (progn
-			 (goto-char cfd-re-match)
-			 (1- cfd-re-match))
-		     ;; Matched a token that start a decl spot.
-		     (goto-char (match-beginning 0))
-		     (point))
-		   c-literal-faces)
-
-		;; No match.  Finish up and exit the loop.
-		(setq cfd-re-match cfd-limit)
-		nil)
-
-	 ;; Skip out of comments and string literals.
-	 (while (progn
-		  (goto-char (c-next-single-property-change
-			      (point) 'face nil cfd-limit))
-		  (and (< (point) cfd-limit)
-		       (c-got-face-at (point) c-literal-faces)))))
-
-       ;; If we matched at the decl start, we have to back up over the
+       ;; If our match was at the decl start, we have to back up over the
        ;; preceding syntactic ws to set `cfd-match-pos' and to catch
        ;; any decl spots in the syntactic ws.
        (unless cfd-re-match
@@ -6938,7 +6959,9 @@ comment at the start of cc-engine.el for more info."
 	  ;; can happen since we don't know if
 	  ;; `c-restricted-<>-arglists' will be correct inside the
 	  ;; arglist paren that gets entered.
-	  c-parse-and-markup-<>-arglists)
+	  c-parse-and-markup-<>-arglists
+	  ;; Start of the identifier for which `got-identifier' was set.
+	  name-start)
 
       (goto-char id-start)
 
@@ -6956,7 +6979,9 @@ comment at the start of cc-engine.el for more info."
 			;; If the third submatch matches in C++ then
 			;; we're looking at an identifier that's a
 			;; prefix only if it specifies a member pointer.
-			(when (setq got-identifier (c-forward-name))
+			(when (progn (setq pos (point))
+				     (setq got-identifier (c-forward-name)))
+			  (setq name-start pos)
 			  (if (looking-at "\\(::\\)")
 			      ;; We only check for a trailing "::" and
 			      ;; let the "*" that should follow be
@@ -6982,7 +7007,9 @@ comment at the start of cc-engine.el for more info."
       ;; Skip over an identifier.
       (or got-identifier
 	  (and (looking-at c-identifier-start)
-	       (setq got-identifier (c-forward-name))))
+	       (setq pos (point))
+	       (setq got-identifier (c-forward-name))
+	       (setq name-start pos)))
 
       ;; Skip over type decl suffix operators.
       (while (if (looking-at c-type-decl-suffix-key)
@@ -7075,17 +7102,21 @@ comment at the start of cc-engine.el for more info."
 
 	       (when (and got-parens
 			  (not got-prefix)
-			  (not got-suffix-after-parens)
+			  ;; (not got-suffix-after-parens)
 			  (or backup-at-type
 			      maybe-typeless
-			      backup-maybe-typeless))
-		 ;; Got a declaration of the form "foo bar (gnu);" where we've
-		 ;; recognized "bar" as the type and "gnu" as the declarator.
-		 ;; In this case it's however more likely that "bar" is the
-		 ;; declarator and "gnu" a function argument or initializer (if
-		 ;; `c-recognize-paren-inits' is set), since the parens around
-		 ;; "gnu" would be superfluous if it's a declarator.  Shift the
-		 ;; type one step backward.
+			      backup-maybe-typeless
+			      (eq at-decl-or-cast t)
+			      (save-excursion
+				(goto-char name-start)
+				(not (memq (c-forward-type) '(nil maybe))))))
+		 ;; Got a declaration of the form "foo bar (gnu);" or "bar
+		 ;; (gnu);" where we've recognized "bar" as the type and "gnu"
+		 ;; as the declarator.  In this case it's however more likely
+		 ;; that "bar" is the declarator and "gnu" a function argument
+		 ;; or initializer (if `c-recognize-paren-inits' is set),
+		 ;; since the parens around "gnu" would be superfluous if it's
+		 ;; a declarator.  Shift the type one step backward.
 		 (c-fdoc-shift-type-backward)))
 
 	   ;; Found no identifier.
@@ -8488,6 +8519,34 @@ comment at the start of cc-engine.el for more info."
 		      (not (looking-at "=")))))
       b-pos)))
 
+(defun c-backward-over-enum-header ()
+  ;; We're at a "{".  Move back to the enum-like keyword that starts this
+  ;; declaration and return t, otherwise don't move and return nil.
+  (let ((here (point))
+	up-sexp-pos before-identifier)
+    (while
+	(and
+	 (eq (c-backward-token-2) 0)
+	 (or (not (looking-at "\\s)"))
+	     (c-go-up-list-backward))
+	 (cond
+	  ((and (looking-at c-symbol-key) (c-on-identifier)
+		(not before-identifier))
+	   (setq before-identifier t))
+	  ((and before-identifier
+		(or (eq (char-after) ?,)
+		    (looking-at c-postfix-decl-spec-key)))
+	   (setq before-identifier nil)
+	   t)
+	  ((looking-at c-brace-list-key) nil)
+	  ((and c-recognize-<>-arglists
+		(eq (char-after) ?<)
+		(looking-at "\\s("))
+	   t)
+	  (t nil))))
+    (or (looking-at c-brace-list-key)
+	(progn (goto-char here) nil))))
+
 (defun c-inside-bracelist-p (containing-sexp paren-state)
   ;; return the buffer position of the beginning of the brace list
   ;; statement if we're inside a brace list, otherwise return nil.
@@ -8502,18 +8561,9 @@ comment at the start of cc-engine.el for more info."
   ;; This function might do hidden buffer changes.
   (or
    ;; This will pick up brace list declarations.
-   (c-safe
-     (save-excursion
-       (goto-char containing-sexp)
-       (c-forward-sexp -1)
-       (let (bracepos)
-	 (if (and (or (looking-at c-brace-list-key)
-		      (progn (c-forward-sexp -1)
-			     (looking-at c-brace-list-key)))
-		  (setq bracepos (c-down-list-forward (point)))
-		  (not (c-crosses-statement-barrier-p (point)
-						      (- bracepos 2))))
-	     (point)))))
+   (save-excursion
+     (goto-char containing-sexp)
+     (c-backward-over-enum-header))
    ;; this will pick up array/aggregate init lists, even if they are nested.
    (save-excursion
      (let ((class-key
