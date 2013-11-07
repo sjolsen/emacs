@@ -209,9 +209,6 @@ Use CREATE-TEMP-F for creating temp copy."
   (eval-after-load "emaci"
     `(flymake-settings-4-emaci))
 
-  ;; Fix warning matching for newer versions of GCC
-  (setq flymake-warning-re "\\(^\\|[0-9]+: \\)[wW]arning\\|note:")
-
   ;; Unfortunately, since flymake parses one line at a time, we cannot pull
   ;; in any useful information from the header
   ;(add-to-list 'flymake-err-line-patterns '("In file included from \\(.+\\):\\([0-9]\\)+:\\(.\\|
