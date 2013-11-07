@@ -3,7 +3,7 @@
         (mode-hook (intern (concat (symbol-name mode) "-hook"))))
     `(add-hook ',mode-hook (lambda ()
        (mapcar (lambda (key-def)
-                 (define-key ,mode-map (eval (kbd (car key-def))) (eval (cdr key-def))))
+                 (define-key ,mode-map (read-kbd-macro (eval (car key-def))) (eval (cdr key-def))))
                ',key-defs)))))
 
 (font-lock-add-keywords 'emacs-lisp-mode
