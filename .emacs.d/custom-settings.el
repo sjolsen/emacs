@@ -11,7 +11,6 @@
  '(fci-rule-color "dim gray")
  '(flymake-fringe-indicator-position nil)
  '(flymake-gui-warnings-enabled nil)
- '(font-use-system-font t)
  '(global-page-break-lines-mode t)
  '(inhibit-startup-screen t)
  '(minimap-dedicated-window t)
@@ -36,6 +35,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit fixed :height 98))))
  '(fixed ((t (:inherit fixed-pitch))))
  '(fixed-pitch ((t (:inherit nil :stipple nil :background "Grey15" :foreground "Grey" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "unknown" :family "Inconsolata"))))
  '(flymake-errline ((((type x)) (:underline "red2")) (((type tty)) (:background "red"))))

@@ -33,6 +33,7 @@
   (load "elpa-settings"))
 (load "dired-settings")
 (load "hscroll")
+(load "hyper-greek")
 (load "lisp-settings")
 (load "magit-settings")
 (load "navigate-parens-mode")
