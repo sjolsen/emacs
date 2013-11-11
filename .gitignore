@@ -8,3 +8,5 @@ ac-comphist.dat
 .emacs.d/auto-save-list/*
 .emacs.d/eshell/*
 /.emacs.d/url/*
+.emacs.d/elpa/archives/
+.emacs.d/semanticdb
