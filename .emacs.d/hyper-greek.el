@@ -2,7 +2,7 @@
   `(define-key ,map-name (read-kbd-macro ,key-str) (lambda (&optional ARG) (interactive) (insert-char ,char (or ARG 1)))))
 
 (define-minor-mode hyper-greek-mode
-  "Minor mode for typeing Greek characters with the Hyper key"
+  "Minor mode for typing Greek characters with the Hyper key"
   t
   t
   (let ((keymap (make-sparse-keymap)))

@@ -57,24 +57,41 @@
   "Flags common to all C-family languages")
 
 (defvar default-c-compiler
-  (if (executable-find "clang")
-      "clang"
-    "c99"))
+  (cond
+   ((executable-find "clang-trunk")
+    "clang-trunk")
+   ((executable-find "gcc-trunk")
+    "gcc-trunk")
+   ((executable-find "clang")
+    "clang")
+   ((executable-find "gcc")
+    "gcc")
+   (t
+    "cc")))
 
 (defvar default-c++-compiler
   (cond
+   ((executable-find "clang++-trunk")
+    "clang++-trunk")
+   ((executable-find "g++-trunk")
+    "g++-trunk")
    ((executable-find "clang++")
     "clang++")
    ((executable-find "g++-4.8")
     "g++-4.8")
+   ((executable-find "g++")
+    "g++")
    (t
     "c++")))
 
+(defun test-c++-flag (flag)
+  (zerop (call-process default-c++-compiler nil nil nil flag "-E" "-x" "c++" "-")))
+
 (defvar default-c++11-flag
   (cond
-   ((executable-find "clang++")
+   ((test-c++-flag "-std=c++1y")
     "-std=c++1y")
-   ((executable-find "g++-4.8")
+   ((test-c++-flag "-std=c++11")
     "-std=c++11")
    (t
     "-std=c++0x")))

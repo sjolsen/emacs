@@ -31,6 +31,10 @@
  '(tramp-default-host "localhost")
  '(tramp-default-proxies-alist (quote (("kmic.*" "\\`root\\'" "/ssh:stuart@%h:") ("\\`dakara" "\\`root\\'" "/ssh:sjo@%h:"))))
  '(truncate-lines t)
+; '(unicode-fonts-block-font-mapping (quote (("Cyrillic" ("Deja Vu Sans Mono")) ("Greek Extended" ("Deja Vu Sans Mono")) ("Greek and Coptic" ("Deja Vu Sans Mono" "Deja Vu Sans:width=condensed")) ("Latin Extended-C" ("Deja Vu Sans:width=condensed")) ("Latin Extended-D" ("Deja Vu Sans Mono" "Deja Vu Sans:width=condensed")) ("Mathematical Operators" ("Deja Vu Sans Mono")) ("Superscripts and Subscripts" ("Deja Vu Sans Mono" "Deja Vu Sans:width=condensed")) ("Supplemental Punctuation" ("Deja Vu Sans Mono")))))
+ '(unicode-fonts-block-font-mapping (quote ()))
+ '(unicode-fonts-fallback-font-list (quote ("Deja Vu Sans Mono" "Ubuntu Mono")))
+ '(unicode-fonts-restrict-to-fonts (quote ("Deja Vu Sans Mono")))
  '(user-mail-address "stuart@sj-olsen.com")
  '(warning-suppress-types (quote ((undo discard-info)))))
 (custom-set-faces
