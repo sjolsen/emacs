@@ -38,7 +38,7 @@
 (load "magit-settings")
 (load "navigate-parens-mode")
 (load "org-settings")
-(load "visual-settings")
+(load "regexp-tools")
 (load "term-settings")
 (load "shell-settings")
 (if (file-exists-p "~/Documents/configs/rcirc-settings.el")
@@ -104,3 +104,5 @@
 
 ;; Customizations
 (load-file "~/.emacs.d/custom-settings.el")
+
+(load "visual-settings")

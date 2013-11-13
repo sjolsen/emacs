@@ -3,7 +3,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ac-clang-flags (quote ("-std=c++11")))
+ '(ac-clang-flags (quote ("-std=c++1y")))
  '(ac-delay 0.5)
  '(column-number-mode t)
  '(custom-file "~/.emacs.d/custom-settings.el")
@@ -28,8 +28,7 @@
  '(tramp-default-host "localhost")
  '(tramp-default-proxies-alist (quote (("kmic.*" "\\`root\\'" "/ssh:stuart@%h:") ("\\`dakara" "\\`root\\'" "/ssh:sjo@%h:"))))
  '(truncate-lines t)
-; '(unicode-fonts-block-font-mapping (quote (("Cyrillic" ("Deja Vu Sans Mono")) ("Greek Extended" ("Deja Vu Sans Mono")) ("Greek and Coptic" ("Deja Vu Sans Mono" "Deja Vu Sans:width=condensed")) ("Latin Extended-C" ("Deja Vu Sans:width=condensed")) ("Latin Extended-D" ("Deja Vu Sans Mono" "Deja Vu Sans:width=condensed")) ("Mathematical Operators" ("Deja Vu Sans Mono")) ("Superscripts and Subscripts" ("Deja Vu Sans Mono" "Deja Vu Sans:width=condensed")) ("Supplemental Punctuation" ("Deja Vu Sans Mono")))))
- '(unicode-fonts-block-font-mapping (quote ()))
+ '(unicode-fonts-block-font-mapping (quote nil))
  '(unicode-fonts-fallback-font-list (quote ("Deja Vu Sans Mono" "Ubuntu Mono")))
  '(unicode-fonts-restrict-to-fonts (quote ("Deja Vu Sans Mono")))
  '(user-mail-address "stuart@sj-olsen.com")
@@ -45,6 +44,7 @@
  '(flymake-errline ((((type x)) (:underline "red2")) (((type tty)) (:background "red"))))
  '(flymake-warnline ((((type x)) (:underline "medium blue")) (((type tty)) (:background "blue"))))
  '(italic ((t (:slant italic))))
+ '(menu ((t (:background "Grey" :foreground "Black"))))
  '(minimap-active-region-background ((t (:background "#4517305D0000"))))
  '(minimap-font-face ((t (:height 40))))
  '(term-color-black ((((type x)) (:background "Grey15" :foreground "Grey15")) (((type tty)) (:background "black" :foreground "black"))))
