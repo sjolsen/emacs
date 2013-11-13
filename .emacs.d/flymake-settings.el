@@ -96,6 +96,13 @@
    (t
     "-std=c++0x")))
 
+(defvar default-c++-stdlib-flag
+  (if (string-prefix-p "clang" default-c++-compiler)
+      (if (or (file-directory-p "/usr/include/c++/v1")
+              (file-directory-p "/usr/local/include/c++/v1"))
+          "-stdlib=libc++"
+        "-stdlib=libstdc++")
+    ""))
 
 (defun flymake-create-temp-in-temp-dir (file-name prefix)
   (unless (stringp file-name)
@@ -163,7 +170,7 @@ Use CREATE-TEMP-F for creating temp copy."
   (defun flymake-make-c-cmdline (source base-dir)
     (flymake-get-make-cc-cmdline default-c-compiler "CC" "-std=c99" "CFLAGS" source base-dir))
   (defun flymake-make-c++-cmdline (source base-dir)
-    (flymake-get-make-cc-cmdline default-c++-compiler "CXX" default-c++11-flag "CXXFLAGS" source base-dir))
+    (flymake-get-make-cc-cmdline default-c++-compiler "CXX" (concat default-c++11-flag " " default-c++-stdlib-flag) "CXXFLAGS" source base-dir))
   (defun flymake-make-cuda-cmdline (source base-dir)
     (flymake-get-make-cc-cmdline "nvcc" "NVCXX" "" "NVCXXFLAGS" source base-dir))
   (defun flymake-make-mic-cmdline (source base-dir)
