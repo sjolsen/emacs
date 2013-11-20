@@ -7,10 +7,11 @@
 (require 'color-theme)
 (setq color-theme-is-global t)
 (color-theme-initialize)
-(color-theme-charcoal-black)
-; Fix menu face
-(set-face-foreground 'menu "black")
-(set-face-background 'menu "grey")
+(load "charcoal-black-custom")
+(color-theme-charcoal-black-custom)
+;; ; Fix menu face
+;; (set-face-foreground 'menu "black")
+;; (set-face-background 'menu "grey")
 
 ;; Graphical-only settings
 (defun do-graphics-settings (&optional frame)
