@@ -5,6 +5,9 @@
   ;; If there is more than one, they won't work right.
  '(ac-clang-flags (quote ("-std=c++1y")))
  '(ac-delay 0.5)
+ '(c-auto-align-backslashes nil)
+ '(c-backslash-column 0)
+ '(c-backslash-max-column 0)
  '(column-number-mode t)
  '(custom-file "~/.emacs.d/custom-settings.el")
  '(fci-rule-character-color nil)
@@ -19,6 +22,7 @@
  '(page-break-lines-char 45)
  '(page-break-lines-modes (quote (emacs-lisp-mode lisp-mode scheme-mode compilation-mode outline-mode help-mode c-mode c++-mode text-mode)))
  '(send-mail-function (quote smtpmail-send-it))
+ '(show-paren-delay 0)
  '(show-paren-mode t)
  '(smtpmail-smtp-server "echo.nixihost.com")
  '(smtpmail-smtp-service 465)
