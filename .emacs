@@ -45,9 +45,9 @@
     (load-file "~/Documents/configs/rcirc-settings.el"))
 
 ;; Yasnippet
-;(add-to-list 'load-path "~/.emacs.d/yasnippet")
-;(require 'yasnippet)
-;(yas/reload-all)
+(add-to-list 'load-path "~/.emacs.d/yasnippet")
+(require 'yasnippet)
+(yas/reload-all)
 
 ;; Show parens
 (show-paren-mode)
