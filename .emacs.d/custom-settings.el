@@ -1,10 +1,11 @@
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(ac-clang-flags (quote ("-std=c++1y")))
  '(ac-delay 0.5)
+ '(auto-save-default nil)
  '(c-auto-align-backslashes nil)
  '(c-backslash-column 0)
  '(c-backslash-max-column 0)
@@ -39,13 +40,13 @@
  '(user-mail-address "stuart@sj-olsen.com")
  '(warning-suppress-types (quote ((undo discard-info)))))
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "Grey15" :foreground "Grey" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "unknown" :family "Inconsolata"))))
  '(fixed ((t (:inherit fixed-pitch))))
- '(fixed-pitch  ((t (:inherit default))))
+ '(fixed-pitch ((t (:inherit default))))
  '(flymake-errline ((((type x)) (:underline "red2")) (((type tty)) (:background "red"))))
  '(flymake-warnline ((((type x)) (:underline "medium blue")) (((type tty)) (:background "blue"))))
  '(italic ((t (:slant italic))))
