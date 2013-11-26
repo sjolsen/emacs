@@ -8,11 +8,26 @@
 (c-set-offset 'cpp-define-intro 0 nil)
 
 ;; Fill column
-(setq-default c-backslash-column 80)
-(setq-default c-backslash-max-column 80)
+;; (setq-default c-backslash-column 80)
+;; (setq-default c-backslash-max-column 80)
 ;; (make-local-variable 'c-backslash-max-column)
 ;; (add-hook 'window-configuration-change-hook
 ;;           (lambda () (setq c-backslash-max-column (get-right-margin))))
+
+;; Pull backslashes back to the end of the line
+(defun canonicalize-backslashes (start end)
+  (interactive "r")
+  (let ((tab-regexp "\\([[:space:]]+\\)\\\\$"))
+    (save-excursion
+      (goto-char start)
+      (save-match-data
+        (loop while (re-search-forward tab-regexp end t) do
+              (let* ((current-match-start (match-beginning 1))
+                     (current-match-end   (match-end 1))
+                     (original-size       (- current-match-end current-match-start)))
+                (delete-region current-match-start current-match-end)
+                (let ((current-size (- (point) current-match-start)))
+                  (setq end (+ end (- current-size original-size))))))))))
 
 (let ((mode-hooks '(c-mode-hook c++-mode-hook)))
   (mapcar (lambda (mode-hook)
@@ -44,10 +59,17 @@
                             (setq ac-sources (append '(ac-source-clang) ac-sources)))))
 
             ;; Yasnippet
-            ;(add-hook mode-hook 'yas-minor-mode)
+            (add-hook mode-hook 'yas-minor-mode)
 
             ;; List navigation
             (add-hook mode-hook 'navigate-parens-mode)
+
+            ;; Fix any errant backslashes
+            (add-hook mode-hook
+              (λ ()
+                (setq write-contents-functions
+                      (cons (λ () (canonicalize-backslashes 0 (buffer-size)))
+                            write-contents-functions))))
 
             ;; Fill column indicator
             ;(add-hook mode-hook 'fci-mode)
@@ -96,21 +118,6 @@
 (add-hook 'c++-mode-hook 'smart-tabs-mode-enable)
 (smart-tabs-advice c-indent-line c-basic-offset)
 (smart-tabs-advice c-indent-region c-basic-offset)
-
-;; Replace tabs with spaces before aligned backslashes
-(defun untabify-backslashes (start end)
-  (interactive "r")
-  (let ((tab-regexp "[ \t]*\\\\$"))
-    (save-excursion
-      (goto-char start)
-      (save-match-data
-        (loop while (re-search-forward tab-regexp end t) do
-              (let* ((current-match-start (match-beginning 0))
-                     (current-match-end   (match-end 0))
-                     (original-size       (- current-match-end current-match-start)))
-                (untabify current-match-start current-match-end)
-                (let ((current-size (- (point) current-match-start)))
-                  (setq end (+ end (- current-size original-size))))))))))
 
 ;; Improved font-locking for C++11
 (add-hook
