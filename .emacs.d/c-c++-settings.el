@@ -29,6 +29,10 @@
                 (let ((current-size (- (point) current-match-start)))
                   (setq end (+ end (- current-size original-size))))))))))
 
+(defface c-backslash-face
+  '((default . (:foreground "dim gray")))
+  "Face for displaying terminal backslashes in C and related modes")
+
 (let ((mode-hooks '(c-mode-hook c++-mode-hook)))
   (mapcar (lambda (mode-hook)
             ;; Join lines
@@ -69,7 +73,11 @@
               (λ ()
                 (setq write-contents-functions
                       (cons (λ () (canonicalize-backslashes 0 (buffer-size)))
-                            write-contents-functions))))
+                            write-contents-functions))
+
+                ; Give backslashes a less intrusive appearance
+                (font-lock-add-keywords nil
+                                        '(("\\(\\\\\\)$" 1 'c-backslash-face)))))
 
             ;; Fill column indicator
             ;(add-hook mode-hook 'fci-mode)

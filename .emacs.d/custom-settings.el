@@ -44,6 +44,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit fixed :height 98))))
+ '(c-backslash-face ((((type x)) (:foreground "gray25"))))
  '(fixed ((t (:inherit fixed-pitch))))
  '(fixed-pitch ((t (:inherit nil :stipple nil :background "Grey15" :foreground "Grey" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "unknown" :family "Inconsolata"))))
  '(flymake-errline ((((type x)) (:underline "red2")) (((type tty)) (:background "red"))))
