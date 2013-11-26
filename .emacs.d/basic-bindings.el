@@ -35,6 +35,9 @@
         (save-buffers-kill-emacs)
       (save-buffers-kill-terminal))))
 
+;; ibuffer
+(global-set-key (kbd "C-x C-b") #'ibuffer-list-buffers)
+
 ;; Symbol replace
 (defun replace-symbol (old-symbol new-symbol &optional start end)
   (interactive
