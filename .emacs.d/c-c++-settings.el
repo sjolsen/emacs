@@ -87,6 +87,9 @@
                 (font-lock-add-keywords nil
                                         '(("\\(\\\\\\)$" 1 'c-backslash-face)))))
 
+            ;; URL navigation
+            (add-hook mode-hook #'goto-address-mode)
+
             ;; Fill column indicator
             ;(add-hook mode-hook 'fci-mode)
 

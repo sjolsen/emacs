@@ -11,3 +11,7 @@
 
 (add-hook 'dired-mode-hook
   (lambda () (local-set-key (kbd "<mouse-2>") 'dired-find-file-other-window-at-mouse)))
+
+(define-keys dired-mode
+  ("M-p" . #'dired-prev-marked-file)
+  ("M-n" . #'dired-next-marked-file))
