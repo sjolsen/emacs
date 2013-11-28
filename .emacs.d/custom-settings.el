@@ -22,6 +22,7 @@
  '(mouse-wheel-scroll-amount (quote (1 ((control)))))
  '(page-break-lines-char 45)
  '(page-break-lines-modes (quote (emacs-lisp-mode lisp-mode scheme-mode compilation-mode outline-mode help-mode c-mode c++-mode text-mode)))
+ '(preview-scale-function 1.5)
  '(send-mail-function (quote smtpmail-send-it))
  '(show-paren-delay 0)
  '(show-paren-mode t)

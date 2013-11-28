@@ -92,6 +92,10 @@
 ;; Magit
 (global-set-key (kbd "C-x g") 'magit-status)
 
+;; Lilypond
+(add-to-list 'load-path "~/.emacs.d/lilypond")
+(require 'lilypond-mode)
+
 ;; Flex and Bison
 ;; (load "flex-mode")
 ;; (load "bison-mode")
