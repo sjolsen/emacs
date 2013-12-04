@@ -56,12 +56,12 @@
                 (add-hook mode-hook 'subword-mode))
 
             ;; Spell checking for comments
-            (add-hook mode-hook
-                      (lambda ()
-                        (require 'flyspell)
-                        (require 'ispell)
-                        (flyspell-prog-mode)
-                        (local-set-key (kbd "<f7>") (λ () (interactive) (ispell-comments-and-strings nil)))))
+            ;; (add-hook mode-hook
+            ;;           (lambda ()
+            ;;             (require 'flyspell)
+            ;;             (require 'ispell)
+            ;;             (flyspell-prog-mode)
+            ;;             (local-set-key (kbd "<f7>") (λ () (interactive) (ispell-comments-and-strings nil)))))
 
             ;; Auto-complete
             (add-hook mode-hook

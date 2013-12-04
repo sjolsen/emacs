@@ -4,7 +4,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ac-clang-flags (quote ("-std=c++1y")))
- '(ac-delay 0.5)
  '(auto-save-default nil)
  '(c-auto-align-backslashes nil)
  '(c-backslash-column 0)
