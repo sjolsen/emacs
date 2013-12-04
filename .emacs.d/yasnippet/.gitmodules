@@ -1,6 +1,0 @@
-[submodule "snippets"]
-	path = snippets
-	url = git@github.com:AndreaCrotti/yasnippet-snippets.git
-[submodule "yasmate"]
-	path = yasmate
-	url = git@github.com:capitaomorte/yasmate.git
