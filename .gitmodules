@@ -16,7 +16,7 @@
 	url = https://github.com/brianjcj/auto-complete-clang.git
 [submodule ".emacs.d/yasnippet"]
 	path = .emacs.d/yasnippet
-	url = https://github.com/capitaomorte/yasnippet
+	url = https://github.com/capitaomorte/yasnippet.git
 [submodule ".emacs.d/auto-complete-etags"]
 	path = .emacs.d/auto-complete-etags
 	url = https://github.com/whitypig/auto-complete-etags.git
