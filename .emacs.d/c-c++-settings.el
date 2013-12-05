@@ -131,6 +131,7 @@
 
 ;; Smart tabs
 (setq-default tab-width 8)
+(add-to-list 'load-path "~/.emacs.d/elpa/cl-lib-0.3")
 (add-to-list 'load-path "~/.emacs.d/smarttabs")
 (require 'smart-tabs-mode)
 (add-hook 'c-mode-hook 'smart-tabs-mode-enable)
