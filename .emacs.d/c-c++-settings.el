@@ -17,13 +17,13 @@
 ;; Pull backslashes back to the end of the line
 (defun canonicalize-backslashes (start end)
   (interactive "r")
-  (let ((tab-regexp "\\([[:space:]]+\\)\\\\$"))
+  (let ((tab-regexp "\\(^\\| \\)\\([[:space:]]+\\)\\\\$"))
     (save-excursion
       (goto-char start)
       (save-match-data
         (loop while (re-search-forward tab-regexp end t) do
-              (let* ((current-match-start (match-beginning 1))
-                     (current-match-end   (match-end 1))
+              (let* ((current-match-start (match-beginning 2))
+                     (current-match-end   (match-end 2))
                      (original-size       (- current-match-end current-match-start)))
                 (delete-region current-match-start current-match-end)
                 (let ((current-size (- (point) current-match-start)))
@@ -177,3 +177,20 @@
            ("\\<[A-Za-z_]+[A-Za-z_0-9]*_\\(t\\|type\\|ptr\\)\\>" . font-lock-type-face)
            ))
     ) t)
+
+;; filter annoying messages
+(defvar message-filter-regexp-list '("clang failed with error 1")
+  "filter formatted message string to remove noisy messages")
+(defadvice message (around message-filter-by-regexp activate)
+  (if (not (ad-get-arg 0))
+      ad-do-it
+    (let ((formatted-string (apply 'format (ad-get-args 0))))
+      (if (and (stringp formatted-string)
+               (some (lambda (re) (string-match re formatted-string)) message-filter-regexp-list))
+          (save-excursion
+            (set-buffer "*Messages*")
+            (goto-char (point-max))
+            (insert formatted-string "\n"))
+        (progn
+          (ad-set-args 0 `("%s" ,formatted-string))
+          ad-do-it)))))
