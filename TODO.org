@@ -1,0 +1,23 @@
+* TODO Terminal/shell settings
+* TODO Set up auto completion
+** C++
+*** Clang completion
+** Lisp
+* TODO Set up daemon/client code
+* TODO Set up org-mode
+** M-h
+* TODO Migrate code from basic-bindings.el
+** Global bindings
+** Mode-specific bindings
+** Factor out text manipulation code
+* TODO Migrate code from c-c++-settings.el
+** Remove obsolete code
+* TODO Figure out something wrt flymake
+* TODO Migrate dired code
+** dired-omit
+* TODO Migrate hscroll
+** Probably should submit this as a proper library. Needs cleaning first, though.
+* TODO Migrate hyper-greek.el
+** Set up hyper key properly in dotfiles repo
+* TODO Migrate navigate-parens-mode
+** This may be another candidate for rewrite/submission
