@@ -1,3 +1,4 @@
+* TODO Fix C-x C-s in Magit's commit mode
 * TODO Terminal/shell settings
 * TODO Set up auto completion
 ** C++
