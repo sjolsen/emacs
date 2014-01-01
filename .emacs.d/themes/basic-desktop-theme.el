@@ -55,6 +55,7 @@ windows and the like."
                                (height . 50)
                                (alpha 95 95))))
  '(global-page-break-lines-mode t)
+ '(hscroll-margin 1)
  '(inhibit-startup-screen t)
  '(minibuffer-depth-indicate-mode t)
  '(page-break-lines-char 45)

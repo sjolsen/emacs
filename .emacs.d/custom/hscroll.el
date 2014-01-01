@@ -16,11 +16,6 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;; Hscroll
-(setq hscroll-margin 1)
-(defcustom hscroll-margin 1
-  "Screen margin for horizontal scrolling. We will try to keep at least this
-  many characters visible to either side of the point while scrolling."
-  :type 'integer)
 
 (defun current-line-length () (interactive)
   (save-excursion (move-end-of-line nil) (current-column)))
