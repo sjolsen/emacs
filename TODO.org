@@ -1,24 +1,25 @@
-* DONE Fix C-x C-s in Magit's commit mode
+* DONE DONE Fix C-x C-s in Magit's commit mode
 * TODO Terminal/shell settings
 * TODO Set up auto completion
-** C++
-*** Clang completion
-** Lisp
+** TODO C++
+*** TODO Clang completion
+** TODO Lisp
 * TODO Set up daemon/client code
 * TODO Set up org-mode
-** M-h
+** TODO M-h
 * TODO Migrate code from basic-bindings.el
-** Global bindings
-** Mode-specific bindings
-** Factor out text manipulation code
+** DONE Global bindings
+** TODO Mode-specific bindings
+** DONE Factor out text manipulation code
 * TODO Migrate code from c-c++-settings.el
-** Remove obsolete code
+** TODO Remove obsolete code
 * TODO Figure out something wrt flymake
-* TODO Migrate dired code
-** dired-omit
-* TODO Migrate hscroll
-** Probably should submit this as a proper library. Needs cleaning first, though.
+* DONE Migrate dired code
+** DONE dired-omit
+* DONE Migrate hscroll
+** TODO Probably should submit this as a proper library. Needs cleaning first, though.
 * TODO Migrate hyper-greek.el
-** Set up hyper key properly in dotfiles repo
+** TODO Set up hyper key properly in dotfiles repo
 * TODO Migrate navigate-parens-mode
-** This may be another candidate for rewrite/submission
+** TODO This may be another candidate for rewrite/submission
+* TODO Finish migrating color theme

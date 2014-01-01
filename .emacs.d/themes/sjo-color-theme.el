@@ -1,6 +1,5 @@
 (deftheme sjo-color
-  "Color theme based off of Lars Hausmann's
-`color-theme-charcoal-black'.")
+  "Color theme based off of Lars Hausmann's `color-theme-charcoal-black'.")
 
 (custom-theme-set-faces
  'sjo-color
