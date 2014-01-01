@@ -3,12 +3,15 @@
 
 (add-user-subdir-to-load-path "external/undo-tree")
 (require 'undo-tree)
-(global-set-key (kbd "C-z") #'undo-tree-undo)
-(global-set-key (kbd "C-S-z") #'undo-tree-redo)
+(define-keys-for-map undo-tree-map
+  ("C-z"   . #'undo-tree-undo)
+  ("C-S-z" . #'undo-tree-redo)
+  ("C-?"   . nil))
 
-(global-set-key (kbd "M-h") #'backward-kill-word)
-(global-set-key (kbd "C-h") #'backward-delete-char)
-(global-set-key (kbd "C-?") #'help-command)
+(define-keys-globally
+  ("M-h" . #'backward-kill-word)
+  ("C-h" . #'backward-delete-char)
+  ("C-?" . #'help-command))
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
