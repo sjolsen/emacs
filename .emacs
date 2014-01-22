@@ -111,7 +111,7 @@
 (global-set-key (kbd "M-<drag-mouse-1>") nil)
 
 ;; PDF for LaTeX
-(add-hook 'latex-mode-hook #'TeX-global-PDF-mode)
+(add-hook 'LaTeX-mode-hook #'TeX-global-PDF-mode)
 
 ;; Customizations
 (load-file "~/.emacs.d/custom-settings.el")
