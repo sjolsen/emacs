@@ -14,6 +14,7 @@
  '(fci-rule-color "dim gray")
  '(flymake-fringe-indicator-position nil)
  '(flymake-gui-warnings-enabled nil)
+ '(geiser-repl-use-other-window nil)
  '(global-page-break-lines-mode t)
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
@@ -45,6 +46,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "Grey15" :foreground "Grey" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "unknown" :family "Inconsolata"))))
+ '(c-backslash-face ((t (:foreground "gray30"))))
  '(fixed ((t (:inherit fixed-pitch))))
  '(fixed-pitch ((t (:inherit default))))
  '(flymake-errline ((((type x)) (:underline "red2")) (((type tty)) (:background "red"))))
