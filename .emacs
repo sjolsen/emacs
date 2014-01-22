@@ -106,6 +106,13 @@
 (add-to-list 'auto-mode-alist
              '("[Mm]akefile.*" . makefile-mode))
 
+
+;; Disable secondary selection
+(global-set-key (kbd "M-<drag-mouse-1>") nil)
+
+;; PDF for LaTeX
+(add-hook 'latex-mode-hook #'TeX-global-PDF-mode)
+
 ;; Customizations
 (load-file "~/.emacs.d/custom-settings.el")
 
