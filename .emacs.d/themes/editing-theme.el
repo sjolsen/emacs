@@ -16,7 +16,6 @@
   ("C-?"   . nil)) ;; Conflicts with global keymap
 
 ;; Custom regexp functions
-(add-user-subdir-to-load-path "custom/")
 (require 'regexp-tools)
 
 ;; Logical lines in visual-line-mode
