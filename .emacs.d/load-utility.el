@@ -1,10 +1,17 @@
 ;;; load-utility.el --- utilities to be used by Emacs' load files
 
-(defun add-user-subdir-to-load-path (subdir)
+(defun add-to-load-path (pathspec &optional recursive)
+  "Add a new subdirectory to `load-path', recursively if specified"
+  (let ((default-directory pathspec))
+    (normal-top-level-add-to-load-path '("."))
+    (when recursive
+      (normal-top-level-add-subdirs-to-load-path))))
+
+(defun add-user-subdir-to-load-path (subdir &optional recursive)
   "Add a new subdirectory from `user-emacs-directory' (typically
 ~/.emacs.d) to the load path."
-  (add-to-list 'load-path
-	       (concat user-emacs-directory (convert-standard-filename subdir))))
+  (add-to-load-path
+   (concat user-emacs-directory (convert-standard-filename subdir))))
 
 
 
