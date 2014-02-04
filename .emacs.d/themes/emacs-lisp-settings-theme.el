@@ -9,7 +9,7 @@
          (current-buffer)))
 
 (define-keys-globally
-  '("C-c e" . #'eval-and-replace))
+  ("C-c e" . #'eval-and-replace))
 
 
 
