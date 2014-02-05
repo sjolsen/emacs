@@ -1,3 +1,6 @@
 [submodule ".emacs.d/external/undo-tree"]
 	path = .emacs.d/external/undo-tree
 	url = http://www.dr-qubit.org/git/undo-tree.git
+[submodule ".emacs.d/external/page-break-lines"]
+	path = .emacs.d/external/page-break-lines
+	url = https://github.com/purcell/page-break-lines.git
