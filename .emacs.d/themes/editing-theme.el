@@ -1,7 +1,10 @@
 (deftheme editing
   "Basic editing theme")
 
+(require 'ispell)
+
 (define-keys-globally
+  ("<f7>"    . #'ispell-buffer)
   ("M-h"     . #'backward-kill-word)
   ("C-h"     . #'backward-delete-char)
   ("C-c C-d" . #'just-one-space)
@@ -17,6 +20,10 @@
 
 ;; Custom regexp functions
 (require 'regexp-tools)
+
+;; Features for basic text
+(add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'text-mode-hook 'visual-line-mode)
 
 ;; Logical lines in visual-line-mode
 (define-keys visual-line-mode

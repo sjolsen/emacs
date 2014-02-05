@@ -53,6 +53,7 @@ windows and the like."
 (custom-theme-set-variables
  'basic-desktop
  '(enable-recursive-minibuffers t)
+ '(column-number-mode t)
  '(current-language-environment "UTF-8")
  '(default-frame-alist (quote ((width . 120)
                                (height . 50)
