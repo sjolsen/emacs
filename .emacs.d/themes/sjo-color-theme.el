@@ -219,6 +219,7 @@
  '(message-separator-face ((t (:foreground "chocolate"))))
  '(mode-line ((t (:background "grey75" :foreground "black" :box (:line-width -1 :style released-button)))))
  '(mouse ((t (:background "Grey"))))
+ '(org-verbatim ((t (:inherit shadow :foreground "dark orange"))))
  '(region ((t (:background "DarkSlateBlue"))))
  '(scroll-bar ((t (:background "grey75"))))
  '(secondary-selection ((t (:background "steel blue"))))
