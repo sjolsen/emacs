@@ -186,7 +186,7 @@
  '(info-header-node ((t (:bold t :weight bold))))
  '(info-header-xref ((t (:bold t :weight bold :foreground "sky blue"))))
  '(info-menu-5 ((t (:underline t))))
- '(info-menu-header ((t (:bold t :family "helv" :weight bold))))
+ '(info-menu-header ((t (:inherit (variable-pitch bold)))))
  '(info-node ((t (:bold t :weight bold))))
  '(info-xref ((t (:bold t :foreground "sky blue" :weight bold))))
  '(isearch ((t (:background "slate blue"))))
