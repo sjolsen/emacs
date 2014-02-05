@@ -21,7 +21,6 @@ windows and the like."
     (other-window (or COUNT 1))
     (kill-buffer-and-window)))
 
-(add-user-subdir-to-load-path "custom/")
 (require 'hscroll)
 (define-keys-globally
   ("<mouse-6>"          . (λ (event) (interactive "e") (mouse-scroll-right event 1)))
