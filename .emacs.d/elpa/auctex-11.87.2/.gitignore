@@ -24,4 +24,4 @@ latex/preview-mk.ins
 latex/preview.drv
 
 # Files generated when installing/compiling the package in place.
-auctex-autoloads.el
+# auctex-autoloads.el
