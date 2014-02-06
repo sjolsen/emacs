@@ -32,6 +32,10 @@
   ("C-M-a" . #'beginning-of-line)
   ("C-M-e" . #'end-of-line))
 
+;; Multiple cursors
+(add-user-subdir-to-load-path "external/multiple-cursors")
+(require 'multiple-cursors)
+
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 
