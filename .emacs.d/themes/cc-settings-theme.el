@@ -3,8 +3,6 @@
 (deftheme cc-settings
   "Settings for C, C++, and more")
 
-(require 'cc-mode)
-
 (defvar cc-map/hook-alist
   '((c-mode-map . c-mode-hook)
     (c++-mode-map . c++-mode-hook))
@@ -21,11 +19,14 @@ should be an alist mapping mode-map names to mode-hook names.")
     (dolist (map/hook cc-map/hook-alist)
       (let ((mode-map-sym (car map/hook))
 	    (mode-hook-sym (cdr map/hook)))
-	(add-hook mode-hook-sym (λ () 
+	(add-hook mode-hook-sym (λ ()
 				  (dolist (binding binding-alist)
 				    (define-key (eval mode-map-sym)
 				      (read-kbd-macro (car binding))
 				      (cdr binding)))))))))
+
+(eval-after-load 'cc-mode
+    (hook-up-cc-keybinds))
 
 
 
