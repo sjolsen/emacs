@@ -63,6 +63,8 @@ windows and the like."
  '(inhibit-startup-screen t)
  '(minibuffer-depth-indicate-mode t)
  '(page-break-lines-char 45)
+ '(page-break-lines-modes (quote (emacs-lisp-mode lisp-mode scheme-mode compilation-mode outline-mode help-mode prog-mode)))
+ '(scroll-bar-mode nil)
  '(tool-bar-mode nil)
  '(truncate-lines t))
 
