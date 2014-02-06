@@ -4,14 +4,14 @@
   "Settings for C, C++, and more")
 
 (defvar cc-map/hook-alist
-  '((c-mode-map . c-mode-hook)
+  '((c-mode-map   . c-mode-hook)
     (c++-mode-map . c++-mode-hook))
   "Modes to which we're going to add common key customizations. This
 should be an alist mapping mode-map names to mode-hook names.")
 
 (defvar cc-keybind-alist
   '(("C-m" . #'c-context-line-break))
-  "An alist from forms which evaluate to suitable arguments to
+  "An alist mapping forms which evaluate to suitable arguments to
 `read-kbd-macro' to forms which evaluate to commands")
 
 (defun hook-up-cc-keybinds ()

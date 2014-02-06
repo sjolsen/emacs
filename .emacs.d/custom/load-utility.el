@@ -27,8 +27,8 @@
 
 (defun define-keys-for-map (mode-map binding-alist)
   "Adds the definitions given by `binding-alist' to the mode map passed in
-`mode-maps'. `key-defs' should be an a-list mapping key sequences (using the
-kbd-macro syntax) to commands."
+`mode-map'. `binding-alist' should be an a-list mapping key sequences (using
+the kbd-macro syntax) to commands."
   (mapcar (λ (binding)
             (define-key mode-map (read-kbd-macro (car binding)) (cdr binding)))
           binding-alist))
