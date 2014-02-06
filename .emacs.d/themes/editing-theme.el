@@ -15,9 +15,10 @@
 (add-user-subdir-to-load-path "external/undo-tree")
 (require 'undo-tree)
 (define-keys-for-map undo-tree-map
-  ("C-z"   . #'undo-tree-undo)
-  ("C-S-z" . #'undo-tree-redo)
-  ("C-?"   . nil)) ;; Conflicts with global keymap
+  (make-alist
+   '(("C-z"   . #'undo-tree-undo)
+     ("C-S-z" . #'undo-tree-redo)
+     ("C-?"   . nil)))) ;; Conflicts with global keymap
 
 ;; Custom regexp functions
 (require 'regexp-tools)

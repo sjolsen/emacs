@@ -20,7 +20,7 @@
                         '(("λ" . font-lock-keyword-face)))
 
 (defun make-alist (conses)
-  (let ((cons-eval (lambda (cell)
+  (let ((cons-eval (λ (cell)
                      (cons (eval (car cell))
                            (eval (cdr cell))))))
     (mapcar cons-eval conses)))
