@@ -1,8 +1,8 @@
 (deftheme slime
   "Settings for SLIME")
 
-(require 'slime)
-(slime-setup '(slime-fancy slime-repl))
+(eval-after-load 'slime
+  (slime-setup '(slime-fancy slime-repl)))
 
 
 
