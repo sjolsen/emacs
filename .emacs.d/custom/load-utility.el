@@ -19,6 +19,12 @@
 (font-lock-add-keywords 'emacs-lisp-mode
                         '(("λ" . font-lock-keyword-face)))
 
+(defmacro make-alist (&rest conses)
+  (let ((cons-eval (lambda (cell)
+                     `(cons ',(eval (car cell))
+                            ',(eval (cdr cell))))))
+    `(list ,@(mapcar cons-eval conses))))
+
 (defmacro define-keys-for-map (mode-map &rest key-defs)
   "Adds the definitions given by `key-defs' to the mode map bound to
 the symbol passed as `mode-map'. `key-defs' should be an a-list
