@@ -19,34 +19,33 @@
 (font-lock-add-keywords 'emacs-lisp-mode
                         '(("λ" . font-lock-keyword-face)))
 
-(defmacro make-alist (&rest conses)
+(defun make-alist (conses)
   (let ((cons-eval (lambda (cell)
-                     `(cons ',(eval (car cell))
-                            ',(eval (cdr cell))))))
-    `(list ,@(mapcar cons-eval conses))))
+                     (cons (eval (car cell))
+                           (eval (cdr cell))))))
+    (mapcar cons-eval conses)))
 
-(defun define-keys-for-maps (mode-maps key-defs)
-  "Adds the definitions given by `key-defs' to the mode map bound to
-the symbols passed in `mode-maps'. `key-defs' should be an a-list
-mapping key sequences (using the kbd-macro syntax) to commands."
-  (mapcar (λ (key-def)
-            (mapcar (λ (mode-map)
-                      (define-key mode-map (read-kbd-macro (eval (car key-def))) (eval (cdr key-def))))
-                    mode-maps))
-          key-defs))
+(defun define-keys-for-map (mode-map binding-alist)
+  "Adds the definitions given by `binding-alist' to the mode map passed in
+`mode-maps'. `key-defs' should be an a-list mapping key sequences (using the
+kbd-macro syntax) to commands."
+  (mapcar (λ (binding)
+            (define-key mode-map (read-kbd-macro (car binding)) (cdr binding)))
+          binding-alist))
 
 (defmacro define-keys (mode &rest key-defs)
   (let ((mode-map (intern (concat (symbol-name mode) "-map")))
-        (mode-hook (intern (concat (symbol-name mode) "-hook"))))
+        (mode-hook (intern (concat (symbol-name mode) "-hook")))
+        (binding-alist (make-alist key-defs)))
     `(add-hook ',mode-hook (λ ()
-                             (define-keys-for-maps (list ,mode-map) ',key-defs)))))
+                             (define-keys-for-map ,mode-map ',binding-alist)))))
 
 (defmacro define-keys-globally (&rest key-defs)
-  `(define-keys-for-maps (list (current-global-map)) ',key-defs))
+  `(define-keys-for-map (current-global-map) (make-alist ',key-defs)))
 
 (font-lock-add-keywords 'emacs-lisp-mode
-                        '(("define-keys-for-maps"  . font-lock-keyword-face)
-                          ("define-keys-globally"  . font-lock-keyword-face)
-                          ("define-keys"           . font-lock-keyword-face)))
+                        '(("define-keys-for-map"  . font-lock-keyword-face)
+                          ("define-keys-globally" . font-lock-keyword-face)
+                          ("define-keys"          . font-lock-keyword-face)))
 
 (provide 'load-utility)
