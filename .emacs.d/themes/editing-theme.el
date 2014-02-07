@@ -11,6 +11,9 @@
   ("C-c C-d" . #'just-one-space)
   ("C-?"     . #'help-command))
 
+;; Greek characters
+(require 'hyper-greek)
+
 ;; Undo-tree
 (add-user-subdir-to-load-path "external/undo-tree")
 (require 'undo-tree)

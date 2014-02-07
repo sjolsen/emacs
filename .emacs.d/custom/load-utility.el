@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t -*-
 ;;; load-utility.el --- utilities to be used by Emacs' load files
 
 (defun add-to-load-path (pathspec &optional recursive)
@@ -25,12 +26,20 @@
                            (eval (cdr cell))))))
     (mapcar cons-eval conses)))
 
+(defun make-insert-command (char)
+  (λ (&optional arg)
+    (interactive "P")
+    (insert-char char (or arg 1))))
+
+(defun keymap-insert-cons (keymap binding)
+  (define-key keymap (read-kbd-macro (car binding)) (cdr binding)))
+
 (defun define-keys-for-map (mode-map binding-alist)
   "Adds the definitions given by `binding-alist' to the mode map passed in
 `mode-map'. `binding-alist' should be an a-list mapping key sequences (using
 the kbd-macro syntax) to commands."
   (mapcar (λ (binding)
-            (define-key mode-map (read-kbd-macro (car binding)) (cdr binding)))
+            (keymap-insert-cons mode-map binding))
           binding-alist))
 
 (defmacro define-keys (mode &rest key-defs)

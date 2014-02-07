@@ -18,7 +18,7 @@
 ** DONE dired-omit
 * DONE Migrate hscroll
 ** TODO Probably should submit this as a proper library. Needs cleaning first, though.
-* TODO Migrate hyper-greek.el
+* DONE Migrate hyper-greek.el
 ** TODO Set up hyper key properly in dotfiles repo
 * TODO Migrate navigate-parens-mode
 ** TODO This may be another candidate for rewrite/submission
