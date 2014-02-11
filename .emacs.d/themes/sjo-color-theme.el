@@ -1,5 +1,5 @@
 (deftheme sjo-color
-  "Created 2014-02-06.")
+  "Created 2014-02-11.")
 
 (custom-theme-set-faces
  'sjo-color
@@ -216,7 +216,7 @@
  '(message-header-xheader-face ((t (:foreground "MediumAquamarine"))))
  '(message-mml-face ((t (:foreground "ForestGreen"))))
  '(message-separator-face ((t (:foreground "chocolate"))))
- '(mode-line ((t (:background "grey75" :foreground "black" :box nil))))
+ '(mode-line ((t (:background "grey75" :foreground "black" :inverse-video nil :box nil))))
  '(mouse ((t (:background "Grey"))))
  '(org-verbatim ((t (:inherit shadow :foreground "dark orange"))))
  '(region ((t (:background "DarkSlateBlue"))))
