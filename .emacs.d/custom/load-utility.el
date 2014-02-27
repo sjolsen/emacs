@@ -12,7 +12,8 @@
   "Add a new subdirectory from `user-emacs-directory' (typically
 ~/.emacs.d) to the load path."
   (add-to-load-path
-   (concat user-emacs-directory (convert-standard-filename subdir))))
+   (concat user-emacs-directory (convert-standard-filename subdir))
+   recursive))
 
 
 

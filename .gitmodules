@@ -7,3 +7,6 @@
 [submodule ".emacs.d/external/multiple-cursors.el"]
 	path = .emacs.d/external/multiple-cursors
 	url = https://github.com/magnars/multiple-cursors.el.git
+[submodule ".emacs.d/external/auto-complete"]
+	path = .emacs.d/external/auto-complete
+	url = https://github.com/auto-complete/auto-complete.git
