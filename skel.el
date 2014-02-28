@@ -4,3 +4,4 @@
 
 (load-file (concat user-emacs-directory "/custom/load-utility.el"))
 (add-user-subdir-to-load-path "custom")
+(add-user-subdir-to-load-path "external" t)

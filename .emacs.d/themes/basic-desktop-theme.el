@@ -1,7 +1,6 @@
 (deftheme basic-desktop
   "Basic settings for desktop use of Emacs")
 
-(add-user-subdir-to-load-path "external/page-break-lines")
 (require 'page-break-lines)
 
 (defun save-buffers-kill-for-clients (ARG)

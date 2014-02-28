@@ -16,7 +16,6 @@
 (require 'hyper-greek)
 
 ;; Undo-tree
-(add-user-subdir-to-load-path "external/undo-tree")
 (require 'undo-tree)
 (define-keys-for-map undo-tree-map
   (make-alist
@@ -37,7 +36,6 @@
   ("C-M-e" . #'end-of-line))
 
 ;; Multiple cursors
-(add-user-subdir-to-load-path "external/multiple-cursors")
 (require 'multiple-cursors)
 
 ;; Auto-complete
