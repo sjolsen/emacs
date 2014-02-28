@@ -4,12 +4,13 @@
 (require 'ispell)
 
 (define-keys-globally
-  ("<f7>"    . #'ispell-buffer)
-  ("M-h"     . #'backward-kill-word)
-  ("C-h"     . #'backward-delete-char)
-  ("M-j"     . (λ () (interactive) (join-line t)))
-  ("C-c C-d" . #'just-one-space)
-  ("C-?"     . #'help-command))
+  ("<M-drag-mouse-1>" . nil)
+  ("<f7>"             . #'ispell-buffer)
+  ("M-h"              . #'backward-kill-word)
+  ("C-h"              . #'backward-delete-char)
+  ("M-j"              . (λ () (interactive) (join-line t)))
+  ("C-c C-d"          . #'just-one-space)
+  ("C-?"              . #'help-command))
 
 ;; Greek characters
 (require 'hyper-greek)

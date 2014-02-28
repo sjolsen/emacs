@@ -5,8 +5,10 @@
       '(
         c-electric-delete-forward
         c-electric-semi&comma
+        c-electric-star
         forward-sexp
         kill-region
+        slime-space
         ))
 
 (setq mc/cmds-to-run-once
