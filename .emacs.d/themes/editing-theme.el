@@ -38,9 +38,6 @@
 ;; Multiple cursors
 (require 'multiple-cursors)
 
-;; Auto-complete
-(require 'auto-complete)
-
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 
@@ -57,7 +54,6 @@
  'editing
  '(comment-auto-fill-only-comments t)
  '(fill-column 80)
- '(global-auto-complete-mode t)
  '(global-undo-tree-mode t)
  '(indent-tabs-mode nil)
  '(show-paren-mode t)
