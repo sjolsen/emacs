@@ -5,12 +5,11 @@
 
 (define-keys-for-map ac-complete-mode-map
   (make-alist
-   '(("<return>" . nil)
-     ("\r"       . nil)
-     ("C-n"      . #'ac-next)
-     ("C-p"      . #'ac-previous)
-     ("M-n"      . #'ac-quick-help-scroll-down)
-     ("M-p"      . #'ac-quick-help-scroll-up))))
+   '(("\r"         . nil)
+     ("<return>"   . nil)
+     ("<C-return>" . #'ac-complete)
+     ("M-n"        . #'ac-next)
+     ("M-p"        . #'ac-previous))))
 
 
 
