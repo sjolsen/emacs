@@ -13,3 +13,6 @@
 [submodule ".emacs.d/external/auto-complete-clang"]
 	path = .emacs.d/external/auto-complete-clang
 	url = https://github.com/sjolsen/auto-complete-clang
+[submodule ".emacs.d/external/smarttabs"]
+	path = .emacs.d/external/smarttabs
+	url = https://github.com/jcsalomon/smarttabs.git

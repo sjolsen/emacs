@@ -29,6 +29,12 @@ should be an alist mapping mode-map names to mode-hook names.")
   (hook-up-cc-keybinds))
 
 
+;; Smarttabs settings
+
+(require 'smart-tabs-mode)
+(smart-tabs-insinuate 'c 'c++)
+
+
 ;; Auto-complete settings
 
 (defvar *cc-mode-ac-sources*
