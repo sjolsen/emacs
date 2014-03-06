@@ -32,8 +32,9 @@ should be an alist mapping mode-map names to mode-hook names.")
 ;; Smarttabs settings
 
 (eval-after-load 'cc-mode
-  (require 'smart-tabs-mode)
-  (smart-tabs-insinuate 'c 'c++))
+  '(progn
+     (require 'smart-tabs-mode)
+     (smart-tabs-insinuate 'c 'c++)))
 
 
 ;; Auto-complete settings
