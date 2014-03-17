@@ -16,3 +16,6 @@
 [submodule ".emacs.d/external/smarttabs"]
 	path = .emacs.d/external/smarttabs
 	url = https://github.com/jcsalomon/smarttabs.git
+[submodule ".emacs.d/external/clojure-mode"]
+	path = .emacs.d/external/clojure-mode
+	url = https://github.com/clojure-emacs/clojure-mode.git
