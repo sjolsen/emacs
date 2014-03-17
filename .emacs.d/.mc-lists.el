@@ -6,6 +6,7 @@
         c-electric-delete-forward
         c-electric-semi&comma
         c-electric-star
+        c-indent-line-or-region
         forward-sexp
         kill-region
         slime-space
