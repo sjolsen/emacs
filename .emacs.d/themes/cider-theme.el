@@ -1,6 +1,8 @@
 (deftheme cider
   "Settings for cider")
 
+(require 'cider-test-mode)
+
 (defun cider-jump-other-window (query)
   "Jump to the definition of QUERY in another window."
   (interactive "P")
@@ -13,6 +15,7 @@
     (switch-to-buffer-other-window def-buffer)))
 
 (define-keys cider-repl-mode
-  ("M-." . #'cider-jump-other-window))
+  ("M-." .      #'cider-jump-other-window)
+  ("<return>" . nil))
 
 (provide-theme 'cider)
