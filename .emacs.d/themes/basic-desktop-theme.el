@@ -20,6 +20,13 @@ windows and the like."
     (other-window (or COUNT 1))
     (kill-buffer-and-window)))
 
+(defun kill-buffer-other-window (&optional COUNT)
+  "Kill the buffer in the other window."
+  (interactive)
+  (save-window-excursion
+    (other-window (or COUNT 1))
+    (kill-buffer)))
+
 (require 'hscroll)
 (define-keys-globally
   ("<mouse-6>"          . (λ (event) (interactive "e") (mouse-scroll-right event 1)))
@@ -44,6 +51,7 @@ windows and the like."
   ("<C-M-right>"   . #'windmove-right)
   ("<Scroll_Lock>" . #'scroll-lock-mode)
   ("C-x 4 1"       . #'kill-other-buffer-and-window)
+  ("C-x 4 k"       . #'kill-buffer-other-window)
   ("C-x C-c"       . #'save-buffers-kill-for-clients)
   ("C-x C-b"       . #'ibuffer-list-buffers))
 

@@ -1,11 +1,11 @@
 (deftheme info-settings
   "Settings for Info")
 
-(require 'info)
-
-(define-keys Info-mode
-  ("<mouse-8>" . #'Info-history-back)
-  ("<mouse-9>" . #'Info-history-forward))
+(autoload 'info "info")
+(eval-after-load "info"
+  '(define-keys Info-mode
+     ("<mouse-8>" . #'Info-history-back)
+     ("<mouse-9>" . #'Info-history-forward)))
 
 
 

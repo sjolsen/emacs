@@ -15,7 +15,8 @@
   (byte-recompile-directory (concat user-emacs-directory "/external") 0 recompile))
 
 (define-keys emacs-lisp-mode
-  ("<return>" . #'newline-and-indent))
+  ("<return>" . #'newline-and-indent)
+  ("RET"      . #'newline-and-indent))
 
 (define-keys-globally
   ("C-c e" . #'eval-and-replace))

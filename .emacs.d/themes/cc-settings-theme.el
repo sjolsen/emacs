@@ -48,9 +48,10 @@ should be an alist mapping mode-map names to mode-hook names.")
 (defun clang-include-flags ()
   (let* ((raw-output (shell-command-to-string *clang-get-driver-parameters-command*))
          (paths (collect-matches "\"[^ ]*?include[^ ]*?\"" raw-output)))
-    (mapcar (λ (path)
-              (concat "-I" (substring path 1 (- (length path) 1))))
-            paths)))
+    (cons "-std=c++11"
+          (mapcar (λ (path)
+                    (concat "-I" (substring path 1 (- (length path) 1))))
+                  paths))))
 
 (add-hook 'c-mode-common-hook (λ ()
                                 (when (featurep 'auto-complete)

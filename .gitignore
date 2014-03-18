@@ -3,7 +3,7 @@
 *.#*
 *.elc
 ac-comphist.dat
-.emacs.d/elpa/archives
+.emacs.d/elpa/*
 .emacs.d/auto-save-list/*
 .emacs.d/session.*
 .emacs.d/tramp

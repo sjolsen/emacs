@@ -44,6 +44,8 @@ the kbd-macro syntax) to commands."
           binding-alist))
 
 (defmacro define-keys (mode &rest key-defs)
+  "Adds the given key definitions to the keymap for the specified mode. This is
+performed lazily using the mode's hook."
   (let ((mode-map (intern (concat (symbol-name mode) "-map")))
         (mode-hook (intern (concat (symbol-name mode) "-hook")))
         (binding-alist (make-alist key-defs)))
