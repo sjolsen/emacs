@@ -56,7 +56,8 @@ should be an alist mapping mode-map names to mode-hook names.")
                                 (when (featurep 'auto-complete)
                                   (require 'auto-complete-clang)
                                   (setq ac-clang-flags (append (clang-include-flags) ac-clang-flags))
-                                  (setq ac-sources *cc-mode-ac-sources*))))
+                                  (setq ac-sources *cc-mode-ac-sources*)
+                                  (defun ac-template-action () nil)))) ;; Disable signature insertion
 
 
 

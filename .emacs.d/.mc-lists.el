@@ -3,6 +3,7 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        c-electric-colon
         c-electric-delete-forward
         c-electric-semi&comma
         c-electric-star
