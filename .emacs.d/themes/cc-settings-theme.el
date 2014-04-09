@@ -29,12 +29,18 @@ should be an alist mapping mode-map names to mode-hook names.")
   (hook-up-cc-keybinds))
 
 
-;; Smarttabs settings
+;; Convenience features
 
 (eval-after-load 'cc-mode
   '(progn
-     (require 'smart-tabs-mode)
-     (smart-tabs-insinuate 'c 'c++)))
+     (let ((hooks (mapcar #'cdr cc-map/hook-alist)))
+       (require 'smart-tabs-mode)
+       (smart-tabs-insinuate 'c 'c++)
+
+       (require 'hideshowvis)
+       (mapcar (λ (hook)
+                 (add-hook hook #'hideshowvis-enable))
+               hooks))))
 
 
 ;; Style
