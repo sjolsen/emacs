@@ -10,7 +10,8 @@
                                          (require 'ac-slime-fuzzy)
                                          (setq ac-sources '(ac-slime-fuzzy:*ac-source*)))))
      (define-keys slime-repl-mode
-       ("<tab>" . #'slime-fuzzy-indent-and-complete-symbol))))
+       ("<tab>"   . #'slime-fuzzy-indent-and-complete-symbol)
+       ("C-c C-d" . nil))))
 
 
 

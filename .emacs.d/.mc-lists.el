@@ -4,6 +4,7 @@
 (setq mc/cmds-to-run-for-all
       '(
         TeX-insert-backslash
+        c-electric-brace
         c-electric-colon
         c-electric-delete-forward
         c-electric-semi&comma

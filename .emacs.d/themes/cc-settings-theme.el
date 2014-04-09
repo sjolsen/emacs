@@ -29,36 +29,27 @@ should be an alist mapping mode-map names to mode-hook names.")
   (hook-up-cc-keybinds))
 
 
-;; Smarttabs settings
+;; Convenience features
 
 (eval-after-load 'cc-mode
   '(progn
-     (require 'smart-tabs-mode)
-     (smart-tabs-insinuate 'c 'c++)))
+     (let ((hooks (mapcar #'cdr cc-map/hook-alist)))
+       (require 'smart-tabs-mode)
+       (smart-tabs-insinuate 'c 'c++)
+
+       (require 'hideshowvis)
+       (mapcar (λ (hook)
+                 (add-hook hook #'hideshowvis-enable))
+               hooks))))
 
 
-;; Auto-complete settings
+;; Style
 
-(defvar *cc-mode-ac-sources*
-  '(ac-source-clang))
-
-(defvar *clang-get-driver-parameters-command*
-  "clang++ '-###' -x c++ - 2>&1")
-
-(defun clang-include-flags ()
-  (let* ((raw-output (shell-command-to-string *clang-get-driver-parameters-command*))
-         (paths (collect-matches "\"[^ ]*?include[^ ]*?\"" raw-output)))
-    (cons "-std=c++11"
-          (mapcar (λ (path)
-                    (concat "-I" (substring path 1 (- (length path) 1))))
-                  paths))))
-
-(add-hook 'c-mode-common-hook (λ ()
-                                (when (featurep 'auto-complete)
-                                  (require 'auto-complete-clang)
-                                  (setq ac-clang-flags (append (clang-include-flags) ac-clang-flags))
-                                  (setq ac-sources *cc-mode-ac-sources*)
-                                  (defun ac-template-action () nil)))) ;; Disable signature insertion
+(c-add-style "sjolsen"
+  '("bsd"
+    (c-offsets-alist . ((cpp-define-intro . 0)
+                        (cpp-macro        . 0)
+                        (label            . 0)))))
 
 
 
@@ -66,12 +57,10 @@ should be an alist mapping mode-map names to mode-hook names.")
  'cc-settings
  '(c-auto-align-backslashes nil)
  '(c-cleanup-list (quote (scope-operator)))
- '(c-default-style (quote ((c-mode . "bsd") (c++-mode . "bsd") (java-mode . "java") (awk-mode . "awk") (other . "gnu"))))
- '(c-doc-comment-style (quote ((c-mode . gtkdoc) (c++-mode . javadoc) (java-mode . javadoc) (pike-mode . autodoc))))
- '(c-offsets-alist (quote ((cpp-define-intro . 0) (cpp-macro . 0)))))
+ '(c-default-style "sjolsen")
+ '(c-doc-comment-style (quote ((c-mode . gtkdoc) (c++-mode . javadoc) (java-mode . javadoc) (pike-mode . autodoc)))))
 
 (custom-theme-set-faces
- 'cc-settings
- )
+ 'cc-settings)
 
 (provide-theme 'cc-settings)
