@@ -9,6 +9,7 @@
   ("M-h"              . #'backward-kill-word)
   ("C-h"              . #'backward-delete-char)
   ("M-j"              . (λ () (interactive) (join-line t)))
+  ("C-z"              . #'undo)
   ("C-c C-d"          . #'just-one-space)
   ("C-?"              . #'help-command))
 
