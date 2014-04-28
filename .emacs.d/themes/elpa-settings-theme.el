@@ -30,6 +30,7 @@
                 always (file-exists-p (archive-contents-file archive)))
     (package-refresh-contents)))
 
+(ensure-package-archives)
 (mapc (λ (package)
         (unless (package-installed-p package)
           (package-install package)))

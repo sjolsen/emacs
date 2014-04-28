@@ -49,7 +49,8 @@ should be an alist mapping mode-map names to mode-hook names.")
   '("bsd"
     (c-offsets-alist . ((cpp-define-intro . 0)
                         (cpp-macro        . 0)
-                        (label            . 0)))))
+                        (label            . 0)
+                        (innamespace      . 0)))))
 
 
 
