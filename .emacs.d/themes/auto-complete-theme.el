@@ -16,7 +16,7 @@
 (custom-theme-set-variables
  'auto-complete
 ; '(ac-auto-show-menu 0.0)
- '(ac-auto-start 0)
+ '(ac-auto-start 1)
  '(ac-delay 0.0)
  '(ac-ignore-case nil)
  '(global-auto-complete-mode t))
