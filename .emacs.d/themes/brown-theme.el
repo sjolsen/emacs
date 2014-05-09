@@ -6,6 +6,8 @@
  '(custom-state                 ((((type x)) (:foreground "lemon chiffon"))))
  '(default                      ((((type x)) (:foreground "grey" :background "#29211E"))))
  '(error                        ((((type x)) (:foreground "firebrick"))))
+ '(flyspell-duplicate           ((((type x)) (:foreground nil :underline t :inherit warning))))
+ '(flyspell-incorrect           ((((type x)) (:foreground nil :underline t :inherit error))))
  '(font-lock-builtin-face       ((((type x)) (:foreground "light blue"))))
  '(font-lock-comment-face       ((((type x)) (:foreground "cornsilk3"))))
  '(font-lock-constant-face      ((((type x)) (:foreground "sky blue"))))
@@ -20,7 +22,7 @@
  '(lazy-highlight               ((((type x)) (:background "burlywood4"))))
  '(mode-line                    ((((type x)) (:foreground "black" :background "grey75" :inverse-video nil :box nil))))
  '(region                       ((((type x)) (:background "grey22"))))
- '(warning                      ((((type x)) (:foreground "darkorange1" :bold nil))))
+ '(warning                      ((((type x)) (:foreground "orangered2" :bold nil))))
  '(widget-field                 ((((type x)) (:background "grey20")))))
 
 (provide-theme 'brown)
