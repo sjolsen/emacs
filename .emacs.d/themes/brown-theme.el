@@ -16,8 +16,11 @@
  '(font-lock-variable-name-face ((((type x)) (:foreground "cornsilk" :inherit bold))))
 ; '(highlight                    ((((type x)) (:foreground "cornsilk" :background "#39312E" :underline ((type x))))))
  '(highlight                    ((((type x)) (:foreground "cornsilk" :background nil :underline t))))
+ '(isearch                      ((((type x)) (:foreground "sienna" :background "lemonchiffon"))))
+ '(lazy-highlight               ((((type x)) (:background "burlywood4"))))
  '(mode-line                    ((((type x)) (:foreground "black" :background "grey75" :inverse-video nil :box nil))))
  '(region                       ((((type x)) (:background "grey22"))))
- '(warning                      ((((type x)) (:foreground "darkorange1" :bold nil)))))
+ '(warning                      ((((type x)) (:foreground "darkorange1" :bold nil))))
+ '(widget-field                 ((((type x)) (:background "grey20")))))
 
 (provide-theme 'brown)
