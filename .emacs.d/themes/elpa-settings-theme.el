@@ -10,8 +10,6 @@
 
 (defvar *elpa-packages*
   '(auctex
-    cider
-    clojure-mode
     dash
     epl
     git-commit-mode
