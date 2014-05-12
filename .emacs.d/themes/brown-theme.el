@@ -4,7 +4,7 @@
 (custom-theme-set-faces
  'brown
  '(custom-state                 ((((type x)) (:foreground "lemon chiffon"))))
- '(default                      ((((type x)) (:foreground "grey" :background "#29211E"))))
+ '(default                      ((((type x)) (:foreground "grey" :background "#292220"))))
  '(error                        ((((type x)) (:foreground "firebrick"))))
  '(flyspell-duplicate           ((((type x)) (:foreground nil :underline t :inherit warning))))
  '(flyspell-incorrect           ((((type x)) (:foreground nil :underline t :inherit error))))
