@@ -6,6 +6,7 @@
 
 (define-keys dired-mode
   ("M-p" . #'dired-prev-marked-file)
+  ("M-o" . #'dired-omit-mode)
   ("M-n" . #'dired-next-marked-file))
 
 

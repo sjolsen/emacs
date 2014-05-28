@@ -1,6 +1,11 @@
 (deftheme basic-desktop
   "Basic settings for desktop use of Emacs")
 
+;; Really kill the scroll bar
+(add-hook 'after-make-frame-functions
+  (lambda (frame)
+    (scroll-bar-mode -1)))
+
 (require 'page-break-lines)
 
 (defun save-buffers-kill-for-clients (ARG)
