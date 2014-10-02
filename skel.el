@@ -10,7 +10,6 @@
   '(auto-complete
     basic-desktop
     cc-settings
-    clojure
     dired-settings
     editing
     elpa-settings
