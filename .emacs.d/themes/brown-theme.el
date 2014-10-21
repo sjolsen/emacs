@@ -33,7 +33,7 @@
  `(term-color-magenta           ((((type x)) (:background "light coral" :foreground "light coral"))))
  `(term-color-red               ((((type x)) (:background "firebrick" :foreground "firebrick"))))
  `(term-color-white             ((((type x)) (:background "azure1" :foreground "azure1"))))
- `(term-color-yellow            ((((type x)) (:background ,brown-theme-sandy-white :foreground ,brown-theme-sandy-white)) ))
+ `(term-color-yellow            ((((type x)) (:background ,brown-theme-sandy-white :foreground ,brown-theme-sandy-white))))
  `(warning                      ((((type x)) (:foreground "orangered2" :bold nil))))
  `(widget-field                 ((((type x)) (:background "grey20")))))
 

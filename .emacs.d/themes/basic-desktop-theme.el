@@ -55,6 +55,8 @@ windows and the like."
   ("C-x C-c"       . #'save-buffers-kill-for-clients)
   ("C-x C-b"       . #'ibuffer-list-buffers))
 
+(add-to-list 'after-make-frame-functions (λ (frame) (scroll-bar-mode -1)))
+
 
 
 (custom-theme-set-variables
