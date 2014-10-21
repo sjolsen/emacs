@@ -2,8 +2,9 @@
 
 (defun collect-matches (regexp string)
   (save-match-data
-    (let ((submatch-start 0)
-          (submatch-end   0))
+    (let ((submatch-start   0)
+          (submatch-end     0)
+          (case-fold-search nil))
       (loop while (string-match regexp string submatch-end) collect
             (progn
               (setq submatch-start (match-beginning 0) submatch-end (match-end 0))
