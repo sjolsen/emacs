@@ -224,6 +224,7 @@
  '(secondary-selection ((t (:background "steel blue"))))
  '(semantic-dirty-token-face ((t (:background "gray10"))))
  '(semantic-unmatched-syntax-face ((t (:underline "red"))))
+ '(shadow ((t (:foreground "dim grey"))))
  '(show-paren-match ((t (:background "light slate blue" :foreground "white"))))
  '(show-paren-mismatch ((t (:background "red" :foreground "white"))))
  '(speedbar-button-face ((t (:foreground "seashell2"))))

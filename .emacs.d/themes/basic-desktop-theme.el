@@ -62,6 +62,8 @@ windows and the like."
 
 (add-to-list 'after-make-frame-functions (λ (frame) (scroll-bar-mode -1)))
 
+(setq ring-bell-function #'ignore)
+
 
 
 (custom-theme-set-variables
