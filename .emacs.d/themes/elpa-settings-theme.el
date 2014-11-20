@@ -10,6 +10,7 @@
 
 (defvar *elpa-packages*
   '(auctex
+    auto-complete
     dash
     epl
     git-commit-mode
