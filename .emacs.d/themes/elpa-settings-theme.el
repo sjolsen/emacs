@@ -16,7 +16,8 @@
     git-commit-mode
     git-rebase-mode
     magit
-    pkg-info))
+    pkg-info
+    slime))
 
 (defun archive-contents-file (archive-name)
   (concat package-user-dir
