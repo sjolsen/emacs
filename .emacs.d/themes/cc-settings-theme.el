@@ -53,6 +53,18 @@ should be an alist mapping mode-map names to mode-hook names.")
                         (innamespace      . 0)))))
 
 
+;; Backslashes
+
+(defface c-backslash-face
+  '((default . (:inherit shadow)))
+  "Face for displaying terminal backslashes in C and related modes")
+
+(font-lock-add-keywords 'c-mode
+  '(("\\(\\\\\\)$" 1 'c-backslash-face)))
+(font-lock-add-keywords 'c++-mode
+  '(("\\(\\\\\\)$" 1 'c-backslash-face)))
+
+
 
 (custom-theme-set-variables
  'cc-settings
