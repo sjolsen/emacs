@@ -52,7 +52,7 @@ should be an alist mapping mode-map names to mode-hook names.")
     (c-offsets-alist . ((cpp-define-intro . 0)
                         (cpp-macro        . 0)
                         (label            . 0)
-                        (innamespace      . 0)))))
+                        (innamespace      . +)))))
 
 
 ;; Backslashes
