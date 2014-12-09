@@ -47,6 +47,8 @@ should be an alist mapping mode-map names to mode-hook names.")
 
 (c-add-style "sjolsen"
   '("bsd"
+    (tab-width . 4)
+    (c-basic-offset . 4)
     (c-offsets-alist . ((cpp-define-intro . 0)
                         (cpp-macro        . 0)
                         (label            . 0)
@@ -69,6 +71,7 @@ should be an alist mapping mode-map names to mode-hook names.")
 (custom-theme-set-variables
  'cc-settings
  '(c-auto-align-backslashes nil)
+ '(c-basic-offset 'set-from-style)
  '(c-cleanup-list (quote (scope-operator)))
  '(c-default-style "sjolsen")
  '(c-doc-comment-style (quote ((c-mode . gtkdoc) (c++-mode . javadoc) (java-mode . javadoc) (pike-mode . autodoc)))))
