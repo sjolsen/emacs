@@ -111,7 +111,7 @@
  '(font-lock-type-face ((t (:bold t :foreground "sky blue" :weight bold))))
  '(font-lock-variable-name-face ((t (:bold t :foreground "turquoise" :weight bold))))
  '(font-lock-warning-face ((t (:bold t :foreground "Red" :weight bold))))
- '(fringe ((t (:background "Grey15"))))
+ '(fringe ((t (:background "Grey10"))))
  '(gnus-cite-face-1 ((t (:foreground "LightSalmon"))))
  '(gnus-cite-face-2 ((t (:foreground "Khaki"))))
  '(gnus-cite-face-3 ((t (:foreground "Coral"))))
@@ -257,6 +257,6 @@
  '(woman-italic-face ((t (:foreground "deep sky blue"))))
  '(woman-unknown-face ((t (:foreground "LightSalmon"))))
  '(zmacs-region ((t (:background "DarkSlateBlue"))))
- '(default ((t (:background "grey15" :foreground "grey")))))
+ '(default ((t (:background "grey7" :foreground "grey")))))
 
 (provide-theme 'sjo-color)
