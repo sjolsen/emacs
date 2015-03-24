@@ -3,18 +3,26 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        LaTeX-insert-left-brace
         TeX-insert-backslash
+        backward-delete-char
+        backward-sexp
         c-electric-brace
         c-electric-colon
         c-electric-delete-forward
+        c-electric-lt-gt
+        c-electric-paren
         c-electric-semi&comma
         c-electric-star
         c-indent-line-or-region
+        end-of-visual-line
         forward-sexp
         kill-region
+        slime-autodoc-space
         slime-space
         ))
 
 (setq mc/cmds-to-run-once
       '(
+        repeat
         ))
