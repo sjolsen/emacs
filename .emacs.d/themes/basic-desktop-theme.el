@@ -14,7 +14,8 @@ client instead. Use prefix argument to kill the server, too."
   (interactive "P")
   (if ARG
       (save-buffers-kill-emacs)
-    (save-buffers-kill-terminal)))
+    (when (y-or-n-p "Kill this Emacs client?")
+      (save-buffers-kill-terminal))))
 
 (defun kill-other-buffer-and-window (&optional COUNT)
   "Like `kill-buffer-and-window' (C-x 4 0), but gets rid of the other window and
