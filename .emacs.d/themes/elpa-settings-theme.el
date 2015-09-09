@@ -11,12 +11,7 @@
 (defvar *elpa-packages*
   '(auctex
     auto-complete
-    dash
-    epl
-    git-commit-mode
-    git-rebase-mode
     magit
-    pkg-info
     slime))
 
 (defun archive-contents-file (archive-name)
@@ -30,11 +25,12 @@
                 always (file-exists-p (archive-contents-file archive)))
     (package-refresh-contents)))
 
-;; (ensure-package-archives)
-;; (mapc (λ (package)
-;;         (unless (package-installed-p package)
-;;           (package-install package)))
-;;       *elpa-packages*)
+(defun install-elpa-packages ()
+  (ensure-package-archives)
+  (mapc (λ (package)
+          (unless (package-installed-p package)
+            (package-install package)))
+        *elpa-packages*))
 
 
 
