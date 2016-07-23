@@ -1,6 +1,7 @@
 (deftheme elpa-settings
   "Settings for Emacs' package manager")
 
+(require 'cl)
 (require 'package)
 (package-initialize)
 
@@ -12,7 +13,8 @@
   '(auctex
     auto-complete
     magit
-    slime))
+    slime
+    undo-tree))
 
 (defun archive-contents-file (archive-name)
   (concat package-user-dir
