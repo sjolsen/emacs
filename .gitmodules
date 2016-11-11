@@ -1,9 +1,0 @@
-[submodule ".emacs.d/external/page-break-lines"]
-	path = .emacs.d/external/page-break-lines
-	url = https://github.com/purcell/page-break-lines.git
-[submodule ".emacs.d/external/multiple-cursors.el"]
-	path = .emacs.d/external/multiple-cursors
-	url = https://github.com/magnars/multiple-cursors.el.git
-[submodule ".emacs.d/external/smarttabs"]
-	path = .emacs.d/external/smarttabs
-	url = https://github.com/jcsalomon/smarttabs.git

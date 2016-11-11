@@ -13,7 +13,10 @@
   '(auctex
     auto-complete
     magit
+    multiple-cursors
+    page-break-lines
     slime
+    smart-tabs-mode
     undo-tree))
 
 (defun archive-contents-file (archive-name)
