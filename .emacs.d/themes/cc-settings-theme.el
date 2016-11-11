@@ -35,12 +35,7 @@ should be an alist mapping mode-map names to mode-hook names.")
   '(progn
      (let ((hooks (mapcar #'cdr cc-map/hook-alist)))
        (require 'smart-tabs-mode)
-       (smart-tabs-insinuate 'c 'c++)
-
-       (require 'hideshowvis)
-       (mapcar (λ (hook)
-                 (add-hook hook #'hideshowvis-enable))
-               hooks))))
+       (smart-tabs-insinuate 'c 'c++))))
 
 
 ;; Style
