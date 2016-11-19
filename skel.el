@@ -2,10 +2,15 @@
 ;;; configuration. Load this file from .emacs and save any further
 ;;; customizations there.
 
+;; Make .emacs.d/custom available
 (load-file (concat user-emacs-directory "/custom/load-utility.el"))
 (add-user-subdir-to-load-path "custom")
-(add-user-subdir-to-load-path "external" t)
 
+;; Make .emacs.d/external available
+(when (file-exists-p (concat user-emacs-directory "/external"))
+  (add-user-subdir-to-load-path "external" t))
+
+;; (Prompt to) install required ELPA packages
 (require 'elpa-settings)
 (install-elpa-packages)
 
