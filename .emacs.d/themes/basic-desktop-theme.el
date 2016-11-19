@@ -61,8 +61,6 @@ windows and the like."
   ("C-x C-c"       . #'save-buffers-kill-for-clients)
   ("C-x C-b"       . #'ibuffer-list-buffers))
 
-(add-to-list 'after-make-frame-functions (λ (frame) (scroll-bar-mode -1)))
-
 (setq ring-bell-function #'ignore)
 
 
@@ -74,7 +72,7 @@ windows and the like."
  '(current-language-environment "UTF-8")
  '(default-frame-alist (quote ((width . 120)
                                (height . 50)
-                               (alpha 95 95))))
+                               (vertical-scroll-bars . nil))))
  '(global-page-break-lines-mode t)
  '(hscroll-margin 1)
  '(inhibit-startup-screen t)
