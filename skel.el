@@ -6,13 +6,15 @@
 (add-user-subdir-to-load-path "custom")
 (add-user-subdir-to-load-path "external" t)
 
+(require 'elpa-settings)
+(install-elpa-packages)
+
 (defvar *available-themes*
   '(auto-complete
     basic-desktop
     cc-settings
     dired-settings
     editing
-    elpa-settings
     emacs-lisp-settings
     info-settings
     latex-settings
