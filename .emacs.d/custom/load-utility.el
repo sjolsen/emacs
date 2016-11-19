@@ -60,4 +60,16 @@ performed lazily using the mode's hook."
                           ("define-keys-globally" . font-lock-keyword-face)
                           ("define-keys"          . font-lock-keyword-face)))
 
+
+;;; TODO: Find a good place for this
+
+(defun custom-standard-value (symbol)
+  (eval (car (get symbol 'standard-value))))
+
+(defun remove-all (l1 l2)
+  "Remove all occurrences of elements of `l1' from `l2'"
+  (if l1
+      (remove-all (rest l1) (remove (first l1) l2))
+    l2))
+
 (provide 'load-utility)
