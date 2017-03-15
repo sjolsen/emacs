@@ -49,12 +49,12 @@ windows and the like."
   ("S-<triple-mouse-5>" . (λ (event) (interactive "e") (mouse-scroll-left  event 5))))
 
 (define-keys-globally
-  ("<C-M-prior>"   . #'backward-page)
-  ("<C-M-next>"    . #'forward-page)
-  ("<C-M-up>"      . #'windmove-up)
-  ("<C-M-down>"    . #'windmove-down)
-  ("<C-M-left>"    . #'windmove-left)
-  ("<C-M-right>"   . #'windmove-right)
+  ("<C-prior>"     . #'backward-page)
+  ("<C-next>"      . #'forward-page)
+  ("<C-up>"        . #'windmove-up)
+  ("<C-down>"      . #'windmove-down)
+  ("<C-left>"      . #'windmove-left)
+  ("<C-right>"     . #'windmove-right)
   ("<Scroll_Lock>" . #'scroll-lock-mode)
   ("C-x 4 1"       . #'kill-other-buffer-and-window)
   ("C-x 4 k"       . #'kill-buffer-other-window)

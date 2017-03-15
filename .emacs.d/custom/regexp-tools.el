@@ -1,13 +1,14 @@
 ;;; regexp-tools.el --- Custom functions for manipulating text by regexp
 
-(defun collect-matches (regexp string)
+(defun collect-matches (regexp string &optional group)
   (save-match-data
-    (let ((submatch-start   0)
+    (let ((group (or group 0))
+          (submatch-start   0)
           (submatch-end     0)
           (case-fold-search nil))
       (loop while (string-match regexp string submatch-end) collect
             (progn
-              (setq submatch-start (match-beginning 0) submatch-end (match-end 0))
+              (setq submatch-start (match-beginning group) submatch-end (match-end group))
               (substring string submatch-start submatch-end))))))
 
 (defun collect-matches-to-kill-ring (regexp &optional start end)
