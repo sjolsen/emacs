@@ -24,3 +24,4 @@
 ** TODO This may be another candidate for rewrite/submission
 * TODO Finish migrating color theme
 * DONE multiple-cursors
+* TODO Replace custom package logic with package-selected-packages
