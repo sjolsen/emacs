@@ -13,6 +13,9 @@
   ("C-c C-d"          . #'just-one-space)
   ("C-?"              . #'help-command))
 
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
+
 ;; Greek characters
 (require 'hyper-greek)
 

@@ -20,8 +20,6 @@
  '(page-break-lines-char 45)
  '(safe-local-variable-values (quote ((eval c-set-offset (quote case-label) (quote +))))))
 
-(put 'upcase-region 'disabled nil)
-(put 'downcase-region 'disabled nil)
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
