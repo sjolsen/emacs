@@ -21,7 +21,7 @@
 ** TODO Figure out autoloading
 ** TODO sjo-color should be derived from charcoal-black
 *** DONE Do the derivation mechanically
-*** TODO Clean up the derivation
+*** DONE Clean up the derivation
 *** TODO Should replace-colorthemes be explicitly installed from ELPA?
 * Original TODOs from v2
 ** TODO Terminal/shell settings
