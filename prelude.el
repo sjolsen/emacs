@@ -3,12 +3,10 @@
 ;;; customizations there.
 
 ;; Make .emacs.d/custom available
-(load-file (concat user-emacs-directory "/custom/load-utility.el"))
-(add-user-subdir-to-load-path "custom")
-
-;; Make .emacs.d/external available
-(when (file-exists-p (concat user-emacs-directory "/external"))
-  (add-user-subdir-to-load-path "external" t))
+(let* ((prelude-file (file-truename (or load-file-name (buffer-file-name))))
+       (prelude-dir  (file-name-directory prelude-file)))
+  (load-file (concat prelude-dir "/custom/load-utility.el"))
+  (add-to-load-path (concat prelude-dir "/custom")))
 
 ;; (Prompt to) install required ELPA packages
 (require 'elpa-settings)
