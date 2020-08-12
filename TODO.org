@@ -19,6 +19,10 @@
 ** TODO Undo/redo keys should be made to work properly in terminal environments
 ** TODO Custom C-x C-s key binding for Magit should probably be removed
 ** TODO Figure out autoloading
+** TODO sjo-color should be derived from charcoal-black
+*** DONE Do the derivation mechanically
+*** TODO Clean up the derivation
+*** TODO Should replace-colorthemes be explicitly installed from ELPA?
 * Original TODOs from v2
 ** TODO Terminal/shell settings
 ** TODO Set up auto completion
