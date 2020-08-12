@@ -8,7 +8,7 @@
 ** TODO Themes should not be enabled unconditionally by prelude.el
 ** DONE README.org is now outdated
 ** TODO Re-evaluate usefulness of hscroll.el
-** TODO Re-evaluate usefulness of hyper-greek.el
+** DONE Re-evaluate usefulness of hyper-greek.el
 ** TODO Remove unneeded functions from load-utility.el
 ** TODO Keybinding for collect-matches-to-kill-ring
 ** TODO All changes effected by themes and modes should be reversed on disable

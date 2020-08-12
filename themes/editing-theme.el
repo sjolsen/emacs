@@ -16,9 +16,6 @@
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
-;; Greek characters
-(require 'hyper-greek)
-
 ;; Undo-tree
 (require 'undo-tree)
 (define-keys-for-map undo-tree-map
