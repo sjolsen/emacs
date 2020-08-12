@@ -1,27 +1,41 @@
-* DONE DONE Fix C-x C-s in Magit's commit mode
-* TODO Terminal/shell settings
-* TODO Set up auto completion
-** TODO C++
-*** TODO Clang completion
-** TODO Lisp
-* TODO Set up daemon/client code
-* TODO Set up org-mode
-** TODO M-h
-* TODO Migrate code from basic-bindings.el
-** DONE Global bindings
-** TODO Mode-specific bindings
-** DONE Factor out text manipulation code
-* TODO Migrate code from c-c++-settings.el
-** TODO Remove obsolete code
-* TODO Figure out something wrt flymake
-* DONE Migrate dired code
-** DONE dired-omit
-* DONE Migrate hscroll
-** TODO Probably should submit this as a proper library. Needs cleaning first, though.
-* DONE Migrate hyper-greek.el
-** TODO Set up hyper key properly in dotfiles repo
-* TODO Migrate navigate-parens-mode
-** TODO This may be another candidate for rewrite/submission
-* TODO Finish migrating color theme
-* DONE multiple-cursors
-* TODO Replace custom package logic with package-selected-packages
+* Issues with v3-dev
+** TODO .emacs should not have to set custom-theme-directory
+** TODO The standard variable package-selected-packages appears to do what *elpa-packages* was meant to do
+** TODO page-break-lines-char should be customized depending on the graphical frontend
+** TODO .emacs should not have to enable upcase-region and downcase-region
+** TODO ELPA packages should be installed as needed
+- This should be done in such a way that the package cache is not updated more frequently than necessary
+** TODO Themes should not be enabled unconditionally by prelude.el
+** TODO README.org is now outdated
+** TODO Re-evaluate usefulness of hscroll.el
+** TODO Re-evaluate usefulness of hyper-greek.el
+** TODO Remove unneeded functions from load-utility.el
+** TODO Keybinding for collect-matches-to-kill-ring
+** TODO All changes effected by themes and modes should be reversed on disable
+** TODO All behavioral changes should be gated by a theme or mode
+- Need to figure out what should go in themes and what should go in modes
+** TODO C/C++ style should be set appropriately per-repository
+** TODO Should editing-theme.el be broken up?
+** TODO Undo/redo keys should be made to work properly in terminal environments
+** TODO Custom C-x C-s key binding for Magit should probably be removed
+** TODO Figure out autoloading
+* Original TODOs from v2
+** TODO Terminal/shell settings
+** TODO Set up auto completion
+*** TODO C++
+**** TODO Clang completion
+*** TODO Lisp
+** TODO Set up daemon/client code
+** TODO Set up org-mode
+*** TODO M-h
+** TODO Migrate code from basic-bindings.el
+*** DONE Global bindings
+*** TODO Mode-specific bindings
+*** DONE Factor out text manipulation code
+** TODO Migrate code from c-c++-settings.el
+*** TODO Remove obsolete code
+** TODO Figure out something wrt flymake
+** TODO Migrate navigate-parens-mode
+*** TODO This may be another candidate for rewrite/submission
+** TODO Finish migrating color theme
+** TODO Replace custom package logic with package-selected-packages
