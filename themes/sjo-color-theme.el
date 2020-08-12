@@ -3,7 +3,24 @@
 
 (require 'derived-theme)
 
-(derived-theme-set-faces
+(defconst +sjo-color-rename-list+
+  (let ((table (derived-theme-get-face-table 'charcoal-black))
+        (name-map '((lazy-highlight           . isearch-lazy-highlight-face)
+                    (show-paren-match         . show-paren-match-face)
+                    (show-paren-mismatch      . show-paren-mismatch-face)
+                    (widget-button            . widget-button-face)
+                    (widget-button-pressed    . widget-button-pressed-face)
+                    (widget-documentation     . widget-documentation-face)
+                    (widget-field             . widget-field-face)
+                    (widget-inactive          . widget-inactive-face)
+                    (widget-single-line-field . widget-single-line-field-face))))
+    (loop for (new-name . old-name) in name-map
+          for value = (gethash old-name table)
+          collect (list new-name value)))
+  "The original theme uses several incorrect/out-of-date face names. This list
+provides the values under the correct names.")
+
+(apply #'derived-theme-set-faces
  'sjo-color
  'charcoal-black
  ; Replace non-italicized color-coded italics
@@ -19,16 +36,6 @@
  '(info-title-3 ((t (:inherit info-title-4 :height 1.2))))
  '(info-title-4 ((t (:inherit (variable-pitch bold)))))
  '(variable-pitch ((t (:family "Deja Vu Serif"))))
- ; Misspelled in charcoal-black
- '(lazy-highlight ((t (:background "paleturquoise4"))))
- '(show-paren-match ((t (:background "light slate blue" :foreground "white"))))
- '(show-paren-mismatch ((t (:background "red" :foreground "white"))))
- '(widget-button ((t (:bold t :weight bold))))
- '(widget-button-pressed ((t (:foreground "red"))))
- '(widget-documentation ((t (:foreground "light blue"))))
- '(widget-field ((t (:background "RoyalBlue4" :foreground "wheat"))))
- '(widget-inactive ((t (:foreground "dim gray"))))
- '(widget-single-line-field ((t (:background "slate blue" :foreground "wheat"))))
  ; Remove raised border
  '(mode-line ((t (:background "grey75" :foreground "black" :inverse-video nil :box nil))))
  ; Not styled by charcoal-black
@@ -41,7 +48,9 @@
  '(term-color-magenta ((((type x)) (:background "#F06EA9" :foreground "#F06EA9")) (((type tty)) (:background "magenta" :foreground "magenta"))))
  '(term-color-red ((((type x)) (:background "#F7977A" :foreground "#F7977A")) (((type tty)) (:background "red" :foreground "red"))))
  '(term-color-white ((((type x)) (:background "Grey" :foreground "Grey")) (((type tty)) (:background "white" :foreground "white"))))
- '(term-color-yellow ((((type x)) (:background "#FFF79A" :foreground "#FFF79A")) (((type tty)) (:background "yellow" :foreground "yellow")))))
+ '(term-color-yellow ((((type x)) (:background "#FFF79A" :foreground "#FFF79A")) (((type tty)) (:background "yellow" :foreground "yellow"))))
+ ; Misspelled in charcoal-black
+ +sjo-color-rename-list+)
 
 (derived-theme-set-variables
  'sjo-color
