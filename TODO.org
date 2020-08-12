@@ -6,7 +6,7 @@
 ** TODO ELPA packages should be installed as needed
 - This should be done in such a way that the package cache is not updated more frequently than necessary
 ** TODO Themes should not be enabled unconditionally by prelude.el
-** TODO README.org is now outdated
+** DONE README.org is now outdated
 ** TODO Re-evaluate usefulness of hscroll.el
 ** TODO Re-evaluate usefulness of hyper-greek.el
 ** TODO Remove unneeded functions from load-utility.el

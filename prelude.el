@@ -1,4 +1,4 @@
-;;; This function should serve as a common entry point for site-specific
+;;; This file should serve as a common entry point for site-specific
 ;;; configuration. Load this file from .emacs and save any further
 ;;; customizations there.
 

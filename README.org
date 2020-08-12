@@ -1,7 +1,5 @@
 * Configuration for GNU Emacs
 
-For best results, symlink =~/.emacs.d= to point to =emacs2/.emacs.d=, and put ~(load-file "path/to/emacs2/skel.el")~ in your =.emacs=. Point your Custom theme directory to =.emacs.d/themes= (~M-x customize-variable <RET> custom-theme-directory <RET>~) and enable or disable components of this customization set with ~M-x customize-themes~.
+This repository is organized to be separate from =~/.emacs.d=. All that's needed is to load the prelude file from =.emacs=. This can be done with ~(load-file "path/to/emacs/prelude.el")~ or by making =.emacs= a copy or symlink of the provided =init.el=.
 
-Note that as a security feature, Emacs prompts you for permission to load untrusted themes, including previously trusted themes that have been modified. So, if you're using my emacs-or-client.sh wrapper to automate Emacs daemonization, you'll run into trouble if I update a theme you have enabled (namely, the client window will never appear). To avoid this, make sure you run Emacs directly after any updates.
-
-For an example =.emacs= file, see =.emacs.dakara=
+Note that as a security feature, Emacs prompts you for permission to load untrusted themes, including previously trusted themes that have been modified. The easiest way to deal with this is to disable it entirely by setting ~custom-safe-themes~ to ~t~. I have not done this in =prelude.el= since it is, after all, a security feature.
