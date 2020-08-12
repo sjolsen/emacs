@@ -1,5 +1,5 @@
 * Issues with v3-dev
-** TODO .emacs should not have to set custom-theme-directory
+** DONE .emacs should not have to set custom-theme-directory
 ** TODO The standard variable package-selected-packages appears to do what *elpa-packages* was meant to do
 ** TODO page-break-lines-char should be customized depending on the graphical frontend
 ** TODO .emacs should not have to enable upcase-region and downcase-region

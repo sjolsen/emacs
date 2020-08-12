@@ -6,7 +6,8 @@
 (let* ((prelude-file (file-truename (or load-file-name (buffer-file-name))))
        (prelude-dir  (file-name-directory prelude-file)))
   (load-file (concat prelude-dir "/custom/load-utility.el"))
-  (add-to-load-path (concat prelude-dir "/custom")))
+  (add-to-load-path (concat prelude-dir "/custom"))
+  (customize-set-variable 'custom-theme-directory (concat prelude-dir "/themes")))
 
 ;; (Prompt to) install required ELPA packages
 (require 'elpa-settings)
