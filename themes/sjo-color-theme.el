@@ -1,5 +1,5 @@
 (deftheme sjo-color
-  "Created 2014-02-11.")
+  "Customizations on top of charcoal-black.")
 
 (require 'derived-theme)
 
