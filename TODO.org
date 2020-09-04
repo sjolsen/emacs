@@ -22,7 +22,8 @@
 ** DONE sjo-color should be derived from charcoal-black
 *** DONE Do the derivation mechanically
 *** DONE Clean up the derivation
-*** DONE Should color-theme-modern be explicitly installed from ELPA?
+*** DONE color-theme-modern should be explicitly installed
+** DONE Remove brown theme
 * Original TODOs from v2
 ** TODO Terminal/shell settings
 ** TODO Set up auto completion
