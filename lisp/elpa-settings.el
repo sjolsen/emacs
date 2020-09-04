@@ -8,6 +8,7 @@
 (defvar *elpa-packages*
   '(auctex
     auto-complete
+    color-theme-modern
     magit
     multiple-cursors
     page-break-lines
