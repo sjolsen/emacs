@@ -5,9 +5,9 @@
 ;; Make libraries and themes available
 (let* ((prelude-file (file-truename (or load-file-name (buffer-file-name))))
        (prelude-dir  (file-name-directory prelude-file)))
-  (load-file (concat prelude-dir "/lisp/load-utility.el"))
-  (add-to-load-path (concat prelude-dir "/lisp"))
-  (customize-set-variable 'custom-theme-directory (concat prelude-dir "/themes")))
+  (load-file (concat prelude-dir "lisp/load-utility.el"))
+  (add-to-load-path (concat prelude-dir "lisp"))
+  (customize-set-variable 'custom-theme-directory (concat prelude-dir "themes")))
 
 ;; (Prompt to) install required ELPA packages
 (require 'elpa-settings)
