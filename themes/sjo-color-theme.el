@@ -14,9 +14,9 @@
                     (widget-field             . widget-field-face)
                     (widget-inactive          . widget-inactive-face)
                     (widget-single-line-field . widget-single-line-field-face))))
-    (loop for (new-name . old-name) in name-map
-          for value = (gethash old-name table)
-          collect (list new-name value)))
+    (cl-loop for (new-name . old-name) in name-map
+             for value = (gethash old-name table)
+             collect (list new-name value)))
   "The original theme uses several incorrect/out-of-date face names. This list
 provides the values under the correct names.")
 

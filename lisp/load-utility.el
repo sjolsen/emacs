@@ -69,7 +69,7 @@ performed lazily using the mode's hook."
 (defun remove-all (l1 l2)
   "Remove all occurrences of elements of `l1' from `l2'"
   (if l1
-      (remove-all (rest l1) (remove (first l1) l2))
+      (remove-all (cl-rest l1) (remove (cl-first l1) l2))
     l2))
 
 (provide 'load-utility)

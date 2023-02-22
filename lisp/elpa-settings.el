@@ -1,4 +1,3 @@
-(require 'cl)
 (require 'package)
 (package-initialize)
 
@@ -17,7 +16,7 @@
     undo-tree))
 
 (defun uninstalled-elpa-packages ()
-  (remove-if #'package-installed-p *elpa-packages*))
+  (cl-remove-if #'package-installed-p *elpa-packages*))
 
 (defun install-elpa-packages ()
   (let ((packages (uninstalled-elpa-packages)))

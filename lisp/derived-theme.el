@@ -1,29 +1,29 @@
 (defun derived-theme-get (theme type)
   "Collect the faces or variables associated with a theme definition."
   (load-theme theme :no-enable t)
-  (loop for (this-type name _ value) in (get theme 'theme-settings)
-        when (eq this-type type)
-        collect (list name value)))
+  (cl-loop for (this-type name _ value) in (get theme 'theme-settings)
+           when (eq this-type type)
+           collect (list name value)))
 
 (defun derived-theme-get-face-table (theme)
   "Create a hash table for the specified theme's faces."
-  (loop with result = (make-hash-table :test 'equal)
-        for (name value) in (derived-theme-get theme 'theme-face)
-        do (puthash name value result)
-        finally return result))
+  (cl-loop with result = (make-hash-table :test 'equal)
+           for (name value) in (derived-theme-get theme 'theme-face)
+           do (puthash name value result)
+           finally return result))
 
 (defun derived-theme-set-faces (theme supertheme &rest args)
   "Like `custom-theme-set-faces', but apply the faces from the specified
 supertheme first."
   (let* ((orig-args (derived-theme-get supertheme 'theme-face))
-         (new-args (concatenate 'list args orig-args)))
+         (new-args (cl-concatenate 'list args orig-args)))
     (apply #'custom-theme-set-faces theme new-args)))
 
 (defun derived-theme-set-variables (theme supertheme &rest args)
   "Like `custom-theme-set-variables', but apply the variables from the specified
 supertheme first."
   (let* ((orig-args (derived-theme-get supertheme 'theme-value))
-         (new-args (concatenate 'list args orig-args)))
+         (new-args (cl-concatenate 'list args orig-args)))
     (apply #'custom-theme-set-variables theme new-args)))
 
 (defun format-derived-theme (theme supertheme faces values)
