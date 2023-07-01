@@ -27,7 +27,7 @@ provides the values under the correct names.")
  '(bold-italic ((t (:inherit (bold italic)))))
  '(italic ((t (:italic t))))
  ; Darker background
- '(default ((t (:background "grey7" :foreground "grey"))))
+ '(default ((t (:family "Liberation Mono" :background "grey7" :foreground "grey75"))))
  '(fringe ((t (:background "Grey10"))))
  ; Replace Helvetica with Deja Vu Serif
  '(info-menu-header ((t (:inherit (variable-pitch bold)))))
