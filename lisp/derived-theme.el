@@ -26,6 +26,28 @@ supertheme first."
          (new-args (cl-concatenate 'list args orig-args)))
     (apply #'custom-theme-set-variables theme new-args)))
 
+(defun merge-face-specs (specs)
+  "Merge face spec alists as defined by `defface'."
+  (let ((display-plists (make-hash-table :test 'equal)))
+    (dolist (spec specs)
+      (cl-loop for (display atts) in spec
+               do (push atts (gethash display display-plists))))
+    (cl-loop for display being the hash-keys of display-plists
+             using (hash-values rev-plists)
+             ; Use the last plist
+             collect (list display (car rev-plists)))))
+
+(defun merge-theme-settings (theme)
+  "Retrieve and merge `theme-settings' entries for `theme'."
+  (let ((settings (make-hash-table :test 'equal)))
+    (cl-loop for (type name theme-name spec) in (get theme 'theme-settings)
+             for key = (list type name theme-name)
+             do (push spec (gethash key settings)))
+    (cl-loop for key being the hash-keys of settings
+             using (hash-values rev-specs)
+             for specs = (reverse rev-specs)
+             collect (cons key (merge-face-specs specs)))))
+
 (defun format-derived-theme (theme supertheme faces values)
   "Pretty-print the `derived-theme-set-faces' and `derived-theme-set-variables'
 clauses computed by `compute-derived-theme'."
@@ -43,11 +65,11 @@ of `theme' that applies only necessary changes on top of `supertheme'."
   (load-theme theme :no-enable t)
   (load-theme supertheme :no-enable t)
   (cl-labels ((massage (setting)
-                (cl-destructuring-bind (type name _ value)
+                (cl-destructuring-bind ((type name _) . value)
                     setting
                   `((,type . ,name) . ,value)))
               (get-theme-settings (theme)
-                (mapcar #'massage (get theme 'theme-settings))))
+                (mapcar #'massage (merge-theme-settings theme))))
     (let* ((a-props     (get-theme-settings theme))
            (b-props     (get-theme-settings supertheme))
            (keys        (cl-union (mapcar #'car a-props) (mapcar #'car b-props)))
