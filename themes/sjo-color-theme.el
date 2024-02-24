@@ -15,14 +15,29 @@
 (defun canonicalize-face (face)
   (gethash (canonical-face-name face) +canonical-faces+ face))
 
-(defun plist-delete (plist key)
-  (cl-loop for (k v . _) on plist by #'cddr
-           unless (equal k key) nconcing (list k v)))
+(defun fix-face-plist (plist)
+  (let ((inherits nil)
+        (pairs nil))
+    (cl-loop for (k v . _) on plist by #'cddr
+             do (cl-case k
+                  (:bold (when v (push 'bold inherits)))
+                  (:weight (when (eq v 'bold) (push 'bold inherits)))
+                  (:family (cond ((equal v "courier") (push 'fixed-pitch inherits))
+                                 ((equal v "helv") (push 'variable-pitch inherits))))
+                  (:inherit (cond ((symbolp v) (push v inherits))
+                                  ((listp v) (dolist (face v) (push face inherits)))))
+		  ((nil) nil)
+                  (otherwise (push (list k v) pairs))))
+    (when inherits
+      (sort inherits #'string<)
+      (delete-consecutive-dups inherits)
+      (push (list :inherit inherits) pairs))
+    (apply #'nconc (nreverse pairs))))
 
 (defun sjo-face-filter (clause)
   (cl-destructuring-bind (face specs) clause
     (cl-loop for (display plist) in specs
-             collect (list display (plist-delete plist :family)) into new-specs
+             collect (list display (fix-face-plist plist)) into new-specs
              finally return (list (canonicalize-face face) new-specs))))
 
 (defun term-color (face graphic tty)
@@ -37,7 +52,8 @@
  '(default ((t (:family "Liberation Mono" :background "grey7" :foreground "grey75"))))
  '(fixed-pitch ((t (:family "Liberation Mono"))))
  '(variable-pitch ((t (:family "Deja Vu Serif"))))
- '(italic ((t (:italic t))))
+ '(bold ((t (:weight bold))))
+ '(italic ((t (:slant italic))))
  '(bold-italic ((t (:inherit (bold italic)))))
  ; Basic element styling
  '(fringe ((t (:background "Grey10"))))
