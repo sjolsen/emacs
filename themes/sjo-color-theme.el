@@ -52,12 +52,8 @@
  'sjo-color
  'charcoal-black
  :filter #'sjo-face-filter
- ; Basic font rendering
- '(default ((t (:family "Liberation Mono" :background "grey7" :foreground "grey75"))))
- '(fixed-pitch ((t (:family "Liberation Mono"))))
- '(variable-pitch ((t (:family "Liberation Sans"))))
+ ; Style overrides
  '(default ((t (:background "grey7" :foreground "grey75"))))
- ; Basic element styling
  '(fringe ((t (:background "Grey10"))))
  '(mode-line ((t (:background "grey75" :foreground "black" :inverse-video nil :box nil))))
  ; Not styled by charcoal-black
