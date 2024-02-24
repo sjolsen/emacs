@@ -29,16 +29,14 @@
  'sjo-color
  'charcoal-black
  :filter #'sjo-face-filter
- ; Replace non-italicized color-coded italics
- '(bold-italic ((t (:inherit (bold italic)))))
- '(italic ((t (:italic t))))
- ; Darker background
+ ; Basic font rendering
  '(default ((t (:family "Liberation Mono" :background "grey7" :foreground "grey75"))))
- '(fringe ((t (:background "Grey10"))))
- ; Replace Helvetica with Deja Vu Serif
- '(info-menu-header ((t (:inherit (variable-pitch bold)))))
+ '(fixed-pitch ((t (:family "Liberation Mono"))))
  '(variable-pitch ((t (:family "Deja Vu Serif"))))
- ; Remove raised border
+ '(italic ((t (:italic t))))
+ '(bold-italic ((t (:inherit (bold italic)))))
+ ; Basic element styling
+ '(fringe ((t (:background "Grey10"))))
  '(mode-line ((t (:background "grey75" :foreground "black" :inverse-video nil :box nil))))
  ; Not styled by charcoal-black
  '(org-verbatim ((t (:inherit shadow :foreground "dark orange"))))
