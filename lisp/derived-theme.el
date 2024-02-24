@@ -5,11 +5,12 @@
            when (eq this-type type)
            collect (list name value)))
 
-(defun derived-theme-set-faces (theme supertheme &rest args)
+(defun derived-theme-set-faces (theme supertheme &key filter &rest args)
   "Like `custom-theme-set-faces', but apply the faces from the specified
 supertheme first."
   (let* ((orig-args (derived-theme-get supertheme 'theme-face))
-         (new-args (cl-concatenate 'list args orig-args)))
+         (filtered-args (mapcar (or filter #'identity) orig-args))
+         (new-args (cl-concatenate 'list args filtered-args)))
     (apply #'custom-theme-set-faces theme new-args)))
 
 (defun derived-theme-set-variables (theme supertheme &rest args)

@@ -3,9 +3,20 @@
 
 (require 'derived-theme)
 
+(defun plist-delete (plist key)
+  (cl-loop for (k v . _) on plist by #'cddr
+           unless (equal k key) nconcing (list k v)))
+
+(defun no-family-filter (clause)
+  (cl-destructuring-bind (face specs) clause
+    (cl-loop for (display plist) in specs
+             collect (list display (plist-delete plist :family)) into new-specs
+             finally return (list face new-specs))))
+
 (derived-theme-set-faces
  'sjo-color
  'charcoal-black
+ :filter #'no-family-filter
  ; Replace non-italicized color-coded italics
  '(bold-italic ((t (:inherit (bold italic)))))
  '(italic ((t (:italic t))))
