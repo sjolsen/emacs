@@ -25,6 +25,10 @@
              collect (list display (plist-delete plist :family)) into new-specs
              finally return (list (canonicalize-face face) new-specs))))
 
+(defun term-color (face graphic tty)
+  `(,face ((((type graphic)) (:background ,graphic :foreground ,graphic))
+           (((type tty))     (:background ,tty     :foreground ,tty)))))
+
 (derived-theme-set-faces
  'sjo-color
  'charcoal-black
@@ -41,14 +45,14 @@
  ; Not styled by charcoal-black
  '(org-verbatim ((t (:inherit shadow :foreground "dark orange"))))
  '(shadow ((t (:foreground "dim grey"))))
- '(term-color-black ((((type x)) (:background "Grey15" :foreground "Grey15")) (((type tty)) (:background "black" :foreground "black"))))
- '(term-color-blue ((((type x)) (:background "#438CCA" :foreground "#438CCA")) (((type tty)) (:background "blue" :foreground "blue"))))
- '(term-color-cyan ((((type x)) (:background "#00FFFF" :foreground "#00FFFF")) (((type tty)) (:background "cyan" :foreground "cyan"))))
- '(term-color-green ((((type x)) (:background "#3BB878" :foreground "#3BB878")) (((type tty)) (:background "green" :foreground "green"))))
- '(term-color-magenta ((((type x)) (:background "#F06EA9" :foreground "#F06EA9")) (((type tty)) (:background "magenta" :foreground "magenta"))))
- '(term-color-red ((((type x)) (:background "#F7977A" :foreground "#F7977A")) (((type tty)) (:background "red" :foreground "red"))))
- '(term-color-white ((((type x)) (:background "Grey" :foreground "Grey")) (((type tty)) (:background "white" :foreground "white"))))
- '(term-color-yellow ((((type x)) (:background "#FFF79A" :foreground "#FFF79A")) (((type tty)) (:background "yellow" :foreground "yellow")))))
+ (term-color 'ansi-color-black   "grey7"   "black")
+ (term-color 'ansi-color-blue    "#438CCA" "blue")
+ (term-color 'ansi-color-cyan    "#00FFFF" "cyan")
+ (term-color 'ansi-color-green   "#3BB878" "green")
+ (term-color 'ansi-color-magenta "#F06EA9" "magenta")
+ (term-color 'ansi-color-red     "#F7977A" "red")
+ (term-color 'ansi-color-white   "white"   "white")
+ (term-color 'ansi-color-yellow  "#FFF79A" "yellow"))
 
 (derived-theme-set-variables
  'sjo-color
