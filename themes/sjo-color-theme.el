@@ -15,6 +15,9 @@
 (defun canonicalize-face (face)
   (gethash (canonical-face-name face) +canonical-faces+ face))
 
+(defconst +keep-default-faces+
+  '(default fixed-pitch variable-pitch bold italic bold-italic))
+
 (defun fix-face-plist (plist)
   (let ((inherits nil)
         (pairs nil))
@@ -36,9 +39,10 @@
 
 (defun sjo-face-filter (clause)
   (cl-destructuring-bind (face specs) clause
-    (cl-loop for (display plist) in specs
-             collect (list display (fix-face-plist plist)) into new-specs
-             finally return (list (canonicalize-face face) new-specs))))
+    (unless (memq face +keep-default-faces+)
+      (cl-loop for (display plist) in specs
+               collect (list display (fix-face-plist plist)) into new-specs
+               finally return (list (canonicalize-face face) new-specs)))))
 
 (defun term-color (face graphic tty)
   `(,face ((((type graphic)) (:background ,graphic :foreground ,graphic))
@@ -51,10 +55,8 @@
  ; Basic font rendering
  '(default ((t (:family "Liberation Mono" :background "grey7" :foreground "grey75"))))
  '(fixed-pitch ((t (:family "Liberation Mono"))))
- '(variable-pitch ((t (:family "Deja Vu Serif"))))
- '(bold ((t (:weight bold))))
- '(italic ((t (:slant italic))))
- '(bold-italic ((t (:inherit (bold italic)))))
+ '(variable-pitch ((t (:family "Liberation Sans"))))
+ '(default ((t (:background "grey7" :foreground "grey75"))))
  ; Basic element styling
  '(fringe ((t (:background "Grey10"))))
  '(mode-line ((t (:background "grey75" :foreground "black" :inverse-video nil :box nil))))

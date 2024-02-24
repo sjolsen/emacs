@@ -9,7 +9,7 @@
   "Like `custom-theme-set-faces', but apply the faces from the specified
 supertheme first."
   (let* ((orig-args (derived-theme-get supertheme 'theme-face))
-         (filtered-args (mapcar (or filter #'identity) orig-args))
+         (filtered-args (delq nil (mapcar (or filter #'identity) orig-args)))
          (new-args (cl-concatenate 'list args filtered-args)))
     (apply #'custom-theme-set-faces theme new-args)))
 
