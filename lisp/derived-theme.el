@@ -5,13 +5,6 @@
            when (eq this-type type)
            collect (list name value)))
 
-(defun derived-theme-get-face-table (theme)
-  "Create a hash table for the specified theme's faces."
-  (cl-loop with result = (make-hash-table :test 'equal)
-           for (name value) in (derived-theme-get theme 'theme-face)
-           do (puthash name value result)
-           finally return result))
-
 (defun derived-theme-set-faces (theme supertheme &rest args)
   "Like `custom-theme-set-faces', but apply the faces from the specified
 supertheme first."
