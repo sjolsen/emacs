@@ -3,20 +3,32 @@
 
 (require 'derived-theme)
 
+(defun canonical-face-name (face)
+  (string-remove-suffix "-face" (downcase (symbol-name face))))
+
+(defconst +canonical-faces+
+  (let ((table (make-hash-table :test 'equal)))
+    (dolist (face (face-list))
+      (puthash (canonical-face-name face) face table))
+    table))
+
+(defun canonicalize-face (face)
+  (gethash (canonical-face-name face) +canonical-faces+ face))
+
 (defun plist-delete (plist key)
   (cl-loop for (k v . _) on plist by #'cddr
            unless (equal k key) nconcing (list k v)))
 
-(defun no-family-filter (clause)
+(defun sjo-face-filter (clause)
   (cl-destructuring-bind (face specs) clause
     (cl-loop for (display plist) in specs
              collect (list display (plist-delete plist :family)) into new-specs
-             finally return (list face new-specs))))
+             finally return (list (canonicalize-face face) new-specs))))
 
 (derived-theme-set-faces
  'sjo-color
  'charcoal-black
- :filter #'no-family-filter
+ :filter #'sjo-face-filter
  ; Replace non-italicized color-coded italics
  '(bold-italic ((t (:inherit (bold italic)))))
  '(italic ((t (:italic t))))
@@ -25,10 +37,6 @@
  '(fringe ((t (:background "Grey10"))))
  ; Replace Helvetica with Deja Vu Serif
  '(info-menu-header ((t (:inherit (variable-pitch bold)))))
- '(info-title-1 ((t (:inherit info-title-2 :height 1.728))))
- '(info-title-2 ((t (:inherit info-title-3 :height 1.44))))
- '(info-title-3 ((t (:inherit info-title-4 :height 1.2))))
- '(info-title-4 ((t (:inherit (variable-pitch bold)))))
  '(variable-pitch ((t (:family "Deja Vu Serif"))))
  ; Remove raised border
  '(mode-line ((t (:background "grey75" :foreground "black" :inverse-video nil :box nil))))
