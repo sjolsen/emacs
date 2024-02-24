@@ -3,24 +3,7 @@
 
 (require 'derived-theme)
 
-(defconst +sjo-color-rename-list+
-  (let ((table (derived-theme-get-face-table 'charcoal-black))
-        (name-map '((lazy-highlight           . isearch-lazy-highlight-face)
-                    (show-paren-match         . show-paren-match-face)
-                    (show-paren-mismatch      . show-paren-mismatch-face)
-                    (widget-button            . widget-button-face)
-                    (widget-button-pressed    . widget-button-pressed-face)
-                    (widget-documentation     . widget-documentation-face)
-                    (widget-field             . widget-field-face)
-                    (widget-inactive          . widget-inactive-face)
-                    (widget-single-line-field . widget-single-line-field-face))))
-    (cl-loop for (new-name . old-name) in name-map
-             for value = (gethash old-name table)
-             collect (list new-name value)))
-  "The original theme uses several incorrect/out-of-date face names. This list
-provides the values under the correct names.")
-
-(apply #'derived-theme-set-faces
+(derived-theme-set-faces
  'sjo-color
  'charcoal-black
  ; Replace non-italicized color-coded italics
@@ -48,9 +31,7 @@ provides the values under the correct names.")
  '(term-color-magenta ((((type x)) (:background "#F06EA9" :foreground "#F06EA9")) (((type tty)) (:background "magenta" :foreground "magenta"))))
  '(term-color-red ((((type x)) (:background "#F7977A" :foreground "#F7977A")) (((type tty)) (:background "red" :foreground "red"))))
  '(term-color-white ((((type x)) (:background "Grey" :foreground "Grey")) (((type tty)) (:background "white" :foreground "white"))))
- '(term-color-yellow ((((type x)) (:background "#FFF79A" :foreground "#FFF79A")) (((type tty)) (:background "yellow" :foreground "yellow"))))
- ; Misspelled in charcoal-black
- +sjo-color-rename-list+)
+ '(term-color-yellow ((((type x)) (:background "#FFF79A" :foreground "#FFF79A")) (((type tty)) (:background "yellow" :foreground "yellow")))))
 
 (derived-theme-set-variables
  'sjo-color
