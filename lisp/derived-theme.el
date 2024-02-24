@@ -30,9 +30,9 @@ supertheme first."
   "Pretty-print the `derived-theme-set-faces' and `derived-theme-set-variables'
 clauses computed by `compute-derived-theme'."
   (cl-labels ((format-clause (command rows)
-                (loop for row in (list* theme supertheme rows)
-                      concat (format "\n '%S" row) into rows-text
-                      finally return (format "(%s%s)" command rows-text))))
+                (cl-loop for row in (cl-list* theme supertheme rows)
+                         concat (format "\n '%S" row) into rows-text
+                         finally return (format "(%s%s)" command rows-text))))
     (let ((clauses (list (format-clause 'derived-theme-set-faces faces)
                          (format-clause 'derived-theme-set-variables values))))
       (mapconcat #'identity clauses "\n\n"))))
@@ -53,14 +53,14 @@ of `theme' that applies only necessary changes on top of `supertheme'."
            (keys        (cl-union (mapcar #'car a-props) (mapcar #'car b-props)))
            (unique-keys (cl-sort (delete-dups keys) #'string-lessp
                                  :key (lambda (k) (format "%s" k)))))
-      (loop for key in unique-keys
-            for (type . name) = key
-            for a-val = (cdr (assoc key a-props))
-            for b-val = (cdr (assoc key b-props))
-            for row = (list name a-val)
-            unless (equal a-val b-val)
-              when (eq type 'theme-value) collect row into values end
-              and when (eq type 'theme-face) collect row into faces end
-            finally return (format-derived-theme theme supertheme faces values)))))
+      (cl-loop for key in unique-keys
+               for (type . name) = key
+               for a-val = (cdr (assoc key a-props))
+               for b-val = (cdr (assoc key b-props))
+               for row = (list name a-val)
+               unless (equal a-val b-val)
+                 when (eq type 'theme-value) collect row into values end
+                 and when (eq type 'theme-face) collect row into faces end
+               finally return (format-derived-theme theme supertheme faces values)))))
 
 (provide 'derived-theme)
