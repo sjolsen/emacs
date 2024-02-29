@@ -56,6 +56,7 @@
  '(comment-auto-fill-only-comments t)
  '(fill-column 80)
  '(global-undo-tree-mode t)
+ '(undo-tree-auto-save-history nil)
  '(indent-tabs-mode nil)
  '(show-paren-mode t)
  '(show-paren-delay 0)
